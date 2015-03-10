@@ -2,10 +2,6 @@ import sys, os, time, cx_Oracle
 import NVR,AT,DLR,VR,SE
 
 
-def main():
-    main_menu()
-
-
 # Main menu
 def main_menu():
     os.system('clear')
