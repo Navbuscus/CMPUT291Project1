@@ -25,7 +25,7 @@ def main_menu():
     print ("3. Driver Licence Registration")
     print ("4. Violation Record")
     print ("5. Search Engine")
-    print ("\n0. Logout")
+    print ("\n0. Exit")
     choice = input(" >>  ")
     exec_menu(choice)
  
@@ -103,7 +103,7 @@ menu_actions = {
     '4': Violation_Record,
     '5': Search_Engine,
     '9': back,
-    '0': main,
+    '0': exit,
 }
  
 if __name__ == "__main__":
