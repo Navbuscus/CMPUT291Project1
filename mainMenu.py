@@ -76,7 +76,7 @@ def Search_Engine():
  
 # Back to main menu
 def back():
-    menu_actions['main_menu']()
+    mainMenu()
  
 # Exit program
 def exit():
