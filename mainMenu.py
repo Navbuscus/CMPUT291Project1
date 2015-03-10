@@ -1,5 +1,5 @@
 import sys, os, time, cx_Oracle
-import NVR,AT,DLR,VR,SE
+import SE
 
 
 # Main menu
@@ -30,7 +30,7 @@ def exec_menu(choice):
             menu_actions[ch]()
         except KeyError:
             print ("Invalid selection, please try again.\n")
-            time.sleep(3)
+            time.sleep(1)
             menu_actions['main_menu']()
     return
  
