@@ -1,5 +1,5 @@
 import sys, os, time, cx_Oracle
-import SE
+import NVR,AT,DLR,VR,SE
 
 
 # Main menu
