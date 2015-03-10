@@ -37,32 +37,22 @@ def exec_menu(choice):
 def New_Vehicle_Registration():
     NVR.main()
     back()
-
- 
- 
-
+    
 def Auto_Transaction():
     AT.main()
     back()
-
-
- # Menu 2
+    
 def Drivers_Licence_Registration():
     DLR.main()
     back()
 
-
- # Menu 2
 def Violation_Record():
     VR.main()
     back()
 
-
- # Menu 2
 def Search_Engine():
     SE.main()
     back()
-
  
 # Back to main menu
 def back():
