@@ -82,7 +82,7 @@ menu_actions = {
 }
 
 user = 'ajwu'
-pw = 'a1__5LoYz'   
+pw = 'a1__5LoY'   
 connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
 try:
     connection  = cx_Oracle.connect(connStr)
