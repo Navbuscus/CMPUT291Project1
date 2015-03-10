@@ -99,7 +99,7 @@ def back():
  
 # Exit program
 def exit():
-    cursor.close()
+    curs.close()
     connection.close()    
     sys.exit()
  
