@@ -1,4 +1,5 @@
-import sys, os, time, cx_Oracle, mainMenu
+import sys, os, time, cx_Oracle,
+from mainMenu import cursor
 
 def main():
     os.system('clear')
