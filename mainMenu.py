@@ -1,30 +1,18 @@
-import sys, os, time, getpass, cx_Oracle
+import sys, os, time, cx_Oracle
 import NVR,AT,DLR,VR,SE
 
-# Main menu
+
 def main():
-    os.system('clear')
-    print("Welcome to ARS!")
-    print ("1. login")
-    print ("0. exit")
-    choice = input(">> ")
-    if choice == '1':
-        login()
-    if choice == '0':
-        exit()
-    print("Invalid selection, please try again.\n")
-    main()
-    
-def login():
-    os.system('clear')
-    print("Please enter your username")
-    username = input(">> ")
-    os.system('clear')
-    print("Please enter your password")
-    password = getpass.getpass(prompt=">> ")
-    connect(username, password)
+    connStr = 'username/password@host'
+    try:
+        connection  = cx_Oracle.connect(connStr)
+        curs = connection.cursor()
+    except cx_Oracle.DatabaseError as exc:
+        error, = exc.args
+        print( sys.stderr, "Oracle code:", error.code)
+        print( sys.stderr, "Oracle message:", error.message) 
 
-
+# Main menu
 def main_menu():
     os.system('clear')
     
@@ -103,20 +91,6 @@ def back():
 # Exit program
 def exit():
     sys.exit()
-
-def connect(username,password):
-    #here we connec to database
-    if username != 'admin' or password != '1234' :
-        print("Error wrong username/password")
-        main()
-    print( "Welcome",username+"!")
-    main_menu()
-    main()
-    
-
-
-
-
  
 # Menu definition
 menu_actions = {
