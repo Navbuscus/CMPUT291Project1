@@ -1,4 +1,4 @@
-import sys, os, mainMenu, time
+import sys, os, mainMenu, time,cx_Oracle 
 
 def main():
     os.system('clear')

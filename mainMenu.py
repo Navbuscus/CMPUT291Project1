@@ -1,4 +1,4 @@
-import sys, os, time, getpass
+import sys, os, time, getpass, cx_Oracle
 import NVR,AT,DLR,VR,SE
 
 # Main menu
