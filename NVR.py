@@ -1,43 +1,33 @@
-import sys, os, time, cx_Oracle, mainMenu
+import sys, os, time, cx_Oracle,mainMenu
 
 def main():
     os.system('clear')
-    print("Vehicle Registration")
+    print("Search Engine")
     print("-----------------------------------")
-    print ("1. Register Vehicle")
+    print ("1. Search database")
     print ("0. Back")
     choice = input(" >>  ")
     exec_menu(choice, 'main')
     return
 
-def register():
+def search():
     os.system('clear')
-    print("Vehicle Registration")
+    print("Search Engine")
     print("-----------------------------------")
-    print("Please enter the maker of your car")
-    maker = input(">> ")
-
-    print("Please enter the model of your car")
-    model = input(">> ")
-
-    print("Please enter the year of your car")
-    year = input(">> ")
-
-    print("Please enter the color of your car")
-    color = input(">> ")
-    print("maker:", maker, " model:", model, " year:",year," color:",color)
-    print("registering into database...")
-    print("successful!")
-    registerAgain()
+    print("Please enter search term")
+    driver = input(">> ")
+    print(driver,"is in our database... somewhere")
+    searchAgain()
     return
 
-def registerAgain():
+def searchAgain():
     print("----------------------------------")
-    print("1. Register Another Vehicle")
-    print("0. Back to main menue")
+    print("1. Search database again")
+    print("0. Back to main menu")
     choice = input(">> ")
-    exec_menu(choice,'registerAgain')
+    exec_menu(choice,'searchAgain')
     return
+
 
 def exec_menu(choice,context):
     #os.system('clear')
@@ -59,7 +49,8 @@ def exit():
 
 menu_actions = {
     'main':main,
-    '1':register,
+    '1':search,
     '0': exit,
-    'registerAgain':registerAgain
+    'searchAgain':searchAgain
 }
+
