@@ -40,18 +40,22 @@ def New_Vehicle_Registration():
     back()
     
 def Auto_Transaction():
+     print("works inside ")
     AT.main()
     back()
     
 def Drivers_Licence_Registration():
+     print("works inside ")
     DLR.main()
     back()
 
 def Violation_Record():
+     print("works inside ")
     VR.main()
     back()
 
 def Search_Engine():
+     print("works inside ")
     SE.main()
     back()
  
