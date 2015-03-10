@@ -35,7 +35,7 @@ def exec_menu(choice):
     return
  
 def New_Vehicle_Registration():
-    NVR.main()
+    NVR.mainn()
     back()
     
 def Auto_Transaction():

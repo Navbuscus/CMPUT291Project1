@@ -1,6 +1,6 @@
 import sys, os, time, cx_Oracle,mainMenu
 
-def main():
+def mainn():
     os.system('clear')
     print("Search Engine")
     print("-----------------------------------")
