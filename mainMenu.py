@@ -8,9 +8,9 @@ def main():
 
 
 def connect():
-    user = "ajwu"
-    pw = "a1__5LoYz"   
-    conString="'+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS"  
+    user = 'ajwu'
+    pw = 'a1__5LoYz'   
+    connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
     try:
         connection  = cx_Oracle.connect(connStr)
         curs = connection.cursor()
