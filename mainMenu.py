@@ -35,6 +35,7 @@ def exec_menu(choice):
     return
  
 def New_Vehicle_Registration():
+    print("works inside ")
     NVR.main()
     back()
     
