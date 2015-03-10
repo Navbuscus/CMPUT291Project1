@@ -3,16 +3,22 @@ import NVR,AT,DLR,VR,SE
 
 
 def main():
-    connStr = 'username/password@host'
-    #try:
-    #   connection  = cx_Oracle.connect(connStr)
-    #  curs = connection.cursor()
-    #except cx_Oracle.DatabaseError as exc:
-    #   error, = exc.args
-    #  print( sys.stderr, "Oracle code:", error.code)
-    #  print( sys.stderr, "Oracle message:", error.message)
-
+    connect()
     main_menu()
+
+
+def connect():
+    user = "ajwu"
+    pw = "a1__5LoYz"   
+    conString="'+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS"  
+    try:
+        connection  = cx_Oracle.connect(connStr)
+        curs = connection.cursor()
+    except cx_Oracle.DatabaseError as exc:
+        error, = exc.args
+        print( sys.stderr, "Oracle code:", error.code)
+        print( sys.stderr, "Oracle message:", error.message)
+
 
 # Main menu
 def main_menu():
@@ -92,6 +98,8 @@ def back():
  
 # Exit program
 def exit():
+    cursor.close()
+    connection.close()    
     sys.exit()
  
 # Menu definition
