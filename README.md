@@ -14,6 +14,7 @@ In this project, you are going to design and implement a database application sy
 This is a simple client-server application in which the data will be stored in the Oracle Server in the lab, and all the application programs shall be developed using (1) Java and JDBC, or (2) Python.  (You may develop your application programs using C and ODBC or Embedded C, or any other technologies  if you really dislike Java and Python, but do not expect any help from the lab.)  You are free to implement a GUI interface or a web-based three-tier system instead, but there will be neither support nor bonus for doing that.
 
 This is a group project, with two or three students in each group, and of course, all students in a group will receive the same mark for the project. Send an email to  TA  Kriti Khare with the list of students in your group before March 10. (Our on-line group registration program apparently not working properly).
+
 Database Specification
 
 Consider an auto registration system, as outlined in Assignment 1,  with the following tables:
@@ -36,6 +37,7 @@ Use the provided SQL statements to create the database and then populate the ini
 Application Programs
 
 The system consists of the following five (5) application programs.
+
 New Vehicle Registration
 
 This component is used to register a new vehicle by an auto registration officer. By a new vehicle, we mean a vehicle that has not been registered in the database. The component shall allow an officer to enter the detailed information about the vehicle and personal information about its new owners, if it is not in the database. You may assume that all the information about vehicle types has been loaded in the initial database.
