@@ -36,11 +36,6 @@ def exec_menu(choice):
  
 def New_Vehicle_Registration():
     NVR.main()
-    #print ("New Vehicle Registration!\n")
-    #print ("9. Back")
-    #print ("0. Quit")
-    #choice = input(" >>  ")
-    #exec_menu(choice)
     back()
 
  
@@ -48,11 +43,6 @@ def New_Vehicle_Registration():
 
 def Auto_Transaction():
     AT.main()
-    #print ("Auto Transaction!\n")
-    #print ("9. Back")
-    #print ("0. Quit")
-    #choice = input(" >>  ")
-    #exec_menu(choice)
     back()
 
 
