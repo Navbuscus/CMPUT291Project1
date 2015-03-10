@@ -1,7 +1,5 @@
 import sys, os, time, cx_Oracle,mainMenu
 
-main()
-
 def main():
     os.system('clear')
     print("Search Engine")
@@ -12,6 +10,7 @@ def main():
     exec_menu(choice, 'main')
     return
 
+main()
 def search():
     os.system('clear')
     print("Search Engine")
