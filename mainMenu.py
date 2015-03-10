@@ -105,7 +105,7 @@ pw = 'a1__5LoYz'
 connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
 try:
     connection  = cx_Oracle.connect(connStr)
-    curs = connection.cursor() 
+    cursor = connection.cursor() 
     main_menu()
 except cx_Oracle.DatabaseError as exc:
     error, = exc.args
