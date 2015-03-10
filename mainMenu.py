@@ -93,5 +93,5 @@ except cx_Oracle.DatabaseError as exc:
     print( sys.stderr, "Oracle message:", error.message)
     sys.exit()
 
-if "__name__" = __main__:
+if "__name__" == __main__:
     main_menu()
