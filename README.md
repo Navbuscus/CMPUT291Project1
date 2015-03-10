@@ -51,28 +51,37 @@ Search Engine
 
 This component is used to perform the following searches.
 
-    List the name, licence_no, addr, birthday, driving class, driving_condition, and the expiring_data of a driver by entering either a licence_no or a given name. It shall display all the entries if a duplicate name is given.
-    List all violation records received by a person if  the drive licence_no or sin of a person  is entered.
-    Print out the vehicle_history, including the number of times that a vehicle has been changed hand, the average price, and the number of violations it has been involved by entering the vehicle's serial number.
+1. List the name, licence_no, addr, birthday, driving class, driving_condition, and the expiring_data of a driver by entering either a licence_no or a given name. It shall display all the entries if a duplicate name is given.
+   
+2. List all violation records received by a person if  the drive licence_no or sin of a person  is entered.
+
+3. Print out the vehicle_history, including the number of times that a vehicle has been changed hand, the average price, and the number of violations it has been involved by entering the vehicle's serial number.
 
 Requirements
 
-    Your system must start with a main menu for a user to use any of the five application programs, and the system terminates only if the user explicitly choose to do so.
-    Your programs shall display proper information to guide users to perform their work and correct any mistake.
-    You are required to submit a typed design report. The design report should include a brief description of the overall design of your application system. The description should focus mostly on the classes required to deliver the major functions of your application, not on secondary or utility classes. You shall clearly describe the responsibility and interface of each class and relationships among them. As an example, you may take a look at the document for the Berkeley DB.
-    You are required to demonstrate your application system in the lab against the database populated with our own test data in a TA account. The demo will be run using the source code submitted and nothing else. Make sure your submission includes every file that is needed. The code will be executed under a TA account. Do not hard-code username, password or table prefixes (such as username or group name) in your code. If you cannot set up your application within 3 minutes under a TA account, the TA will be moving to the next demo. At demo time, all group members must be present. The TA will be using a script to create and populate the initial database. You will be then asked to perform various tasks and show how your application is handling each task. A mark will be assigned to your demo on the spot after the testing.
+1. Your system must start with a main menu for a user to use any of the five application programs, and the system terminates only if the user explicitly choose to do so.
+
+2. Your programs shall display proper information to guide users to perform their work and correct any mistake.
+
+3. You are required to submit a typed design report. The design report should include a brief description of the overall design of your application system. The description should focus mostly on the classes required to deliver the major functions of your application, not on secondary or utility classes. You shall clearly describe the responsibility and interface of each class and relationships among them. As an example, you may take a look at the document for the Berkeley DB.
+
+4. You are required to demonstrate your application system in the lab against the database populated with our own test data in a TA account. The demo will be run using the source code submitted and nothing else. Make sure your submission includes every file that is needed. The code will be executed under a TA account. Do not hard-code username, password or table prefixes (such as username or group name) in your code. If you cannot set up your application within 3 minutes under a TA account, the TA will be moving to the next demo. At demo time, all group members must be present. The TA will be using a script to create and populate the initial database. You will be then asked to perform various tasks and show how your application is handling each task. A mark will be assigned to your demo on the spot after the testing.
 
 Notes
 
-    Please use case insensitive comparison in your SQL, Python, or Java programs. For SQL statements, one may use "LOWER" or "UPPER" functions to archive case insensitive comparison.
-    This is a  sample Java program  ( a sample Python program )  for inserting a local file into a table as a Blob/LONG RAW.
-    A list of all possible test scenarios will be posted hear one week before the due date.
+1. Please use case insensitive comparison in your SQL, Python, or Java programs. For SQL statements, one may use "LOWER" or "UPPER" functions to archive case insensitive comparison.
+
+2. This is a  sample Java program  ( a sample Python program )  for inserting a local file into a table as a Blob/LONG RAW.
+
+3. A list of all possible test scenarios will be posted hear one week before the due date.
 
 Instructions for Submissions
 
 You must submit (1) the design report, and (2) the source code of your application programs and related files.
 
-    Submit your design report in hard copy, at the designated drop box for CMPUT291 located on the first floor of CSC building, across from Room 1-43. There is no guarantee to get your report marked and/or returned to you if it is dropped in a wrong box!
-    Create a single gzipped tar file with all your source code and additional files you may need for your demo using
+1. Submit your design report in hard copy, at the designated drop box for CMPUT291 located on the first floor of CSC building, across from Room 1-43. There is no guarantee to get your report marked and/or returned to you if it is dropped in a wrong box!
+
+2. Create a single gzipped tar file with all your source code and additional files you may need for your demo using
                      tar -c file1, file2, ..., fileN | gzip -c > project.tgz; 
-    Submit project.tgz at the bottom of this page.
+
+3. Submit project.tgz at the bottom of this page.
