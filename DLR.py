@@ -11,12 +11,104 @@ def main():
     return
 
 def register():
+
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's Social Insurance Number (SIN):")
+        sin = input(">>  ")
+        if( sin.isdigit() and len(sin) == 9):
+            break;
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+    
+
+
     os.system('clear')
     print("Drivers License Registration")
     print("-----------------------------------")
-    print("Please enter the drivers name")
-    driver = input(">> ")
-    print(driver,"has been registered as a driver, yeah i got lazy here")
+    print("Please enter the driver's name")
+    name = input(">> ")
+    name = name.lower()
+
+    
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's height (cm): ")
+        height = input(">> ")
+        try:
+           float(height)
+           if( float(height) <= 999.99):
+               break;
+           else:
+               print("Error: value too large")
+               time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's weight (kg): ")
+        weight = input(">> ")
+        try:
+           float(weight)
+           if( float(weight) <= 999.99):
+               break;
+           else:
+               print("Error: value too large")
+               time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+    os.system('clear')
+    print("Drivers License Registration")
+    print("-----------------------------------")
+    print("Please enter the driver's eye colour")
+    eye = input(">> ")
+    eye = name.lower()
+
+
+    os.system('clear')
+    print("Drivers License Registration")
+    print("-----------------------------------")
+    print("Please enter the driver's hair colour")
+    hair = input(">> ")
+    hair = name.lower()
+
+    os.system('clear')
+    print("Drivers License Registration")
+    print("-----------------------------------")
+    print("Please enter the driver's adress")
+    addr = input(">> ")
+    addr = name.lower()
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please select driver's gender")
+        print("1. Male")
+        print("2. Female")
+        choice = input(">> ")
+        if(choice == "1"):
+            gender = 'm'
+            break;
+        elif(choice == '2'):
+            gender = 'f'
+            break;
+        else:
+            print("Error: invalid selection")
+            time.sleep(2)
+
+
     registerAgain()
     return
 
