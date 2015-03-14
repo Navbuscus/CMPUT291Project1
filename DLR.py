@@ -74,7 +74,7 @@ def register():
     print("-----------------------------------")
     print("Please enter the driver's eye colour")
     eye = input(">> ")
-    eye = name.lower()
+    eye = eye.lower()
 
 
     os.system('clear')
@@ -82,33 +82,53 @@ def register():
     print("-----------------------------------")
     print("Please enter the driver's hair colour")
     hair = input(">> ")
-    hair = name.lower()
+    hair = hair.lower()
 
     os.system('clear')
     print("Drivers License Registration")
     print("-----------------------------------")
     print("Please enter the driver's adress")
     addr = input(">> ")
-    addr = name.lower()
+    addr = addr.lower()
+    
     while True:
         os.system('clear')
         print("Drivers License Registration")
         print("-----------------------------------")
-        print("Please select driver's gender")
-        print("1. Male")
-        print("2. Female")
+        print("Please select driver's gender (m/f)")
         choice = input(">> ")
-        if(choice == "1"):
+        if(choice == "m"):
             gender = 'm'
             break;
-        elif(choice == '2'):
+        elif(choice == "f"):
             gender = 'f'
             break;
         else:
             print("Error: invalid selection")
             time.sleep(2)
 
-
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's birthday (YYYYMMDD):")
+        bd = input(">>  ")
+        if(bd.isdigit() and len(bd) == 8):
+            break;
+        else:
+            print("Error: you must enter your BD as YYYYMMDD")
+            time.sleep(2)
+    
+    statement = "INSERT into PEOPLE values(sin,name,height,weight,eye,hair,addr,gender,bd)"
+    mainMenu.cursor.execute(statement)
+     
+            
+    #insert = """INSERT into PEOPLE (SIN,NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
+    #values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE('20001212','YYYYMMDD')"""
+    #mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,
+    #                       'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,
+    #                      'HAIR':hair, 'ADDRESS': addr, 'GENDER': gender})    
+    
     registerAgain()
     return
 
