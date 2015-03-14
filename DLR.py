@@ -11,7 +11,7 @@ def main():
     return
 
 def register():
-
+    """
     while True:
         os.system('clear')
         print("Drivers License Registration")
@@ -121,13 +121,22 @@ def register():
     
     statement = "INSERT into PEOPLE values(sin,name,height,weight,eye,hair,addr,gender,bd)"
     mainMenu.cursor.execute(statement)
-     
-            
-    #insert = """INSERT into PEOPLE (SIN,NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
-    #values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE('20001212','YYYYMMDD')"""
-    #mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,
-    #                       'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,
-    #                      'HAIR':hair, 'ADDRESS': addr, 'GENDER': gender})    
+    """
+    sin = '000000000'
+    name = 'Fred'
+    height = 123.00
+    weight = 78.00
+    eye = "blue"
+    hair = "blonde"
+    addr = "1234 fake street"
+    gender = "m"
+    bd = "19900101"
+    
+    insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
+    values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'YYYYMMDD')"""
+    mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,
+                           'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,
+                          'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bd})    
     
     registerAgain()
     return
