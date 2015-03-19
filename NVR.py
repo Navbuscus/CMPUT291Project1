@@ -67,7 +67,7 @@ def register():
     colour = input(">> ")
     colour = colour.lower()
 
-    mainMenu.cursor.execute("SELECT * from vehicle_type ")
+    mainMenu.cursor.execute("SELECT * FROM vehicle_type ")
     data = mainMenu.cursor.fetchall()
     print("data is :")
     for row in data:
