@@ -133,7 +133,7 @@ def register():
     bdate = '19900101'
     
     mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = 'Fred'")
-    data = cursor.fetchone()
+    data = mainMenu.cursor.fetchone()
     if data is None:
         print('There is no component named %s'%name)
     else:
