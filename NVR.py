@@ -51,7 +51,7 @@ def register():
         print("Please enter the Year of the Vehicle: ")
         year = input(">> ")
         try:
-            if( float(height) <= 9999):
+            if( float(year) <= 9999):
                 break;
             else:
                 print("Error: value too large")
