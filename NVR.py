@@ -60,7 +60,16 @@ def register():
             print("Error: please enter a number")
             time.sleep(2)
 
+    os.system('clear')
+    print("Drivers License Registration")
+    print("-----------------------------------")
+    print("Please enter the Color of the Vehicle")
+    colour = input(">> ")
+    colour = colour.lower()
 
+    mainMenu.cursor.execute("SELECT * from vehicle_type")
+    data = mainMenu.cursor.fetchone()
+    print(data)
     registerAgain()
     return
 
