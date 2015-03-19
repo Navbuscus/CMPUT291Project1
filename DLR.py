@@ -158,9 +158,11 @@ def register():
         print("Drivers License Registration")
         print("-----------------------------------")
         print("Please enter the driver's license class number:")
-        class = input(">>  ")
-        if( class.isdigit() and len(class) == 1 and class in range(1,8):
-            break;
+        dclass = input(">>  ")
+        
+        if(dclass.isdigit() and len(dclass) == 1):
+            if (dclass in range(1,8)):
+                break
         else:
             print("Error: you must enter a valid class number")
             time.sleep(2)
@@ -176,15 +178,16 @@ def register():
             break;
         except IOError:
             print("Error: file could not be opened.") 
-            print("    Ensure you have given the proper file name (case sensetive) and ")
+            print("    Ensure you have given the proper file name (case sensitive) and ")
             print("    File is in program directory")
 
     image = f_image.read()
 
     licence_no = 80085 #boobs
+    
     insert = """INSERT into DRIVE_LICENCE (LICENCE_NO, SIN, CLASS, PHOTO, ISSUING_DATE, EXPIRING_DATE)
     values (:LICENCE_NO,:SIN,:CLASS,:PHOTO,TO_DATE(:ISSUING_DATE,'MMDDYYYY'),TO_DATE(:EXPIRING_DATE,'MMDDYYYY')))"""
-    mainMenu.cursor.execute(insert,{'LICENCE_NO':licence_no,'SIN':sin,'CLASS':class,'ISSUING_DATE':idate,'EXPIRING_DATE':edate})
+    mainMenu.cursor.execute(insert,{'LICENCE_NO':licence_no,'SIN':sin,'CLASS':dclass,'ISSUING_DATE':idate,'EXPIRING_DATE':edate})
     mainMenu.connection.commit()    
     registerAgain()
     return
