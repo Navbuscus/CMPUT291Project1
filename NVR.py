@@ -71,7 +71,10 @@ def register():
     data = mainMenu.cursor.fetchall()
     print("data is :")
     for row in data:
-        print row[0], row[1]
+        print row[0]
+        print ("/n")
+        print row[1]
+        print ("/n")
 
     registerAgain()
     return
