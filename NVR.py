@@ -17,7 +17,7 @@ def register():
         print("-----------------------------------")
         print("Please enter the Vehicle's Serial Number (VSN):")
         serial_no = input(">>  ")
-        if( sin.isdigit() and len(sin) == 10):
+        if( serial_no.isdigit() and len(serial_no) == 10):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
             data = mainMenu.cursor.fetchone()
