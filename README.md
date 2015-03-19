@@ -1,4 +1,5 @@
 CMPUT 291 Introduction to File and Database Management
+=======
 
 Winter 2015
 Mini-Project 1
@@ -17,6 +18,7 @@ This is a simple client-server application in which the data will be stored in t
 This is a group project, with two or three students in each group, and of course, all students in a group will receive the same mark for the project. Send an email to  TA  Kriti Khare with the list of students in your group before March 10. (Our on-line group registration program apparently not working properly).
 
 Database Specification
+=======
 
 Consider an auto registration system, as outlined in Assignment 1,  with the following tables:
 
@@ -66,6 +68,7 @@ This component is used to perform the following searches.
 3. Print out the vehicle_history, including the number of times that a vehicle has been changed hand, the average price, and the number of violations it has been involved by entering the vehicle's serial number.
 
 Requirements
+=======
 
 1. Your system must start with a main menu for a user to use any of the five application programs, and the system terminates only if the user explicitly choose to do so.
 
@@ -76,6 +79,7 @@ Requirements
 4. You are required to demonstrate your application system in the lab against the database populated with our own test data in a TA account. The demo will be run using the source code submitted and nothing else. Make sure your submission includes every file that is needed. The code will be executed under a TA account. Do not hard-code username, password or table prefixes (such as username or group name) in your code. If you cannot set up your application within 3 minutes under a TA account, the TA will be moving to the next demo. At demo time, all group members must be present. The TA will be using a script to create and populate the initial database. You will be then asked to perform various tasks and show how your application is handling each task. A mark will be assigned to your demo on the spot after the testing.
 
 Notes
+=======
 
 1. Please use case insensitive comparison in your SQL, Python, or Java programs. For SQL statements, one may use "LOWER" or "UPPER" functions to archive case insensitive comparison.
 
@@ -84,6 +88,7 @@ Notes
 3. A list of all possible test scenarios will be posted hear one week before the due date.
 
 Instructions for Submissions
+=======
 
 You must submit (1) the design report, and (2) the source code of your application programs and related files.
 
