@@ -8,6 +8,7 @@ Clarifications and notifications:
     No clarification so far.
 
 Introduction
+=======
 
 In this project, you are going to design and implement a database application system for an auto registration system, based on your previous work in the first two assignments.
 
