@@ -39,15 +39,15 @@ Use the provided SQL statements to create the database and then populate the ini
 
 Application Programs
 
-    The system consists of the following five (5) application programs.
+The system consists of the following five (5) application programs.
 
 New Vehicle Registration
 
-    This component is used to register a new vehicle by an auto registration officer. By a new vehicle, we mean a vehicle that     has not been registered in the database. The component shall allow an officer to enter the detailed information about the     vehicle and personal information about its new owners, if it is not in the database. You may assume that all the information     about vehicle types has been loaded in the initial database.
+This component is used to register a new vehicle by an auto registration officer. By a new vehicle, we mean a vehicle that     has not been registered in the database. The component shall allow an officer to enter the detailed information about the     vehicle and personal information about its new owners, if it is not in the database. You may assume that all the information   about vehicle types has been loaded in the initial database.
 
 Auto Transaction
 
-    This component is used to complete an auto transaction. Your program shall allow the officer to enter all necessary information to complete this task, including, but not limiting to, the details about the seller, the buyer, the date, and the price. The component shall also remove the relevant information of the previous ownership.
+This component is used to complete an auto transaction. Your program shall allow the officer to enter all necessary information to complete this task, including, but not limiting to, the details about the seller, the buyer, the date, and the price. The component shall also remove the relevant information of the previous ownership.
 
 Driver Licence Registration
 
