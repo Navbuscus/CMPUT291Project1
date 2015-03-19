@@ -114,12 +114,12 @@ def register():
         os.system('clear')
         print("Drivers License Registration")
         print("-----------------------------------")
-        print("Please enter the driver's birthday (YYYYMMDD):")
+        print("Please enter the driver's birthday (MMDDYYYY):")
         bdate = input(">>  ")
         if(bdate.isdigit() and len(bdate) == 8):
             break;
         else:
-            print("Error: you must enter your birthday as YYYYMMDD")
+            print("Error: you must enter your birthday as MMDDYYY")
             time.sleep(2)
     
     """
@@ -132,11 +132,11 @@ def register():
     hair = 'blonde'
     addr = '1234 fake street'
     gender = 'm'
-    bdate = '19900101'
+    bdate = '01011990'
     """
     
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
-    values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'YYYYMMDD'))"""
+    values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
     mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
     mainMenu.connection.commit()
     
