@@ -132,8 +132,13 @@ def register():
     gender = 'm'
     bdate = '19900101'
     
-    #statement = "INSERT into PEOPLE values(sin,name,height,wieght,eye,hair,addr,gender,bd)"
-    #mainMenu.cursor.execute(statement)
+    mainMenu.cursor.execute("SELECT rowid FROM components WHERE name = ?", (sin))
+    data = cursor.fetchone()
+    if data is None:
+        print('There is no component named %s'%name)
+    else:
+        print('Component %s found with rowid %s'%(name,data[0]))    
+    
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'YYYYMMDD'))"""
     mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
