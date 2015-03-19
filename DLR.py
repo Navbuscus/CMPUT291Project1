@@ -139,7 +139,20 @@ def register():
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
     mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
     mainMenu.connection.commit()
-    
+
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's licences issue date  (MMDDYYYY):")
+        idate = input(">>  ")
+        if(bdate.isdigit() and len(bdate) == 8):
+            break;
+        else:
+            print("Error: you must enter your birthday as MMDDYYY")
+            time.sleep(2)
+    edate=idate+5
+
     registerAgain()
     return
 
