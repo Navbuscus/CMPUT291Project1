@@ -138,7 +138,7 @@ def register():
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
     mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
-    mainMenu.connection.commit()
+
 
     while True:
         os.system('clear')
@@ -153,6 +153,39 @@ def register():
             time.sleep(2)
     edate=idate+5
 
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's license class number:")
+        class = input(">>  ")
+        if( class.isdigit() and len(class) == 1 and class in range(1,8):
+            break;
+        else:
+            print("Error: you must enter a valid class number")
+            time.sleep(2)
+
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's license photo name including its extention (e.g. 'photo.jpg' ")
+        photo = input(">> ")
+        try:
+            f_image = open(photo,'rb')
+            break;
+        except IOError:
+            print("Error: file could not be opened.") 
+            print("    Ensure you have given the proper file name (case sensetive) and ")
+            print("    File is in program directory")
+
+    image = f_image.read()
+
+    licence_no = 80085 #boobs
+    insert = """INSERT into DRIVE_LICENCE (LICENCE_NO, SIN, CLASS, PHOTO, ISSUING_DATE, EXPIRING_DATE)
+    values (:LICENCE_NO,:SIN,:CLASS,:PHOTO,TO_DATE(:ISSUING_DATE,'MMDDYYYY'),TO_DATE(:EXPIRING_DATE,'MMDDYYYY')))"""
+    mainMenu.cursor.execute(insert,{'LICENCE_NO':licence_no,'SIN':sin,'CLASS':class,'ISSUING_DATE':idate,'EXPIRING_DATE':edate})
+    mainMenu.connection.commit()    
     registerAgain()
     return
 
