@@ -115,11 +115,11 @@ def register():
         print("Drivers License Registration")
         print("-----------------------------------")
         print("Please enter the driver's birthday (YYYYMMDD):")
-        bd = input(">>  ")
-        if(bd.isdigit() and len(bd) == 8):
+        bdate = input(">>  ")
+        if(bdate.isdigit() and len(bdate) == 8):
             break;
         else:
-            print("Error: you must enter your BD as YYYYMMDD")
+            print("Error: you must enter your birthday as YYYYMMDD")
             time.sleep(2)
     
     """
