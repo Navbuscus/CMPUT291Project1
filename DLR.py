@@ -135,7 +135,7 @@ def register():
     bdate = '19900101'
     """
     
-    statement = "INSERT into PEOPLE values(sin,name,height,weight,eye,hair,addr,gender,bd)"
+    statement = "INSERT into PEOPLE values(sin,name,height,weight,eye,hair,addr,gender,bdate)"
     mainMenu.cursor.execute(statement)
     
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
