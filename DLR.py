@@ -132,7 +132,7 @@ def register():
     gender = 'm'
     bdate = '19900101'
     
-    mainMenu.cursor.execute("SELECT sin FROM people WHERE name = ?", sin)
+    mainMenu.cursor.execute("SELECT sin FROM people WHERE name = ?", (sin,))
     data = cursor.fetchone()
     if data is None:
         print('There is no component named %s'%name)
