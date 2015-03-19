@@ -132,12 +132,12 @@ def register():
     gender = 'm'
     bdate = '19900101'
     
-    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = 'Fred'")
+    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '000000000'")
     data = mainMenu.cursor.fetchone()
     if data is None:
-        print('There is no component named %s'%name)
+        print("There is no unique sin: 000000000")
     else:
-        print('Component %s found with rowid %s'%(name,data[0]))    
+        print("Database already has sin: 000000000")    
     
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'YYYYMMDD'))"""
