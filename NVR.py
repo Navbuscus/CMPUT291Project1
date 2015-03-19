@@ -67,9 +67,12 @@ def register():
     colour = input(">> ")
     colour = colour.lower()
 
-    mainMenu.cursor.execute("SELECT * from vehicle_type")
-    data = mainMenu.cursor.fetchone()
-    print(data)
+    mainMenu.cursor.execute("SELECT * from vehicle_type ")
+    data = mainMenu.cursor.fetchall()
+    print("data is :")
+    for row in data:
+        print(row)
+
     registerAgain()
     return
 
