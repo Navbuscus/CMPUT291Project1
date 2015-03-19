@@ -37,27 +37,27 @@ Note that this is the same as one given in Assignment 2.
 
 Use the provided SQL statements to create the database and then populate the initial database using your own data set. Do not make any change to the schema as it will be used to test your project.
 
-Application Programs
+**Application Programs**
 
 The system consists of the following five (5) application programs.
 
-New Vehicle Registration
+**New Vehicle Registration**
 
 This component is used to register a new vehicle by an auto registration officer. By a new vehicle, we mean a vehicle that     has not been registered in the database. The component shall allow an officer to enter the detailed information about the     vehicle and personal information about its new owners, if it is not in the database. You may assume that all the information   about vehicle types has been loaded in the initial database.
 
-Auto Transaction
+**Auto Transaction**
 
 This component is used to complete an auto transaction. Your program shall allow the officer to enter all necessary information to complete this task, including, but not limiting to, the details about the seller, the buyer, the date, and the price. The component shall also remove the relevant information of the previous ownership.
 
-Driver Licence Registration
+**Driver Licence Registration**
 
 This component is used to record the information needed to issuing a drive licence, including the personal information and a picture for the driver. You may assume that all the image files are stored in a local disk system.
 
-Violation Record
+**Violation Record**
 
 This component is used by a police officer to issue a traffic ticket and record the violation. You may assume that all the information about ticket_type has been loaded in the initial database.
 
-Search Engine
+**Search Engine**
 
 This component is used to perform the following searches.
 
@@ -90,11 +90,11 @@ Notes
 Instructions for Submissions
 =======
 
-You must submit (1) the design report, and (2) the source code of your application programs and related files.
+You must submit (1) the **design report**, and (2) the **source code** of your application programs and related files.
 
 1. Submit your design report in hard copy, at the designated drop box for CMPUT291 located on the first floor of CSC building, across from Room 1-43. There is no guarantee to get your report marked and/or returned to you if it is dropped in a wrong box!
 
 2. Create a single gzipped tar file with all your source code and additional files you may need for your demo using
                      tar -c file1, file2, ..., fileN | gzip -c > project.tgz; 
 
-3. Submit project.tgz at the bottom of this page.
+3. Submit **project.tgz** at the bottom of this page.
