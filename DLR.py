@@ -11,7 +11,6 @@ def main():
     return
 
 def register():
-    """
     while True:
         os.system('clear')
         print("Drivers License Registration")
@@ -19,12 +18,17 @@ def register():
         print("Please enter the driver's Social Insurance Number (SIN):")
         sin = input(">>  ")
         if( sin.isdigit() and len(sin) == 9):
-            break;
+            # testing for UNIQUE-KEY CONSTRAINT 
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                break;
+            else:
+                print("SIN: %s, already exists in the DB!"% sin)   
+                time.sleep(2)
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-    
-
 
     os.system('clear')
     print("Drivers License Registration")
@@ -41,12 +45,12 @@ def register():
         print("Please enter the driver's height (cm): ")
         height = input(">> ")
         try:
-           float(height)
-           if( float(height) <= 999.99):
-               break;
-           else:
-               print("Error: value too large")
-               time.sleep(2)
+            float(height)
+            if( float(height) <= 999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
         except ValueError:
             print("Error: please enter a number")
             time.sleep(2)
@@ -59,12 +63,12 @@ def register():
         print("Please enter the driver's weight (kg): ")
         weight = input(">> ")
         try:
-           float(weight)
-           if( float(weight) <= 999.99):
-               break;
-           else:
-               print("Error: value too large")
-               time.sleep(2)
+            float(weight)
+            if( float(weight) <= 999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
         except ValueError:
             print("Error: please enter a number")
             time.sleep(2)
@@ -75,7 +79,6 @@ def register():
     print("Please enter the driver's eye colour")
     eye = input(">> ")
     eye = eye.lower()
-
 
     os.system('clear')
     print("Drivers License Registration")
@@ -119,9 +122,8 @@ def register():
             print("Error: you must enter your BD as YYYYMMDD")
             time.sleep(2)
     
-    statement = "INSERT into PEOPLE values(sin,name,height,weight,eye,hair,addr,gender,bd)"
-    mainMenu.cursor.execute(statement)
     """
+    #quick testing
     sin = '000000000'
     name = 'Fred'
     height = 123.00
@@ -131,13 +133,10 @@ def register():
     addr = '1234 fake street'
     gender = 'm'
     bdate = '19900101'
+    """
     
-    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
-    data = mainMenu.cursor.fetchone()
-    if data is None:
-        print("There is no unique sin: %s"% sin)
-    else:
-        print("Database already has sin: %s"% sin)    
+    statement = "INSERT into PEOPLE values(sin,name,height,weight,eye,hair,addr,gender,bd)"
+    mainMenu.cursor.execute(statement)
     
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'YYYYMMDD'))"""
