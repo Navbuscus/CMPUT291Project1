@@ -132,12 +132,12 @@ def register():
     gender = 'm'
     bdate = '19900101'
     
-    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '000000000'")
+    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
     data = mainMenu.cursor.fetchone()
     if data is None:
-        print("There is no unique sin: 000000000")
+        print("There is no unique sin: %s"% sin)
     else:
-        print("Database already has sin: 000000000")    
+        print("Database already has sin: %s"% sin)    
     
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'YYYYMMDD'))"""
