@@ -139,39 +139,46 @@ def register():
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
     mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
 
-
     while True:
         os.system('clear')
         print("Drivers License Registration")
         print("-----------------------------------")
-        print("Please enter the driver's licences issue date  (MMDDYYYY):")
-        idate = input(">>  ")
-        if(bdate.isdigit() and len(bdate) == 8):
-            break;
+        print("Please enter the driver's license number (LN):")
+        licence_no = input(">>  ")
+        if( licence_no() and len(licence_no) == 12):
+            # testing for UNIQUE-KEY CONSTRAINT 
+            mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                break;
+            else:
+                print("LN: %s, already exists in the DB!"% licence_no)   
+                time.sleep(2)
         else:
-            print("Error: you must enter your birthday as MMDDYYY")
+            print("Error: you must enter a 12 digit integer value")
             time.sleep(2)
-    edate=idate+5
-
+            
     while True:
         os.system('clear')
         print("Drivers License Registration")
         print("-----------------------------------")
-        print("Please enter the driver's license class number:")
-        dclass = input(">>  ")
+        print("Please enter the driver's license Class Number:")
+        class_no = input(">>  ")
         
-        if(dclass.isdigit() and len(dclass) == 1):
-            if (dclass in range(1,8)):
+        if(class_no.isdigit() and len(class_no) == 1):
+            if (class_no in range(1,8)):
+                dclass = "Class " + class_no
                 break
         else:
             print("Error: you must enter a valid class number")
-            time.sleep(2)
+            time.sleep(2)    
 
+    
     while True:
         os.system('clear')
         print("Drivers License Registration")
         print("-----------------------------------")
-        print("Please enter the driver's license photo name including its extention (e.g. 'photo.jpg' ")
+        print("Please enter the driver's license Photo name including its extention (e.g. 'photo.jpg' ")
         photo = input(">> ")
         try:
             f_image = open(photo,'rb')
@@ -183,7 +190,21 @@ def register():
 
     image = f_image.read()
 
-    licence_no = 80085 #boobs
+
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter the driver's licence issue date  (MMDDYYYY):")
+        idate = input(">>  ")
+        if(bdate.isdigit() and len(bdate) == 8):
+            break;
+        else:
+            print("Error: you must enter your birthday as MMDDYYY")
+            time.sleep(2)
+    edate=idate+5
+
+    #licence_no = 80085 #boobs
     
     insert = """INSERT into DRIVE_LICENCE (LICENCE_NO, SIN, CLASS, PHOTO, ISSUING_DATE, EXPIRING_DATE)
     values (:LICENCE_NO,:SIN,:CLASS,:PHOTO,TO_DATE(:ISSUING_DATE,'MMDDYYYY'),TO_DATE(:EXPIRING_DATE,'MMDDYYYY')))"""
