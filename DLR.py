@@ -145,7 +145,7 @@ def register():
         print("-----------------------------------")
         print("Please enter the driver's license number (LN):")
         licence_no = input(">>  ")
-        if( licence_no() and len(licence_no) == 12):
+        if( licence_no.isdigit()() and len(licence_no) == 12):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
             data = mainMenu.cursor.fetchone()
