@@ -165,7 +165,7 @@ def register():
         print("Please enter the driver's license Class Number:")
         class_no = input(">>  ")
         
-        if(class_no.isdigit() and class_no in range(1,8)):
+        if(class_no.isdigit()):
             dclass = "Class " + class_no
             break
         else:
