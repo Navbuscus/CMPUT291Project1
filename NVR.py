@@ -39,7 +39,7 @@ def registerVehicle():
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-
+            
 
 
         
@@ -63,14 +63,14 @@ def registerVehicle():
             time.sleep(2)
 
     os.system('clear')
-    print("Drivers License Registration")
+    print("New Vehicle Registration")
     print("-----------------------------------")
     print("Please enter the Maker of the Vehicle")
     maker = input(">> ")
     maker = maker.lower()
     
     os.system('clear')
-    print("Drivers License Registration")
+    print("New Vehicle Registration")
     print("-----------------------------------")
     print("Please enter the Model of the Vehicle")
     model = input(">> ")
@@ -78,7 +78,7 @@ def registerVehicle():
 
     while True:
         os.system('clear')
-        print("Drivers License Registration")
+        print("New Vehicle Registration")
         print("-----------------------------------")
         print("Please enter the Year of the Vehicle: ")
         year = input(">> ")
@@ -93,7 +93,7 @@ def registerVehicle():
             time.sleep(2)
 
     os.system('clear')
-    print("Drivers License Registration")
+    print("New Vehicle Registration")
     print("-----------------------------------")
     print("Please enter the Color of the Vehicle")
     colour = input(">> ")
@@ -106,6 +106,139 @@ def registerVehicle():
   
     registerAgain()
     return
+
+
+def registerPerson():
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("Registering Person into database")
+        print("-----------------------------------")
+        print("Please enter the person's Social Insurance Number (SIN):")
+        sin = input(">>  ")
+        if( sin.isdigit() and len(sin) == 9):
+            # testing for UNIQUE-KEY CONSTRAINT 
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                break;
+            else:
+                print("SIN: %s, already exists in the DB!"% sin)   
+                time.sleep(2)
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("Registering Person into database")
+    print("-----------------------------------")
+    print("Please enter the person's name")
+    name = input(">> ")
+    name = name.lower()
+
+    
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("Registering Person into database")
+        print("-----------------------------------")
+        print("Please enter the person's height (cm): ")
+        height = input(">> ")
+        try:
+            float(height)
+            if( float(height) <= 999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("Registering Person into database")
+        print("-----------------------------------")
+        print("Please enter the person's weight (kg): ")
+        weight = input(">> ")
+        try:
+            float(weight)
+            if( float(weight) <= 999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("Registering Person into database")
+    print("-----------------------------------")
+    print("Please enter the person's eye colour")
+    eye = input(">> ")
+    eye = eye.lower()
+
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("Registering Person into database")
+    print("-----------------------------------")
+    print("Please enter the person's hair colour")
+    hair = input(">> ")
+    hair = hair.lower()
+
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("Registering Person into database")
+    print("-----------------------------------")
+    print("Please enter the person's adress")
+    addr = input(">> ")
+    addr = addr.lower()
+    
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("Registering Person into database")
+        print("-----------------------------------")
+        print("Please select person's gender (m/f)")
+        choice = input(">> ")
+        if(choice == "m"):
+            gender = 'm'
+            break;
+        elif(choice == "f"):
+            gender = 'f'
+            break;
+        else:
+            print("Error: invalid selection")
+            time.sleep(2)
+
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("Registering Person into database")
+        print("-----------------------------------")
+        print("Please enter the person's birthday (MMDDYYYY):")
+        bdate = input(">>  ")
+        if(bdate.isdigit() and len(bdate) == 8):
+            break;
+        else:
+            print("Error: you must enter your birthday as MMDDYYY")
+            time.sleep(2)
+    
+    insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
+    values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
+    mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
+    
+    mainMenu.connection.commit()        
+    return
+
+
+
+
 
 def registerAgain():
     print("----------------------------------")
