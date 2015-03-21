@@ -10,8 +10,39 @@ def main():
     exec_menu(choice, 'main')
     return
 
-def register():
-    """
+def registerVehicle():
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("-----------------------------------")
+        print(" Please enter the Social Insurance Number of the primary owner: ")
+        pSin = input(">> ")
+        if(pSin.isdigit() and len(pSin) == 9):
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % pSin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                while True:
+                    print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
+                    choice = input(">> ")
+                    choice = choice.lower()
+                    if choice == "y":
+                        registerPerson()
+                        break;
+                    elif choice == "n":
+                        print("Please Enter a SIN that is in our database")
+                        time.sleep(2)
+                        registerVehicle()
+                    else:
+                        print("Error: invalid choice")
+            else:
+                break;
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+
+
+
+        
     while True:
         os.system('clear')
         print("New Vehicle Registration")
@@ -67,7 +98,7 @@ def register():
     print("Please enter the Color of the Vehicle")
     colour = input(">> ")
     colour = colour.lower()
-    """
+    
     mainMenu.cursor.execute("SELECT sin FROM people WHERE sin=123456789")
     print("data: ")
     print(mainMenu.cursor.fetchone())
@@ -105,7 +136,7 @@ def exit():
 
 menu_actions = {
     'main':main,
-    '1':register,
+    '1':registerVehicle,
     '0': exit,
     'registerAgain':registerAgain
 }
