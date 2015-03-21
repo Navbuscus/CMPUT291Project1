@@ -201,7 +201,7 @@ def register():
         else:
             print("Error: you must enter your birthday as MMDDYYY")
             time.sleep(2)
-    edate=idate+5
+    edate=int(idate)+5
 
     #licence_no = 80085 #boobs
     
