@@ -11,83 +11,22 @@ def main():
     return
 
 def registerVehicle():
+   
+    primOwner = addOwner(True)
     while True:
         os.system('clear')
         print("New Vehicle Registration")
         print("-----------------------------------")
-        print(" Please enter the Social Insurance Number of the primary owner: ")
-        pSin = input(">> ")
-        if(pSin.isdigit() and len(pSin) == 9):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % pSin)
-            data = mainMenu.cursor.fetchone()
-            if data is None:
-                while True:
-                    print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
-                    choice = input(">> ")
-                    choice = choice.lower()
-                    if choice == "y":
-                        registerPerson()
-                        break;
-                    elif choice == "n":
-                        print("Please Enter a SIN that is in our database")
-                        time.sleep(2)
-                        registerVehicle()
-                    else:
-                        print("Error: invalid choice")
-            else:
-                break;
+        print("Would you like to add a secondary owner? (Y/N): ")
+        choice = input(">> ")
+        choice = choice.lower()
+        if choice == 'y':
+            secOwner = addOwner(False)
+        elif choice == 'n':
+            break;
         else:
-            print("Error: you must enter a 9 digit integer value")
-            time.sleep(2)
+            print("Error: invalid choice")
 
-    secOwner = []
-    os.system('clear')
-    print("New Vehicle Registration")
-    print("-----------------------------------")
-    print("Would you like to add secondary owners to the vehicle? (Y/N): ")
-    choice = input(">> ")
-    choice = choice.lower()
-    if choice == 'y':
-        while True:
-            os.system('clear')
-            print("New Vehicle Registration")
-            print("-----------------------------------")
-            print(" Please enter the Social Insurance Number of the secondary owner: ")
-            sSin = input(">> ")
-            if(sSin.isdigit() and len(sSin) == 9):
-                mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
-                data = mainMenu.cursor.fetchone()
-                if data is None:
-                    while True:
-                        print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
-                        choice = input(">> ")
-                        choice = choice.lower()
-                        if choice == "y":
-                            registerPerson()
-                            break;
-                        elif choice == "n":
-                            print("Please Enter a SIN that is in our database")
-                            time.sleep(2)
-                            continue;
-                        else:
-                            print("Error: invalid choice")
-                    else:
-                        secOwner.append(sSin)
-                        print("Would you like to add another secondary owner to the vehicle? (Y/N): ")
-                        choice = input(">> ")
-                        choice = choice.lower()
-                        if choice == "y":
-                            continue;
-                        elif choice == "n":
-                            break;
-                        else:
-                            print("Error: invalid choice")
-                            
-                else:
-                    print("Error: you must enter a 9 digit integer value")
-                    time.sleep(2)
-                    
-                    
         
     while True:
         os.system('clear')
@@ -153,6 +92,44 @@ def registerVehicle():
     mainMenu.connection.commit()  
     registerAgain()
     return
+
+def addOwner(primary):
+     while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("-----------------------------------")
+        if(primary):
+            print("Please enter the Social Insurance Number of the primary owner: ")
+        else:
+            print("Please enter the Social Insurance Number of the secondary owner: ")
+
+        pSin = input(">> ")
+        if(pSin.isdigit() and len(pSin) == 9):
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % pSin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                while True:
+                    os.system('clear')
+                    print("New Vehicle Registration")
+                    print("-----------------------------------")
+                    print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
+                    choice = input(">> ")
+                    choice = choice.lower()
+                    if choice == "y":
+                        registerPerson()
+                        break;
+                    elif choice == "n":
+                        print("Please Enter a SIN that is in our database")
+                        time.sleep(2)
+                        registerVehicle()
+                    else:
+                        print("Error: invalid choice")
+            else:
+                break;
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+     return pSin
 
 
 def registerPerson():
