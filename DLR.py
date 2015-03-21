@@ -15,8 +15,9 @@ def registerPerson():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Person into database")
         print("-----------------------------------")
-        print("Please enter the driver's Social Insurance Number (SIN):")
+        print("Please enter the person's Social Insurance Number (SIN):")
         sin = input(">>  ")
         if( sin.isdigit() and len(sin) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
@@ -33,8 +34,9 @@ def registerPerson():
 
     os.system('clear')
     print("Drivers License Registration")
+    print("Registering Person into database")
     print("-----------------------------------")
-    print("Please enter the driver's name")
+    print("Please enter the person's name")
     name = input(">> ")
     name = name.lower()
 
@@ -42,8 +44,9 @@ def registerPerson():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Person into database")
         print("-----------------------------------")
-        print("Please enter the driver's height (cm): ")
+        print("Please enter the person's height (cm): ")
         height = input(">> ")
         try:
             float(height)
@@ -60,8 +63,9 @@ def registerPerson():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Person into database")
         print("-----------------------------------")
-        print("Please enter the driver's weight (kg): ")
+        print("Please enter the person's weight (kg): ")
         weight = input(">> ")
         try:
             float(weight)
@@ -76,30 +80,34 @@ def registerPerson():
 
     os.system('clear')
     print("Drivers License Registration")
+    print("Registering Person into database")
     print("-----------------------------------")
-    print("Please enter the driver's eye colour")
+    print("Please enter the person's eye colour")
     eye = input(">> ")
     eye = eye.lower()
 
     os.system('clear')
     print("Drivers License Registration")
+    print("Registering Person into database")
     print("-----------------------------------")
-    print("Please enter the driver's hair colour")
+    print("Please enter the person's hair colour")
     hair = input(">> ")
     hair = hair.lower()
 
     os.system('clear')
     print("Drivers License Registration")
+    print("Registering Person into database")
     print("-----------------------------------")
-    print("Please enter the driver's adress")
+    print("Please enter the person's adress")
     addr = input(">> ")
     addr = addr.lower()
     
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Person into database")
         print("-----------------------------------")
-        print("Please select driver's gender (m/f)")
+        print("Please select person's gender (m/f)")
         choice = input(">> ")
         if(choice == "m"):
             gender = 'm'
@@ -114,8 +122,9 @@ def registerPerson():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Person into database")
         print("-----------------------------------")
-        print("Please enter the driver's birthday (MMDDYYYY):")
+        print("Please enter the person's birthday (MMDDYYYY):")
         bdate = input(">>  ")
         if(bdate.isdigit() and len(bdate) == 8):
             break;
@@ -149,11 +158,12 @@ def registerDriver():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Drivers License into database")
         print("-----------------------------------")
         print("Please enter drivers Social Insurance Number (SIN: ")
         dSin = input(">> ")
         if(dSin.isdigit() and len(dSin) == 9):
-            mainMenu.cursor.execute("SELECT sin FROM person WHERE sin = %s" % dSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % dSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 while True:
