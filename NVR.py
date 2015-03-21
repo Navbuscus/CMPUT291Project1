@@ -85,10 +85,20 @@ def registerVehicle():
     colour = colour.lower()
 
     type_id = 10
+
     insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL,  YEAR, COLOR, TYPE_ID)
     values (:SERIAL_NO,:MAKER, :MODEL, :YEAR, :COLOR)"""
     mainMenu.cursor.execute(insert,{'SERIAL_NO':serial_no,'MAKER':maker,'MODEL':model,'YEAR':year,'COLOR':color,'TYPE_ID':type_id})  
     
+
+    insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID,IS_PRIMARY_OWNER)
+    values (:OWNER_ID,:VEHICLE_ID,:IS_PRIMARY_OWNER)"""
+    mainMenu.cursor.execute(insert,{'OWNER_ID':primOwner,'VEHICLE_ID':serial_no,'IS_PRIMAR"Y_OWNER':'y'})
+
+    insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID,IS_PRIMARY_OWNER)
+    values (:OWNER_ID,:VEHICLE_ID,:IS_PRIMARY_OWNER)"""
+    mainMenu.cursor.execute(insert,{'OWNER_ID':secOwner,'VEHICLE_ID':serial_no,'IS_PRIMAR"Y_OWNER':'n'})
+
     mainMenu.connection.commit()  
     registerAgain()
     return
