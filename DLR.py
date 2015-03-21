@@ -21,7 +21,7 @@ def registerPerson():
         sin = input(">>  ")
         if( sin.isdigit() and len(sin) == 15):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %d" % int(sin))
             data = mainMenu.cursor.fetchone()
             if data is None:
                 break;
