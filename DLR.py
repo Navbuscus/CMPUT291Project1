@@ -201,12 +201,12 @@ def register():
         else:
             print("Error: you must enter your birthday as MMDDYYY")
             time.sleep(2)
-    edate=int(idate)+5
+    edate=str(int(idate)+5)
 
-    #licence_no = 80085 #boobs
+    #licence_no = 80085 #boobs 
     
     insert = """INSERT into DRIVE_LICENCE (LICENCE_NO, SIN, CLASS, PHOTO, ISSUING_DATE, EXPIRING_DATE)
-    values (:LICENCE_NO,:SIN,:CLASS,:PHOTO,TO_DATE(:ISSUING_DATE,'MMDDYYYY'),TO_DATE(:EXPIRING_DATE,'MMDDYYYY')))"""
+    values (:LICENCE_NO, :SIN, :CLASS, :PHOTO, TO_DATE(:ISSUING_DATE,'MMDDYYYY'), TO_DATE(:EXPIRING_DATE,'MMDDYYYY')))"""
     mainMenu.cursor.execute(insert,{'LICENCE_NO':licence_no,'SIN':sin,'CLASS':dclass,'PHOTO':image,'ISSUING_DATE':idate,'EXPIRING_DATE':edate})
     
     mainMenu.connection.commit()    
