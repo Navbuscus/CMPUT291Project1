@@ -67,15 +67,11 @@ def register():
     colour = input(">> ")
     colour = colour.lower()
 
-    mainMenu.cursor.execute("SELECT * FROM vehicle_type WHERE type_id > 1")
-    data = mainMenu.cursor.fetchall()
-    print("data is :")
-    for row in data:
-        print (row[0])
-        print ("/n")
-        print (row[1])
-        print ("/n")
+    mainMenu.cursor.execute("SELECT COUNT(*) FROM people")
+    print("data: ")
+    print(mainMenu.cursor.fetchone())
 
+  
     registerAgain()
     return
 
