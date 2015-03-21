@@ -196,7 +196,7 @@ def register():
         print("-----------------------------------")
         print("Please enter the driver's licence issue date  (MMDDYYYY):")
         idate = input(">>  ")
-        if(bdate.isdigit() and len(bdate) == 8):
+        if(idate.isdigit() and len(idate) == 8):
             break;
         else:
             print("Error: you must enter your birthday as MMDDYYY")
