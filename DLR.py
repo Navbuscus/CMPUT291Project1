@@ -20,12 +20,12 @@ def registerPerson():
         sin = input(">>  ")
         if( sin.isdigit() and len(sin) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %d" % sin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 break;
             else:
-                print("SIN: %d, already exists in the DB!"% sin)   
+                print("SIN: %s, already exists in the DB!"% sin)   
                 time.sleep(2)
         else:
             print("Error: you must enter a 9 digit integer value")
