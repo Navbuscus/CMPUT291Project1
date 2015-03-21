@@ -22,7 +22,7 @@ def registerPerson():
         if( sin.isdigit() and len(sin) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
-            data = mainMenu.cursor.fetchall()
+            data = mainMenu.cursor.fetchone()
             if data is None:
                 break;
             else:
