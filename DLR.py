@@ -4,13 +4,14 @@ def main():
     os.system('clear')
     print("Drivers License Registration")
     print("-----------------------------------")
-    print ("1. Register new driver")
+    print ("1. Register new person")
+    print ("2. Register new driver's license")
     print ("0. Back")
     choice = input(" >>  ")
     exec_menu(choice, 'main')
     return
 
-def register():
+def registerPerson():
     while True:
         os.system('clear')
         print("Drivers License Registration")
@@ -139,9 +140,30 @@ def register():
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
     mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
     
-    mainMenu.connection.commit()    
+    mainMenu.connection.commit()        
     
+    registerAgain()
 
+def registerDriver():
+
+    while True:
+        os.system('clear')
+        print("Drivers License Registration")
+        print("-----------------------------------")
+        print("Please enter drivers Social Insurance Number (SIN: ")
+        dSin = input(">> ")
+        if(dSin.isDigit() and len(dSin) == 9):
+            mainMenu.cursor.execute("SELECT sin FROM person WHERE sin = %s" % dSin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                break;
+            else:
+                print("LN: %s, already exists in the DB!"% licence_no)   
+                time.sleep(2)
+        else:
+            print("Error: you must enter a 12 digit integer value")
+            time.sleep(2)
+            
     while True:
         os.system('clear')
         print("Drivers License Registration")
@@ -212,18 +234,11 @@ def register():
     values (:LICENCE_NO, :SIN, :CLASS, :PHOTO, TO_DATE(:ISSUING_DATE,'MMDDYYYY'), TO_DATE(:EXPIRING_DATE,'MMDDYYYY'))"""
     mainMenu.cursor.execute(insert2,{'LICENCE_NO':licence_no,'SIN':sin,'CLASS':dclass,'PHOTO':image,'ISSUING_DATE':idate,'EXPIRING_DATE':edate})
     
-    mainMenu.connection.commit()    
-    
+    mainMenu.connection.commit() 
     registerAgain()
-    return
 
 def registerAgain():
-    print("----------------------------------")
-    print("1.register another driver")
-    print("0. Back to main menue")
-    choice = input(">> ")
-    exec_menu(choice,'registerAgain')
-    return
+    main();
 
 
 def exec_menu(choice,context):
@@ -246,7 +261,8 @@ def exit():
 
 menu_actions = {
     'main':main,
-    '1':register,
+    '1':registerPerson,
+    '2':registerDriver,
     '0': exit,
     'registerAgain':registerAgain
 }
