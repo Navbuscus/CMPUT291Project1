@@ -11,6 +11,7 @@ def main():
     return
 
 def register():
+    """
     while True:
         os.system('clear')
         print("New Vehicle Registration")
@@ -66,8 +67,8 @@ def register():
     print("Please enter the Color of the Vehicle")
     colour = input(">> ")
     colour = colour.lower()
-
-    mainMenu.cursor.execute("SELECT COUNT(*) FROM people")
+    """
+    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin=123456789")
     print("data: ")
     print(mainMenu.cursor.fetchone())
 
