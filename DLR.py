@@ -187,6 +187,7 @@ def registerDriver():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Drivers License into database")
         print("-----------------------------------")
         print("Please enter the driver's license number (LN):")
         licence_no = input(">>  ")
@@ -206,6 +207,7 @@ def registerDriver():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Drivers License into database")
         print("-----------------------------------")
         print("Please enter the driver's license Class Number:")
         class_no = input(">>  ")
@@ -221,6 +223,7 @@ def registerDriver():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Drivers License into database")
         print("-----------------------------------")
         print("Please enter the driver's license Photo name including its extention (e.g. 'photo.jpg' ")
         photo = input(">> ")
@@ -238,6 +241,7 @@ def registerDriver():
     while True:
         os.system('clear')
         print("Drivers License Registration")
+        print("Registering Drivers License into database")
         print("-----------------------------------")
         print("Please enter the driver's licence issue date  (MMDDYYYY):")
         idate = input(">>  ")
