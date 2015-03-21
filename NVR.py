@@ -49,45 +49,45 @@ def registerVehicle():
     choice = choice.lower()
     if choice == 'y':
         while True:
-        os.system('clear')
-        print("New Vehicle Registration")
-        print("-----------------------------------")
-        print(" Please enter the Social Insurance Number of the secondary owner: ")
-        sSin = input(">> ")
-        if(sSin.isdigit() and len(sSin) == 9):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
-            data = mainMenu.cursor.fetchone()
-            if data is None:
-                while True:
-                    print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
-                    choice = input(">> ")
-                    choice = choice.lower()
-                    if choice == "y":
-                        registerPerson()
-                        break;
-                    elif choice == "n":
-                        print("Please Enter a SIN that is in our database")
-                        time.sleep(2)
-                        continue;
+            os.system('clear')
+            print("New Vehicle Registration")
+            print("-----------------------------------")
+            print(" Please enter the Social Insurance Number of the secondary owner: ")
+            sSin = input(">> ")
+            if(sSin.isdigit() and len(sSin) == 9):
+                mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
+                data = mainMenu.cursor.fetchone()
+                if data is None:
+                    while True:
+                        print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
+                        choice = input(">> ")
+                        choice = choice.lower()
+                        if choice == "y":
+                            registerPerson()
+                            break;
+                        elif choice == "n":
+                            print("Please Enter a SIN that is in our database")
+                            time.sleep(2)
+                            continue;
+                        else:
+                            print("Error: invalid choice")
                     else:
-                        print("Error: invalid choice")
-            else:
-                secOwner.append(sSin)
-                print("Would you like to add another secondary owner to the vehicle? (Y/N): ")
-                 choice = input(">> ")
-                 choice = choice.lower()
-                 if choice == "y":
-                     continue;
-                 elif choice == "n":
-                     break;
-                 else:
-                     print("Error: invalid choice")
-                
-        else:
-            print("Error: you must enter a 9 digit integer value")
-            time.sleep(2)
-  
-
+                        secOwner.append(sSin)
+                        print("Would you like to add another secondary owner to the vehicle? (Y/N): ")
+                        choice = input(">> ")
+                        choice = choice.lower()
+                        if choice == "y":
+                            continue;
+                        elif choice == "n":
+                            break;
+                        else:
+                            print("Error: invalid choice")
+                            
+                else:
+                    print("Error: you must enter a 9 digit integer value")
+                    time.sleep(2)
+                    
+                    
         
     while True:
         os.system('clear')
