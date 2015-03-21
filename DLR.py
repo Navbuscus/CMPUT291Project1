@@ -19,7 +19,7 @@ def registerPerson():
         print("-----------------------------------")
         print("Please enter the person's Social Insurance Number (SIN):")
         sin = input(">>  ")
-        if( sin.isdigit() and len(sin) == 9):
+        if( sin.isdigit() and len(sin) == 15):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sin)
             data = mainMenu.cursor.fetchone()
