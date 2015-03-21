@@ -144,12 +144,13 @@ def registerVehicle():
     print("Please enter the Color of the Vehicle")
     colour = input(">> ")
     colour = colour.lower()
-    
-    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin=123456789")
-    print("data: ")
-    print(mainMenu.cursor.fetchone())
 
-  
+    type_id = 10
+    insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL,  YEAR, COLOR, TYPE_ID)
+    values (:SERIAL_NO,:MAKER, :MODEL, :YEAR, :COLOR)"""
+    mainMenu.cursor.execute(insert,{'SERIAL_NO':serial_no,'MAKER':maker,'MODEL':model,'YEAR':year,'COLOR':color,'TYPE_ID':type_id})  
+    
+    mainMenu.connection.commit()  
     registerAgain()
     return
 
@@ -287,12 +288,7 @@ def registerPerson():
 
 
 def registerAgain():
-    print("----------------------------------")
-    print("1.register another vehicle")
-    print("0. Back to main menue")
-    choice = input(">> ")
-    exec_menu(choice,'registerAgain')
-    return
+    main()
 
 
 def exec_menu(choice,context):
