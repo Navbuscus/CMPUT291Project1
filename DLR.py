@@ -152,16 +152,26 @@ def registerDriver():
         print("-----------------------------------")
         print("Please enter drivers Social Insurance Number (SIN: ")
         dSin = input(">> ")
-        if(dSin.isDigit() and len(dSin) == 9):
+        if(dSin.isdigit() and len(dSin) == 9):
             mainMenu.cursor.execute("SELECT sin FROM person WHERE sin = %s" % dSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
-                break;
+                while True:
+                    print("Error: that person is not in our database. Would you like to register this person? (Y/N):")
+                    choice = input(">> ")
+                    choice = choice.lower()
+                    if choice == "y":
+                        registerPerson()
+                    elif choice == "n":
+                        print("Please Enter a SIN that is in our database")
+                        time.sleep(2)
+                        registerDriver()
+                    else:
+                        print("Error: invalid choice")
             else:
-                print("LN: %s, already exists in the DB!"% licence_no)   
-                time.sleep(2)
+                break;
         else:
-            print("Error: you must enter a 12 digit integer value")
+            print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
             
     while True:
