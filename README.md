@@ -43,7 +43,7 @@ The system consists of the following five (5) application programs.
 
 **(1) New Vehicle Registration**
 
-This component is used to register a new vehicle by an auto registration officer. By a new vehicle, we mean a vehicle that     has not been registered in the database. The component shall allow an officer to enter the detailed information about the     vehicle and personal information about its new owners, if it is not in the database. **You may assume that all the information   about vehicle types has been loaded in the initial database**.
+This component is used to register a new vehicle by an auto registration officer. By a new vehicle, we mean a vehicle that     has not been registered in the database. The component shall allow an officer to enter the detailed information about the     vehicle and personal information about its new owners, if it is not in the database. You may assume that all the information   about vehicle types has been loaded in the initial database.
 
 **(2) Auto Transaction**
 
