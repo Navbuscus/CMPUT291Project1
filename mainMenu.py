@@ -85,7 +85,7 @@ user = 'ajwu'
 pw = 'a1__5LoYz'   
 
 # modified portnumber
-connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1525/CRS'  
+connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
 
 try:
     connection  = cx_Oracle.connect(connStr)

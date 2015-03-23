@@ -11,7 +11,6 @@ def main():
     return
 
 def registerVehicle():
-   
     primOwner = addOwner(True)
     while True:
         os.system('clear')
@@ -84,7 +83,15 @@ def registerVehicle():
     colour = input(">> ")
     colour = colour.lower()
 
-    type_id = 10
+    
+    """
+    mainMenu.cursor.execute("SELECT type, type_id FROM vehicle_type")
+    data = mainMenu.cursor.fetchall()
+    type = dict((x,y) for x,y in data)
+    print(type)
+    time.sleep(5)
+    """
+
 
     insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL,  YEAR, COLOR, TYPE_ID)
     values (:SERIAL_NO,:MAKER, :MODEL, :YEAR, :COLOR)"""
