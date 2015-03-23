@@ -83,7 +83,10 @@ menu_actions = {
 
 user = 'ajwu'
 pw = 'a1__5LoYz'   
-connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
+
+# modified portnumber
+connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1525/CRS'  
+
 try:
     connection  = cx_Oracle.connect(connStr)
     cursor = connection.cursor() 
