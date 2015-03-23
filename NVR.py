@@ -26,7 +26,7 @@ def registerVehicle():
         else:
             print("Error: invalid choice")
 
-        
+
     while True:
         os.system('clear')
         print("New Vehicle Registration")
@@ -35,6 +35,7 @@ def registerVehicle():
         serial_no = input(">>  ")
         if( serial_no.isdigit() and len(serial_no) == 10):
             # testing for UNIQUE-KEY CONSTRAINT 
+            serial_no = "ser"+serial_no
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -83,14 +84,29 @@ def registerVehicle():
     colour = input(">> ")
     colour = colour.lower()
 
-    
-    """
     mainMenu.cursor.execute("SELECT type, type_id FROM vehicle_type")
     data = mainMenu.cursor.fetchall()
-    type = dict((x,y) for x,y in data)
-    print(type)
-    time.sleep(5)
-    """
+    vehicleType = dict((x.lower().strip(),y) for x,y in data)
+
+    while True:
+        os.system('clear')
+        print("New Vehicle Registration")
+        print("-----------------------------------")
+        print("please enter the type of the vehicle, from the following list: ")
+        for row in vehicleType:
+            print("- "+row)
+        vtype = input(">> ")
+        vtype = vtype.lower().strip()
+        if vtype in vehicleType:
+            type_id = vehicleType.get(vtype)
+            print(type_id)
+            time.sleep(2)
+            break;
+        else: 
+            print("Error: invalid vehicle type")
+            time.sleep(2)
+            continue;
+    
 
 
     insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL,  YEAR, COLOR, TYPE_ID)
