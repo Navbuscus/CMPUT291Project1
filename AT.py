@@ -18,7 +18,7 @@ def transaction():
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ")
         if(vsn.isdigit() and len(vsn) == 10):
-            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s", % vsn)
+            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % vsn)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 print("Error: vehicle no in database. Please enter another VSN")
