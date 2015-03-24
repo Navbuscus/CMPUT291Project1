@@ -11,9 +11,6 @@ def main():
     return
 
 def transaction():
-    os.system('clear')
-    print("Auto Transaction")
-    print("-----------------------------------")
     while True:
         os.system('clear')
         print("Auto Transaction")
@@ -29,12 +26,37 @@ def transaction():
             else:
                 break
         else:
-            print("Error: you must enter a 9 digit integer value")
+            print("Error: you must enter a 10 digit integer value")
             time.sleep(2)
 
             
-    print("Please enter the seller")
-    seller = input(">> ")
+    while True:
+        os.system('clear')
+        print("Auto Transaction")
+        print("-----------------------------------")
+        print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
+        sSin = input(">> ")
+        if(sSin.isdigit() and len(sSin) == 10):
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
+            dSin = mainMenu.cursor.fetchone()
+            if data is None:
+                print("Error: Seller not in database. Please enter sellers SIN")
+                time.sleep(2)
+            else:
+                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s", %vsn)
+                owners = mainMenu.cursor.fetchall()
+                for owner in owners:
+                    owners.pop(owner)
+                    owners.append(owner.strip())
+                if dSin in owners:
+                    break
+                else:
+                    
+
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+
     print("Please enter the vehicle");
     vehicle = input(">> ")
     print(buyer," has bought ",seller+"'s ",vehicle,"!")
