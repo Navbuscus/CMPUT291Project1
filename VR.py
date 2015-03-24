@@ -1,10 +1,7 @@
-import sys, os, mainMenu, time, cx_Oracle
+import sys, os, mainMenu, time, cx_Oracle, random
 
 def main():
-    os.system('clear')
-    print("Violation Record")
-    print("Issuing a traffic ticket and Recording Violation")
-    print("-----------------------------------")
+    header()
     print ("1. Issue ticket")
     print ("0. Back")
     choice = input(" >>  ")
@@ -14,50 +11,57 @@ def main():
 def ticket():
 
     while True:
-        header()
-        print("Please enter the Ticket Number (TN):")
-        ticket_no = input(">>  ")
-        if( ticket_no.isdigit()):
-            # testing for UNIQUE-KEY CONSTRAINT 
-            ticket_no = int(ticket_no)
-            mainMenu.cursor.execute("SELECT ticket.ticket_no FROM ticket WHERE ticket.ticket_no = %d" % ticket_no)
-            data = mainMenu.cursor.fetchone()
-            if data is None:
-                break;
-            else:
-                print("TN: %d, already exists in the DB!"% ticket_no)   
-                time.sleep(2)
-        else:
-            print("Error: you must enter an integer value")
-            time.sleep(2)
+        header()        
+        # rand gen ticket_no
+        ticket_no = random.randint(0,10000000000000)
 
+        # testing for UNIQUE-KEY CONSTRAINT 
+        mainMenu.cursor.execute("SELECT ticket.ticket_no FROM ticket WHERE ticket.ticket_no = %d" % ticket_no)
+        data = mainMenu.cursor.fetchone()
+        if data is None:
+            print ("Your ticket_no: %d" % ticket_no)   
+            time.sleep(2)
+            break;
+        
     while True:
         header()
         print("Please enter the Violator's SIN:")
-        ticket_no = input(">>  ")
         violator_no = input(">>  ")
-        if( sin.isdigit() and len(sin) == 9):
+        if( violator_no.isdigit() and len(violator_no) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
+            mainMenu.cursor.execute("SELECT people.violator_no FROM people WHERE people.violator_no = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
-                break;
+                print("Error: Violator does not exist in the Database. Please enter another SIN")
+                time.sleep(2)                
             else:
-                print("SIN: %s, already exists in the DB!"% sin)   
-                time.sleep(2)
+                break;
         else:
-            print("Error: you must enter a 9 digit integer value")
+            print("Error: Please enter a valid SIN")
             time.sleep(2)
     
-    header()
-    print("Please enter the drivers name")
-    driver = input(">> ")
-    print(driver,"has been given a ticket, OH SNAP!")
+    while True:
+        header()
+        print("Please enter the Violator's vehicle serial number (VSN):")
+        vehicle_no = input(">>  ")
+        if( vehicle_no.isdigit() and len(vehicle_no) == 10):
+            # testing for UNIQUE-KEY CONSTRAINT 
+            mainMenu.cursor.execute("SELECT vehicle.vehicle_no FROM vehicle WHERE vehicle.vehicle_no = %s" % vehicle_no)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                print("Error: Violator does not exist in the Database. Please enter another SIN")
+                time.sleep(2)                
+            else:
+                break;
+        else:
+            print("Error: Please enter a valid vehicle serial number (VSN)")
+            time.sleep(2)    
+    
     ticketAgain()
     return
 
 def ticketAgain():
-    print("----------------------------------")
+    header()
     print("1. Issue another ticket")
     print("0. Back to main menu")
     choice = input(">> ")

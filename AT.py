@@ -78,6 +78,16 @@ def transaction():
 
             else:
                 break
+                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
+                owners = mainMenu.cursor.fetchall()
+                for owner in owners:
+                    owners.pop(owner)
+                    owners.append(owner.strip())
+                if dSin in owners:
+                    break
+                else:
+                    print("Error: seller entered does not own this vehicle.")
+                    time.sleep(2)
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
