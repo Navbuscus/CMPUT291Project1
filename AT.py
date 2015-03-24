@@ -77,8 +77,7 @@ def transaction():
                     time.sleep(2)
 
             else:
-                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % v\
-sn)
+                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
                 owners = mainMenu.cursor.fetchall()
                 for owner in owners:
                     owners.pop(owner)
