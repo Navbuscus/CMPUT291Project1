@@ -1,9 +1,12 @@
 import sys, os, time,cx_Oracle,mainMenu 
 
-def main():
+def title():
     os.system('clear')
     print("Auto Transaction")
     print("-----------------------------------")
+
+def main():
+    title()
     print ("1. Setup auto transaction")
     print ("0. Back")
     choice = input(" >>  ")
@@ -12,9 +15,7 @@ def main():
 
 def transaction():
     while True:
-        os.system('clear')
-        print("Auto Transaction")
-        print("-----------------------------------")
+        title()
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ")
         if(vsn.isdigit() and len(vsn) == 10):
@@ -31,9 +32,7 @@ def transaction():
 
             
     while True:
-        os.system('clear')
-        print("Auto Transaction")
-        print("-----------------------------------")
+        title()
         print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
         sSin = input(">> ")
         if(sSin.isdigit() and len(sSin) == 10):
@@ -52,15 +51,50 @@ def transaction():
                     break
                 else:
                     print("Error: seller entered does not own this vehicle.")
-                    
+                    time.sleep(2)
+
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+        
+        while True:
+            title()
+            print("Please enter the Social Insurance Number (SIN) of the vehicle's buyer")
+        bSin = input(">> ")
+        if(bSin.isdigit() and len(bSin) == 10):
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
+            dSin = mainMenu.cursor.fetchone()
+            if data is None:
+                print("Error: Buyer not in database. Would you like to add them? (Y/N):")
+                choice = input(">> ")
+                if choice.lower() == "y":
+                    print("not implemented yet")
+                elif choice.lower() == "n":
+                    print("Please enter new SIN")
+                    continue
+                else:
+                    print("Error: Invalid choice")
+                    time.sleep(2)
+
+            else:
+                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % v\
+sn)
+                owners = mainMenu.cursor.fetchall()
+                for owner in owners:
+                    owners.pop(owner)
+                    owners.append(owner.strip())
+                if dSin in owners:
+                    break
+                else:
+                    print("Error: seller entered does not own this vehicle.")
+                    time.sleep(2)
 
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
 
-    print("Please enter the vehicle");
-    vehicle = input(">> ")
-    print(buyer," has bought ",seller+"'s ",vehicle,"!")
+
+
     transactionAgain()
     return
 
