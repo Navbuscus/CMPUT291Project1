@@ -29,33 +29,22 @@ def ticket():
         violator_no = input(">>  ")
         if( violator_no.isdigit() and len(violator_no) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT people.violator_no FROM people WHERE people.violator_no = %s" % violator_no)
+            mainMenu.cursor.execute("SELECT p.sin FROM people WHERE people.sin = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 print("Error: Violator does not exist in the Database. Please enter another SIN")
                 time.sleep(2)                
             else:
-                break;
+                mainMenu.cursor.execute("SELECT v.serial_no FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND v.serial_no = %s" % vehicle_no)
+                data = mainMenu.cursor.fetchone()  
+                if data is None:
+                    print("Error: Violator does not own a Vehicle.")
+                    time.sleep(2)                
+                else:
+                    break;                   
         else:
             print("Error: Please enter a valid SIN")
             time.sleep(2)
-    
-    while True:
-        header()
-        print("Please enter the Violator's vehicle serial number (VSN):")
-        vehicle_no = input(">>  ")
-        if( vehicle_no.isdigit() and len(vehicle_no) == 10):
-            # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT vehicle.vehicle_no FROM vehicle WHERE vehicle.vehicle_no = %s" % vehicle_no)
-            data = mainMenu.cursor.fetchone()
-            if data is None:
-                print("Error: Violator does not exist in the Database. Please enter another SIN")
-                time.sleep(2)                
-            else:
-                break;
-        else:
-            print("Error: Please enter a valid vehicle serial number (VSN)")
-            time.sleep(2)    
     
     ticketAgain()
     return
