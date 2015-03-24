@@ -79,7 +79,6 @@ def transaction():
                         time.sleep(2)
                 break
             else:
-                break
                 mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
                 owners = mainMenu.cursor.fetchall()
                 for owner in owners:
@@ -94,7 +93,7 @@ def transaction():
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
     
-     while True:
+    while True:
         title()
         print("Please enter the price (CAD): ")
         price = input(">> ")
