@@ -22,6 +22,7 @@ def ticket():
         ticket_no = input(">>  ")
         if( ticket_no.isdigit()):
             # testing for UNIQUE-KEY CONSTRAINT 
+            ticket_no = int(ticket_no)
             mainMenu.cursor.execute("SELECT ticket.ticket_no FROM ticket WHERE ticket.ticket_no = %d" % ticket_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
