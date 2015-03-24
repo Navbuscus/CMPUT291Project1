@@ -13,7 +13,7 @@ def ticket():
     while True:
         header()        
         # rand gen ticket_no
-        ticket_no = random.randint(0,10000000000000)
+        ticket_no = random.randint(100000000,1000000000)
 
         # testing for UNIQUE-KEY CONSTRAINT 
         mainMenu.cursor.execute("SELECT ticket.ticket_no FROM ticket WHERE ticket.ticket_no = %d" % ticket_no)
