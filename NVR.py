@@ -161,7 +161,7 @@ def addOwner(primary):
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-     return pSin
+    return pSin
 
 
 def registerPerson():
