@@ -125,7 +125,7 @@ def registerVehicle():
     return
 
 def addOwner(primary):
-     while True:
+    while True:
         os.system('clear')
         print("New Vehicle Registration")
         print("-----------------------------------")
