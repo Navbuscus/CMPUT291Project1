@@ -29,7 +29,7 @@ def ticket():
         violator_no = input(">>  ")
         if( violator_no.isdigit() and len(violator_no) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT p.sin FROM people WHERE people.sin = %s" % violator_no)
+            mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 print("Error: Violator does not exist in the Database. Please enter another SIN")
