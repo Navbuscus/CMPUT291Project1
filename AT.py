@@ -1,4 +1,4 @@
-import sys, os, time,cx_Oracle,mainMenu, random 
+import sys, os, time,cx_Oracle,mainMenu, random, datetime 
 
 def title():
     os.system('clear')
@@ -29,7 +29,6 @@ def transaction():
         else:
             print("Error: you must enter a 10 digit integer value")
             time.sleep(2)
-
             
     while True:
         title()
@@ -65,17 +64,20 @@ def transaction():
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
-                print("Error: Buyer not in database. Would you like to add them? (Y/N):")
-                choice = input(">> ")
-                if choice.lower() == "y":
-                    registerPerson()
-                elif choice.lower() == "n":
-                    print("Please enter new SIN")
-                    continue
-                else:
-                    print("Error: Invalid choice")
-                    time.sleep(2)
-
+                while True:
+                    title()
+                    print("Error: Buyer not in database. Would you like to add them? (Y/N):")
+                    choice = input(">> ")
+                    if choice.lower() == "y":
+                        registerPerson()
+                        break
+                    elif choice.lower() == "n":
+                        print("Please enter new SIN")
+                        continue
+                    else:
+                        print("Error: Invalid choice")
+                        time.sleep(2)
+                break
             else:
                 break
                 mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
@@ -91,12 +93,32 @@ def transaction():
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
+    
+     while True:
+        title()
+        print("Please enter the price (CAD): ")
+        price = input(">> ")
+        try:
+            float(price)
+            if( 0 <= float(price) <= 9999999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+
     while True:
         t_id = randint(100000000,999999999) 
         mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d" %t_id)
         result = cursor.fetchone()
         if result == 0:
             break
+    date = datetime.date.today().strftime("%m%d%Y")
+    print(date)
+    time.sleep(2)
     transactionAgain()
     return
 
