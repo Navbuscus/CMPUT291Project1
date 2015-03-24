@@ -99,8 +99,6 @@ def registerVehicle():
         vtype = vtype.lower().strip()
         if vtype in vehicleType:
             type_id = vehicleType.get(vtype)
-            print(type_id)
-            time.sleep(2)
             break;
         else: 
             print("Error: invalid vehicle type")
@@ -131,10 +129,11 @@ def addOwner(primary):
         os.system('clear')
         print("New Vehicle Registration")
         print("-----------------------------------")
+        owner = "secondary"
         if(primary):
-            print("Please enter the Social Insurance Number of the primary owner: ")
-        else:
-            print("Please enter the Social Insurance Number of the secondary owner: ")
+            owner = "primary"
+        
+        print("Please enter the Social Insurance Number of the "+owner+" owner: ")
 
         pSin = input(">> ")
         if(pSin.isdigit() and len(pSin) == 9):
