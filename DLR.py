@@ -11,12 +11,15 @@ def main():
     exec_menu(choice, 'main')
     return
 
+def personTitle():
+    os.system('clear')
+    print("Drivers License Registration")
+    print("Registering Person into database")
+    print("-----------------------------------")
+
 def registerPerson():
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Person into database")
-        print("-----------------------------------")
+        personTitle()
         print("Please enter the person's Social Insurance Number (SIN):")
         sin = input(">>  ")
         if( sin.isdigit() and len(sin) == 9):
@@ -32,20 +35,14 @@ def registerPerson():
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
 
-    os.system('clear')
-    print("Drivers License Registration")
-    print("Registering Person into database")
-    print("-----------------------------------")
+    personTitle()
     print("Please enter the person's name")
     name = input(">> ")
     name = name.lower()
 
     
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Person into database")
-        print("-----------------------------------")
+        personTitle()
         print("Please enter the person's height (cm): ")
         height = input(">> ")
         try:
@@ -61,10 +58,7 @@ def registerPerson():
 
 
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Person into database")
-        print("-----------------------------------")
+        personTitle()
         print("Please enter the person's weight (kg): ")
         weight = input(">> ")
         try:
@@ -78,35 +72,23 @@ def registerPerson():
             print("Error: please enter a number")
             time.sleep(2)
 
-    os.system('clear')
-    print("Drivers License Registration")
-    print("Registering Person into database")
-    print("-----------------------------------")
+    personTitle()
     print("Please enter the person's eye colour")
     eye = input(">> ")
     eye = eye.lower()
-
-    os.system('clear')
-    print("Drivers License Registration")
-    print("Registering Person into database")
-    print("-----------------------------------")
+    
+    personTitle()
     print("Please enter the person's hair colour")
     hair = input(">> ")
     hair = hair.lower()
 
-    os.system('clear')
-    print("Drivers License Registration")
-    print("Registering Person into database")
-    print("-----------------------------------")
+    personTitle()
     print("Please enter the person's adress")
     addr = input(">> ")
     addr = addr.lower()
     
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Person into database")
-        print("-----------------------------------")
+        personTitle()
         print("Please select person's gender (m/f)")
         choice = input(">> ")
         if(choice == "m"):
@@ -120,10 +102,7 @@ def registerPerson():
             time.sleep(2)
 
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Person into database")
-        print("-----------------------------------")
+        personTitle()
         print("Please enter the person's birthday (MMDDYYYY):")
         bdate = input(">>  ")
         if(bdate.isdigit() and len(bdate) == 8):
@@ -153,13 +132,17 @@ def registerPerson():
     
     registerAgain()
 
+
+def driverTitle():
+    os.system('clear')
+    print("Drivers License Registration")
+    print("Registering Drivers License into database")
+    print("-----------------------------------")
+    
 def registerDriver():
 
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Drivers License into database")
-        print("-----------------------------------")
+        driverTitle()
         print("Please enter drivers Social Insurance Number (SIN: ")
         dSin = input(">> ")
         if(dSin.isdigit() and len(dSin) == 9):
@@ -185,10 +168,7 @@ def registerDriver():
             time.sleep(2)
             
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Drivers License into database")
-        print("-----------------------------------")
+        driverTitle()
         print("Please enter the driver's license number (LN):")
         licence_no = input(">>  ")
         if( licence_no.isdigit() and len(licence_no) == 12):
@@ -205,10 +185,7 @@ def registerDriver():
             time.sleep(2)
             
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Drivers License into database")
-        print("-----------------------------------")
+        driverTitle()
         print("Please enter the driver's license Class Number:")
         class_no = input(">>  ")
         
@@ -221,9 +198,7 @@ def registerDriver():
 
     
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Drivers License into database")
+        driverTitle()
         print("-----------------------------------")
         print("Please enter the driver's license Photo name including its extention (e.g. 'photo.jpg' ")
         photo = input(">> ")
@@ -239,10 +214,7 @@ def registerDriver():
 
 
     while True:
-        os.system('clear')
-        print("Drivers License Registration")
-        print("Registering Drivers License into database")
-        print("-----------------------------------")
+        driverTitle()
         print("Please enter the driver's licence issue date  (MMDDYYYY):")
         idate = input(">>  ")
         if(idate.isdigit() and len(idate) == 8):
@@ -251,8 +223,6 @@ def registerDriver():
             print("Error: you must enter your birthday as MMDDYYY")
             time.sleep(2)
     edate=str(int(idate)+5)
-
-    #licence_no = 80085 #boobs 
     
     insert2 = """INSERT into DRIVE_LICENCE (LICENCE_NO, SIN, CLASS, PHOTO, ISSUING_DATE, EXPIRING_DATE)
     values (:LICENCE_NO, :SIN, :CLASS, :PHOTO, TO_DATE(:ISSUING_DATE,'MMDDYYYY'), TO_DATE(:EXPIRING_DATE,'MMDDYYYY'))"""
