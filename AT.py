@@ -93,9 +93,9 @@ def transaction():
             time.sleep(2)
     while True:
         t_id = randint(100000000,999999999) 
-        mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d", %t_id)
+        mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d" %t_id)
         result = cursor.fetchone()
-        if result = 0:
+        if result == 0:
             break
     transactionAgain()
     return
