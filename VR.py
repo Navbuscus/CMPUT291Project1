@@ -14,10 +14,7 @@ def main():
 def ticket():
 
     while True:
-        os.system('clear')
-        print("Violation Record")
-        print("Issuing a traffic ticket and Recording Violation")
-        print("-----------------------------------")
+        header()
         print("Please enter the Ticket Number (TN):")
         ticket_no = input(">>  ")
         if( ticket_no.isdigit()):
@@ -34,10 +31,25 @@ def ticket():
             print("Error: you must enter an integer value")
             time.sleep(2)
 
-    os.system('clear')
-    print("Violation Record")
-    print("Issuing a traffic ticket and Recording Violation")
-    print("-----------------------------------")
+    while True:
+        header()
+        print("Please enter the Violator's SIN:")
+        ticket_no = input(">>  ")
+        violator_no = input(">>  ")
+        if( sin.isdigit() and len(sin) == 9):
+            # testing for UNIQUE-KEY CONSTRAINT 
+            mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                break;
+            else:
+                print("SIN: %s, already exists in the DB!"% sin)   
+                time.sleep(2)
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+    
+    header()
     print("Please enter the drivers name")
     driver = input(">> ")
     print(driver,"has been given a ticket, OH SNAP!")
@@ -70,6 +82,12 @@ def exec_menu(choice,context):
 def exit():
     return
  
+def header():
+    os.system('clear')
+    print("Violation Record")
+    print("Issuing a traffic ticket and Recording Violation")
+    print("-----------------------------------")  
+    return
 
 menu_actions = {
     'main':main,
