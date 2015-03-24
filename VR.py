@@ -19,7 +19,8 @@ def ticket():
         mainMenu.cursor.execute("SELECT ticket.ticket_no FROM ticket WHERE ticket.ticket_no = %d" % ticket_no)
         data = mainMenu.cursor.fetchone()
         if data is None:
-            print ("Your ticket_no: %d" % ticket_no)            
+            print ("Your ticket_no: %d" % ticket_no)   
+            time.sleep(2)
             break;
         
     while True:
