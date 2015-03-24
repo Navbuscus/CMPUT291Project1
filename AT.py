@@ -1,4 +1,4 @@
-import sys, os, time,cx_Oracle,mainMenu 
+import sys, os, time,cx_Oracle,mainMenu, random 
 
 def title():
     os.system('clear')
@@ -38,7 +38,7 @@ def transaction():
         if(sSin.isdigit() and len(sSin) == 10):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
             dSin = mainMenu.cursor.fetchone()
-            if data is None:
+            if dsin is None:
                 print("Error: Seller not in database. Please enter sellers SIN")
                 time.sleep(2)
             else:
@@ -62,8 +62,8 @@ def transaction():
             print("Please enter the Social Insurance Number (SIN) of the vehicle's buyer")
         bSin = input(">> ")
         if(bSin.isdigit() and len(bSin) == 10):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
-            dSin = mainMenu.cursor.fetchone()
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
+            data = mainMenu.cursor.fetchone()
             if data is None:
                 print("Error: Buyer not in database. Would you like to add them? (Y/N):")
                 choice = input(">> ")
@@ -77,24 +77,16 @@ def transaction():
                     time.sleep(2)
 
             else:
-                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % v\
-sn)
-                owners = mainMenu.cursor.fetchall()
-                for owner in owners:
-                    owners.pop(owner)
-                    owners.append(owner.strip())
-                if dSin in owners:
-                    break
-                else:
-                    print("Error: seller entered does not own this vehicle.")
-                    time.sleep(2)
-
+                break
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-
-
-
+    while True:
+        t_id = randint(100000000,999999999) 
+        mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d", %t_id)
+        result = cursor.fetchone()
+        if result = 0:
+            break
     transactionAgain()
     return
 
