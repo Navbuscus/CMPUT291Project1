@@ -18,7 +18,7 @@ def transaction():
         title()
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ")
-        if(vsn.isdigit() and len(vsn) == 10):
+        if(vsn.isdigit() and len(vsn) == 7):
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % vsn)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -27,7 +27,7 @@ def transaction():
             else:
                 break
         else:
-            print("Error: you must enter a 10 digit integer value")
+            print("Error: you must enter a 7 digit integer value")
             time.sleep(2)
             
     while True:

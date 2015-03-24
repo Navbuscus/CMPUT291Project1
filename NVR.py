@@ -33,7 +33,7 @@ def registerVehicle():
         print("-----------------------------------")
         print("Please enter the Vehicle's Serial Number (VSN):")
         serial_no = input(">>  ")
-        if( serial_no.isdigit() and len(serial_no) == 10):
+        if( serial_no.isdigit() and len(serial_no) == 7):
             # testing for UNIQUE-KEY CONSTRAINT 
             serial_no = "ser"+serial_no
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
@@ -44,7 +44,7 @@ def registerVehicle():
                 print("serial_no: %s, already exists in the DB!"% sin)   
                 time.sleep(2)
         else:
-            print("Error: you must enter a 10 digit integer value")
+            print("Error: you must enter a 7 digit integer value")
             time.sleep(2)
 
     os.system('clear')
