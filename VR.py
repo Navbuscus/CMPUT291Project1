@@ -48,7 +48,7 @@ def ticket():
                     print("    ------- -------------------- -------------------- ----- ---------- -------")
                     data = mainMenu.cursor.fetchall()
                     for row in data:
-                        print (">>  %7s %20s %20s %10d %10s %7d" %(row[0], row[1], row[2], row[3], row[4], row[5]))
+                        print (">>  %s %s %s %d %s %d" %(row[0], row[1], row[2], row[3], row[4], row[5]))
                     time.sleep(30)
                     break;                   
         else:
