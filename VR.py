@@ -114,17 +114,20 @@ def ticket():
     while True:
         header()
         print("Please enter the Violation place (20 characters limit):")
-        place = input(">>  ")   
-        # testing valid input        
-        break     
+        place = input(">>  ")
+        if( strlen(place)<= 20):
+            break
+        else:
+            print("Error: place exceeds 20 characters, please try again.")
      
     while True:
         header()
         print("Please enter a description of the Violation (1024 characters limit):")
         descriptions = input(">>  ")   
-        # testing valid input        
-        break          
-     
+        if( strlen(place)<= 1024):
+            break
+        else:
+            print("Error: place exceeds 1024 characters, please try again.")
            
     ticketAgain()
     return
