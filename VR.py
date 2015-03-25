@@ -72,6 +72,7 @@ def ticket():
         if( office_no.isdigit() and len(office_no) == 9):
             if ( office_no == violator_no):
                 print("Error: Officer cannot be a Violator.")
+                time.sleep(2)
             else:
                 mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % office_no)
                 data = mainMenu.cursor.fetchone()  
@@ -90,7 +91,7 @@ def ticket():
         ticket_descript()
         ticket_lst = []                    
         for row in data:
-            print (">> %10s $%f" %(row[0].strip(), row[1]))                        
+            print (">> %10s $%f.2" %(row[0].strip(), row[1]))                        
             ticket_lst.append(row[0].strip())        
         print("")
         vtype = input(">>  ")
@@ -182,6 +183,7 @@ def validate(date_text):
         datetime.datetime.strptime(date_text, '%m%d%Y')
     except ValueError:
         raise ValueError("Error: Incorrect date format, should be (MMDDYYY)")
+    time.sleep(2)
 
 menu_actions = {
     'main':main,
