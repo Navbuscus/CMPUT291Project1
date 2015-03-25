@@ -48,10 +48,11 @@ def ticket():
                     print("  --------------- -------------------- -------------------- ---------- ---------- ----------")
                     data = mainMenu.cursor.fetchall()
                     for row in data:
-                        for serial_no, maker, model, year, color, type_id in row:
+                        print(row)
+                        #for serial_no, maker, model, year, color, type_id in row:
                             #print (">>: %15s %20s %15s %10s %10s %10s" %(serial_no, maker, model, year, color, type_id))
-                            print(serial_no, maker, model, year, color, type_id)
-                    time.sleep(10)
+                         #   print(serial_no, maker, model, year, color, type_id)
+                    time.sleep(30)
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
