@@ -46,7 +46,8 @@ def ticket():
                     data = mainMenu.cursor.fetchall()
                     
                     while True:
-                        description()                        
+                        description() 
+                        print("Please Select 1 of the following vehicle serial numbers (VSN) below:")                        
                         serialNo_lst = []                    
                         for row in data:
                             print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))                        
@@ -59,14 +60,37 @@ def ticket():
                             time.sleep(2)
                         else:
                             break;
-                    # testing valid input
-
-                    
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
             time.sleep(2)
-    
+            
+    while True:
+        header()
+        print("Please enter the Officer's SIN:")
+        office_no = input(">>  ")   
+        # testing valid input               
+        if( office_no.isdigit() and len(office_no) == 9):
+            if ( office_no == violator_no):
+                print("Error: Officer cannot be a Violator.")
+            else:
+                mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % office_no)
+                data = mainMenu.cursor.fetchone()  
+                if data is None:
+                    print("Error: Officer does not exist in the Database. Please enter another SIN.")
+                    time.sleep(2)                
+                else:          
+                    break;
+        else:
+            print("Error: Please enter a valid SIN")
+            time.sleep(2)            
+     
+    while True:
+        header()
+        print("Please Select 1 of the following Tickets below:")
+        
+   
+           
     ticketAgain()
     return
 
@@ -105,7 +129,6 @@ def header():
 
 def description():
     header()
-    print("Please enter the Violator's vehicle serial no. (VSN)")
     print(" ")
     print("  SERIAL_NO DESCRIPTION ")
     print("  --------- --------------------")    
