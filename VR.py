@@ -52,11 +52,10 @@ def ticket():
                             print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))                        
                             serialNo_lst.append(row[0])
                         
-                        print("")
-                        print("")
                         vehicle_no = input(">>  ")
                         if str(vehicle_no) not in (serialNo_lst):
                             print("Please enter a Valid vehicle serial no. (VSN) as shown above")
+                            print(serialNo_lst)
                             time.sleep(2)
                         else:
                             break;
@@ -107,6 +106,7 @@ def header():
 def description():
     header()
     print("Please enter the Violator's vehicle serial no. (VSN)")
+    print(" ")
     print("  SERIAL_NO DESCRIPTION ")
     print("  --------- --------------------")    
     return
