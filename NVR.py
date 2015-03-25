@@ -80,8 +80,8 @@ def registerVehicle():
     print("New Vehicle Registration")
     print("-----------------------------------")
     print("Please enter the Color of the Vehicle")
-    colour = input(">> ")
-    colour = colour.lower()
+    color = input(">> ")
+    color = color.lower()
 
     mainMenu.cursor.execute("SELECT type, type_id FROM vehicle_type")
     data = mainMenu.cursor.fetchall()
