@@ -46,8 +46,7 @@ def ticket():
                     data = mainMenu.cursor.fetchall()
                     
                     while True:
-                        description() 
-                        print("Please Select 1 of the following vehicle serial numbers (VSN) below:")                        
+                        vehic_descript() 
                         serialNo_lst = []                    
                         for row in data:
                             print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))                        
@@ -86,10 +85,20 @@ def ticket():
             time.sleep(2)            
      
     while True:
-        header()
-        print("Please Select 1 of the following Tickets below:")
-        
-   
+        mainMenu.cursor.execute("SELECT * FROM ticket_type")
+        data = mainMenu.cursor.fetchall()             
+        ticket_descript()
+        ticket_lst = []                    
+        for row in data:
+            print (">> %10s %5d" %(row[0].strip(), row[1].strip()))                        
+            ticket_lst.append(row[0].strip())        
+        print("")
+        ticket_no = input(">>  ")
+        if str(ticket_no) not in (ticket_lst):
+            print("Error: Please enter a Valid Ticket as shown above")
+            time.sleep(2)
+        else:
+            break;           
            
     ticketAgain()
     return
@@ -127,11 +136,20 @@ def header():
     print("-----------------------------------")  
     return
 
-def description():
+def vehic_descript():
     header()
+    print("Please Select 1 of the following vehicle serial numbers (VSN) below:")                            
     print(" ")
     print("  SERIAL_NO DESCRIPTION ")
     print("  --------- --------------------")    
+    return
+
+def ticket_descript():
+    header()
+    print("Please Select 1 of the following Tickets below:")                            
+    print(" ")
+    print("  TICKET_NO  FINE ")
+    print("  ---------- -----")    
     return
 
 menu_actions = {
