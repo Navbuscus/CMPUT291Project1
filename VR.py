@@ -44,12 +44,12 @@ def ticket():
                     time.sleep(2)                
                 else:
                     mainMenu.cursor.execute("SELECT v.serial_no, v.maker, v.model, v.year, v.color, v.type_id FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
-                    print("  SERIAL_NO       MAKER                MODEL                      YEAR COLOR         TYPE_ID")
-                    print("  --------------- -------------------- -------------------- ---------- ---------- ----------")
+                    print("  SERIAL_NO MAKER                MODEL                YEAR  COLOR      TYPE_ID")
+                    print("    ------- -------------------- -------------------- ----- ---------- -------")
                     data = mainMenu.cursor.fetchall()
-                    print(data)
-
-                    time.sleep(2)
+                    for row in data:
+                        print (">>  %7s %20s %20s %10d %10s %7d" %(row[0], row[1], row[2], row[3], row[4], row[5]))
+                    time.sleep(30)
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
