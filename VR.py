@@ -46,7 +46,7 @@ def ticket():
                     mainMenu.cursor.execute("SELECT v.serial_no, v.maker, v.model, v.year, v.color, v.type_id FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
                     print("  SERIAL_NO       MAKER                MODEL                      YEAR COLOR         TYPE_ID")
                     print("  --------------- -------------------- -------------------- ---------- ---------- ----------")
-                
+                    time.sleep(2)
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
