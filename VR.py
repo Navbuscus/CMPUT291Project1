@@ -12,7 +12,7 @@ def ticket():
 
     while True:
         header()        
-        # rand gen ticket_no
+        # rand gen 9-digit ticket_no
         ticket_no = random.randint(100000000,1000000000)
 
         # testing for UNIQUE-KEY CONSTRAINT 
@@ -27,20 +27,26 @@ def ticket():
         header()
         print("Please enter the Violator's SIN:")
         violator_no = input(">>  ")
+        # testing for correct input       
         if( violator_no.isdigit() and len(violator_no) == 9):
-            # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
+            # testing for UNIQUE-KEY CONSTRAINT            
             if data is None:
                 print("Error: Violator does not exist in the Database. Please enter another SIN")
                 time.sleep(2)                
-            else:
+            else:   
+                # testing if owns car
                 mainMenu.cursor.execute("SELECT v.serial_no FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
-                data = mainMenu.cursor.fetchone()  
+                data = mainMenu.cursor.fetchone()
                 if data is None:
                     print("Error: Violator does not own a Vehicle.")
                     time.sleep(2)                
                 else:
+                    mainMenu.cursor.execute("SELECT v.serial_no, v.maker, v.model, v.year, v.color, v.type_id FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
+                    print("  SERIAL_NO       MAKER                MODEL                      YEAR COLOR         TYPE_ID")
+                    print("  --------------- -------------------- -------------------- ---------- ---------- ----------")
+                
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
