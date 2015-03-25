@@ -105,7 +105,7 @@ def ticket():
         header()
         print("Please enter the Violation date (MMDDYYYY):")
         vdate = input(">>  ")   
-        if(vdate.isdigit() and len(vdate) == 8 and validate(vdate):
+        if(vdate.isdigit() and len(vdate) == 8 and validate(vdate)):
             break
         else:
             print("Error: Incorrect date format, should be MMDDYYY")
