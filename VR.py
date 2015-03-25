@@ -90,7 +90,7 @@ def ticket():
         ticket_descript()
         ticket_lst = []                    
         for row in data:
-            print (">> %10s $%5f" %(row[0].strip(), row[1].strip()))                        
+            print (">> %10s $%5f" %(row[0].strip(), row[1]))                        
             ticket_lst.append(row[0].strip())        
         print("")
         ticket_no = input(">>  ")
