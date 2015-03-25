@@ -106,7 +106,7 @@ def registerVehicle():
     
 
 
-    insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL,  YEAR, COLOR, TYPE_ID)
+    insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL, YEAR, COLOR, TYPE_ID)
     values (:SERIAL_NO,:MAKER, :MODEL, :YEAR, :COLOR)"""
     mainMenu.cursor.execute(insert,{'SERIAL_NO':serial_no,'MAKER':maker,'MODEL':model,'YEAR':year,'COLOR':color,'TYPE_ID':type_id})  
     
