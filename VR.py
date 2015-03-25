@@ -48,8 +48,7 @@ def ticket():
                     print("  --------------- -------------------- -------------------- ---------- ---------- ----------")
                     data = mainMenu.cursor.fetchall()
                     for row in data:
-                        for (serial_no, maker, model, year, color, type_id) in row:
-                            print ("%15s %20s %15s %10d %10s %10d" %(serial_no, maker, model, year, color, type_id))
+                        print ("%15s %20s %15s %10d %10s %10d" %(row[0], row[1], row[2], row[3], row[4], row[5]))
                     time.sleep(30)
                     break;                   
         else:
