@@ -90,15 +90,37 @@ def ticket():
         ticket_descript()
         ticket_lst = []                    
         for row in data:
-            print (">> %10s $%5f" %(row[0].strip(), row[1]))                        
+            print (">> %10s $%f" %(row[0].strip(), row[1]))                        
             ticket_lst.append(row[0].strip())        
         print("")
-        ticket_no = input(">>  ")
-        if str(ticket_no) not in (ticket_lst):
+        vtype = input(">>  ")
+        if str(vtype) not in (ticket_lst):
             print("Error: Please enter a Valid Ticket as shown above")
             time.sleep(2)
         else:
             break;           
+     
+    while True:
+        header()
+        print("Please enter the Violation date (MMDDYYYY):")
+        vdate = input(">>  ")   
+        # testing valid input        
+        break
+    
+    while True:
+        header()
+        print("Please enter the Violation place (20 characters limit):")
+        place = input(">>  ")   
+        # testing valid input        
+        break     
+     
+    while True:
+        header()
+        print("Please enter a description of the Violation (1024 characters limit):")
+        descriptions = input(">>  ")   
+        # testing valid input        
+        break          
+     
            
     ticketAgain()
     return
@@ -148,8 +170,8 @@ def ticket_descript():
     header()
     print("Please Select 1 of the following Tickets below:")                            
     print(" ")
-    print("  TICKET_NO  FINE ")
-    print("  ---------- -----")    
+    print("   TICKET_NO  FINE ")
+    print("   ---------- -----")    
     return
 
 menu_actions = {
