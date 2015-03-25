@@ -1,4 +1,4 @@
-import sys, os, mainMenu, time, cx_Oracle, random
+import sys, os, mainMenu, time, cx_Oracle, random, datetime
 
 def main():
     header()
@@ -104,8 +104,11 @@ def ticket():
         header()
         print("Please enter the Violation date (MMDDYYYY):")
         vdate = input(">>  ")   
-        # testing valid input        
-        break
+        if(vdate.isdigit() and len(vdate) == 8):
+            validate(vdate)
+        else:
+            print("Error: Incorrect date format, should be MMDDYYY")
+            break
     
     while True:
         header()
@@ -173,6 +176,12 @@ def ticket_descript():
     print("   TICKET_NO  FINE ")
     print("   ---------- -----")    
     return
+
+def validate(date_text):
+    try:
+        datetime.datetime.strptime(date_text, '%m%d%Y')
+    except ValueError:
+        raise ValueError("Error: Incorrect date format, should be (MMDDYYY)")
 
 menu_actions = {
     'main':main,
