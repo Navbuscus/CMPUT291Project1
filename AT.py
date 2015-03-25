@@ -118,6 +118,18 @@ def transaction():
     date = datetime.date.today().strftime("%m%d%Y")
     print(date)
     time.sleep(2)
+    mainMenu.cursor.execute("delete from owner where vehicle_id = %s"%vsn)
+    insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,VEHICLE_ID,'y')"""
+    mainMenu.cursor.execut(insert,{'OWNER_ID':bSin,'VEHICLE_ID':vsn})
+ 
+    insert = """INSERT into AUTO_SALE (TRANSACTION_ID, SELLER_ID, BUYER_ID,VEHICLE_ID, S_DATE, PRICE)
+    values (:TRANSACTION_ID, :SELLER_ID, :BUYER_ID,:VEHICLE_ID, TO_DATE('MMDDYYYY', :S_DATE), :PRICE:TRANS)"""
+    mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':date, 'PRICE':price})  
+    
+    mainMenu.connection.commit()  
+    
+
+
     transactionAgain()
     return
 
