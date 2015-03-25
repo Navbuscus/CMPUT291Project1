@@ -91,7 +91,7 @@ def ticket():
         ticket_descript()
         ticket_lst = []                    
         for row in data:
-            print (">> %10s $%f.2" %(row[0].strip(), row[1]))                        
+            print (">> %10s $%.2f" %(row[0].strip(), row[1]))                        
             ticket_lst.append(row[0].strip())        
         print("")
         vtype = input(">>  ")
@@ -107,6 +107,9 @@ def ticket():
         vdate = input(">>  ")   
         if(vdate.isdigit() and len(vdate) == 8 and validate(vdate)):
             break
+        else:
+            print("Error: Incorrect date format, should be (MMDDYYY)")
+            time.sleep(2)
     
     while True:
         header()
@@ -130,7 +133,7 @@ def ticket():
     
     insert = """INSERT into TICKET (TICKET_NO, VIOLATOR_NO, VEHICLE_NO, OFFICE_NO, VTYPE, VDATE, PLACE, DESCRIPTIONS)
     values (:TICKET_NO,:VIOLATOR_NO, :VEHICLE_NO, :OFFICE_NO, :VTYPE, TO_DATE(:VDATE,'MMDDYYYY'), :PLACE, :DESCRIPTIONS)"""
-    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_NO':vehicle_no, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
+    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_NO':1000000, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
     
     mainMenu.connection.commit()        
     
