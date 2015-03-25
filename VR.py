@@ -50,12 +50,12 @@ def ticket():
                         serialNo_lst = []                    
                         for row in data:
                             print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))                        
-                            serialNo_lst.append(row[0])
+                            serialNo_lst.append(row[0].strip())
                         
+                        print("")
                         vehicle_no = input(">>  ")
                         if str(vehicle_no) not in (serialNo_lst):
-                            print("Please enter a Valid vehicle serial no. (VSN) as shown above")
-                            print(serialNo_lst)
+                            print("Error: Please enter a Valid vehicle serial no. (VSN) as shown above")
                             time.sleep(2)
                         else:
                             break;
