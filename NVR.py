@@ -12,6 +12,7 @@ def main():
 
 def registerVehicle():
     primOwner = addOwner(True)
+    secOwner = "null"
     while True:
         os.system('clear')
         print("New Vehicle Registration")
@@ -107,18 +108,19 @@ def registerVehicle():
     
 
 
-    insert = """INSERT into VEHICLE (SERIAL_NO, MAKER, MODEL, YEAR, COLOR, TYPE_ID)
-    values (:SERIAL_NO,:MAKER, :MODEL, :YEAR, :COLOR)"""
+    insert = """INSERT into VEHICLE (SERIAL_NO,MAKER,MODEL,YEAR,COLOR,TYPE_ID)
+    values (:SERIAL_NO,:MAKER,:MODEL,:YEAR,:COLOR,:TYPE_ID)"""
     mainMenu.cursor.execute(insert,{'SERIAL_NO':serial_no,'MAKER':maker,'MODEL':model,'YEAR':year,'COLOR':color,'TYPE_ID':type_id})  
     
 
     insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID,IS_PRIMARY_OWNER)
-    values (:OWNER_ID,:VEHICLE_ID,:IS_PRIMARY_OWNER)"""
-    mainMenu.cursor.execute(insert,{'OWNER_ID':primOwner,'VEHICLE_ID':serial_no,'IS_PRIMAR"Y_OWNER':'y'})
+    values (:OWNER_ID,:VEHICLE_ID,'y')"""
+    mainMenu.cursor.execute(insert,{'OWNER_ID':primOwner,'VEHICLE_ID':serial_no})
 
-    insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID,IS_PRIMARY_OWNER)
+    if(secOwner != "null"):
+        insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID,IS_PRIMARY_OWNER)
     values (:OWNER_ID,:VEHICLE_ID,:IS_PRIMARY_OWNER)"""
-    mainMenu.cursor.execute(insert,{'OWNER_ID':secOwner,'VEHICLE_ID':serial_no,'IS_PRIMAR"Y_OWNER':'n'})
+        mainMenu.cursor.execute(insert,{'OWNER_ID':secOwner,'VEHICLE_ID':serial_no,'IS_PRIMAR"Y_OWNER':'n'})
 
     mainMenu.connection.commit()  
     registerAgain()
