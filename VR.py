@@ -54,7 +54,7 @@ def ticket():
                             
                         print("Please enter the EXACT Violator's vehicle serial no. (VSN) as shown above:")
                         vehicle_no = input(">>  ")
-                        if vehicle_no not in (serialNo_list):
+                        if vehicle_no not in (serialNo_lst):
                             print("Please enter a Valid vehicle serial no. (VSN) as shown above")
                             time.sleep(2)
                         else:
