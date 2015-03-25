@@ -259,13 +259,13 @@ def registerPerson():
     return
 
 def transactionAgain():
-     os.system('clear')
-     print("New Vehicle Registration")
-     print("Registering Person into database")
-     print("-----------------------------------")
-     print(" Sale completed!")
-     time.sleep(2)
-     main()
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("Registering Person into database")
+    print("-----------------------------------")
+    print(" Sale completed!")
+    time.sleep(2)
+    main()
 
 def exec_menu(choice,context):
     #os.system('clear')
