@@ -8,7 +8,9 @@ def main():
     exec_menu(choice, 'main')
     return
 
-def ticket():    
+def ticket():   
+    
+    """
     while True:
         header()        
         # rand gen 9-digit ticket_no
@@ -130,10 +132,20 @@ def ticket():
         else:
             print("Error: Exceeds 1024 characters, please try again.")
             time.sleep(2)
+    """
+    
+    ticket_no = 123123123
+    violator_no = 111111111
+    vehicle_no = 1000000    
+    office_no = 123456789
+    vtype = "parking"    
+    vdate = 11111111
+    place = "asfasdfasdfasdf"
+    descriptions = "asdfasdfasdfsaf"
     
     insert = """INSERT into TICKET (TICKET_NO, VIOLATOR_NO, VEHICLE_NO, OFFICE_NO, VTYPE, VDATE, PLACE, DESCRIPTIONS)
     values (:TICKET_NO,:VIOLATOR_NO, :VEHICLE_NO, :OFFICE_NO, :VTYPE, TO_DATE(:VDATE,'MMDDYYYY'), :PLACE, :DESCRIPTIONS)"""
-    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_NO':1000000, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
+    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_NO':vehicle_no, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
     
     mainMenu.connection.commit()        
     
