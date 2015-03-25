@@ -182,8 +182,8 @@ def validate(date_text):
     try:
         datetime.datetime.strptime(date_text, '%m%d%Y')
     except ValueError:
-        raise ValueError("Error: Incorrect date format, should be (MMDDYYY)")
-    time.sleep(2)
+        print ("Error: Incorrect date format, should be (MMDDYYY)")
+        time.sleep(2)
 
 menu_actions = {
     'main':main,
