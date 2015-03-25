@@ -1,4 +1,4 @@
-import sys, os, time, cx_Oracle, mainMenu
+import sys, os, time, cx_Oracle, mainMenu,datetime
 
 def main():
     os.system('clear')
@@ -9,7 +9,7 @@ def main():
     print ("0. Back")
     choice = input(" >>  ")
     exec_menu(choice, 'main')
-    return
+    registerAgain()
 
 def personTitle():
     os.system('clear')
@@ -34,11 +34,15 @@ def registerPerson():
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-
-    personTitle()
-    print("Please enter the person's name")
-    name = input(">> ")
-    name = name.lower()
+    while True:
+        personTitle()
+        print("Please enter the person's name")
+        name = input(">> ")
+        name = name.lower()
+        if len(name) <= 40:
+            break
+        print("Error: Name too large. MAX 40 characters allowed")
+        time.sleep(2)
 
     
     while True:
@@ -71,22 +75,33 @@ def registerPerson():
         except ValueError:
             print("Error: please enter a number")
             time.sleep(2)
-
-    personTitle()
-    print("Please enter the person's eye colour")
-    eye = input(">> ")
-    eye = eye.lower()
-    
-    personTitle()
-    print("Please enter the person's hair colour")
-    hair = input(">> ")
-    hair = hair.lower()
-
-    personTitle()
-    print("Please enter the person's adress")
-    addr = input(">> ")
-    addr = addr.lower()
-    
+    while True:
+        personTitle()
+        print("Please enter the person's eye colour")
+        eye = input(">> ")
+        eye = eye.lower()
+        if len(eye) <= 10:
+            break
+        print("Error: value too large. MAX 10 characters allowed")
+        time.sleep(2)
+    while True:
+        personTitle()
+        print("Please enter the person's hair colour")
+        hair = input(">> ")
+        hair = hair.lower()
+        if len(hair) <= 10:
+            break
+        print("Error: value too large. MAX 10 characters allowed")
+        time.sleep(2)
+    while True:
+        personTitle()
+        print("Please enter the person's adress")
+        addr = input(">> ")
+        addr = addr.lower()
+        if len(addr) <= 50:
+            break
+        print("Error: value too large. MAX 50 characters allowed")
+        time.sleep(2)
     while True:
         personTitle()
         print("Please select person's gender (m/f)")
@@ -105,11 +120,12 @@ def registerPerson():
         personTitle()
         print("Please enter the person's birthday (MMDDYYYY):")
         bdate = input(">>  ")
-        if(bdate.isdigit() and len(bdate) == 8):
-            break;
-        else:
-            print("Error: you must enter your birthday as MMDDYYY")
-            time.sleep(2)
+        try:
+            date = datetime.datetime.strptime(bdate,'%m%d%Y')
+            break
+        except ValueError:
+            print("Error: Not a valid date. Please enter date in the 'MMDDYYY' format.")
+            time.sleep(2)   
     
     """
     #quick testing
@@ -130,7 +146,6 @@ def registerPerson():
     
     mainMenu.connection.commit()        
     
-    registerAgain()
 
 
 def driverTitle():
@@ -229,7 +244,6 @@ def registerDriver():
     mainMenu.cursor.execute(insert2,{'LICENCE_NO':licence_no,'SIN':sin,'CLASS':dclass,'PHOTO':image,'ISSUING_DATE':idate,'EXPIRING_DATE':edate})
     
     mainMenu.connection.commit() 
-    registerAgain()
 
 def registerAgain():
     main();
