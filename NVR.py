@@ -35,7 +35,6 @@ def registerVehicle():
         serial_no = input(">>  ")
         if( serial_no.isdigit() and len(serial_no) == 7):
             # testing for UNIQUE-KEY CONSTRAINT 
-            serial_no = "ser"+serial_no
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
