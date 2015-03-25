@@ -8,8 +8,7 @@ def main():
     exec_menu(choice, 'main')
     return
 
-def ticket():
-
+def ticket():    
     while True:
         header()        
         # rand gen 9-digit ticket_no
@@ -46,11 +45,20 @@ def ticket():
                     description()
                     mainMenu.cursor.execute("SELECT v.serial_no, v.maker, v.model, v.year, v.color, v.type_id FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
                     data = mainMenu.cursor.fetchall()
-                    for row in data:
-                        print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))
-                    print("\n")
-                    print("Please enter the EXACT Violator's vehicle serial no. (VSN) as shown above:")
-                    vehicle_no = input(">>  ")
+                    
+                    while True:
+                        serialNo_lst = []                    
+                        for row in data:
+                            print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))                        
+                            serialNo_lst.append(row[0])
+                            
+                        print("Please enter the EXACT Violator's vehicle serial no. (VSN) as shown above:")
+                        vehicle_no = input(">>  ")
+                        if vehicle_no not in (serialNo_list):
+                            print("Please enter a Valid vehicle serial no. (VSN) as shown above")
+                            time.sleep(2)
+                        else:
+                            break;
                     # testing valid input
 
                     
@@ -98,7 +106,6 @@ def header():
 def description():
     header()
     print("Please enter the Violator's vehicle serial no. (VSN)")
-    print("\n")
     print("  SERIAL_NO DESCRIPTION ")
     print("  --------- --------------------")    
     return
