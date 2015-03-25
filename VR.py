@@ -107,9 +107,6 @@ def ticket():
         vdate = input(">>  ")   
         if(vdate.isdigit() and len(vdate) == 8 and validate(vdate)):
             break
-        else:
-            print("Error: Incorrect date format, should be MMDDYYY")
-            time.sleep(2)
     
     while True:
         header()
@@ -118,7 +115,7 @@ def ticket():
         if( len(place)<= 20):
             break
         else:
-            print("Error: place exceeds 20 characters, please try again.")
+            print("Error: Exceeds 20 characters, please try again.")
             time.sleep(2)
      
     while True:
@@ -128,8 +125,15 @@ def ticket():
         if( len(place)<= 1024):
             break
         else:
-            print("Error: place exceeds 1024 characters, please try again.")
+            print("Error: Exceeds 1024 characters, please try again.")
             time.sleep(2)
+    
+    insert = """INSERT into TICKET (TICKET_NO, VIOLATOR_NO, VEHICLE_NO, OFFICE_NO, VTYPE, VDATE, PLACE, DESCRIPTIONS)
+    values (:TICKET_NO,:VIOLATOR_NO, :VEHICLE_NO, :OFFICE_NO, :VTYPE, TO_DATE(:VDATE,'MMDDYYYY'), :PLACE, :DESCRIPTIONS)"""
+    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_NO':vehicle_no, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
+    
+    mainMenu.connection.commit()        
+    
            
     ticketAgain()
     return
