@@ -109,24 +109,27 @@ def ticket():
             break
         else:
             print("Error: Incorrect date format, should be MMDDYYY")
+            time.sleep(2)
     
     while True:
         header()
         print("Please enter the Violation place (20 characters limit):")
         place = input(">>  ")
-        if( strlen(place)<= 20):
+        if( len(place)<= 20):
             break
         else:
             print("Error: place exceeds 20 characters, please try again.")
+            time.sleep(2)
      
     while True:
         header()
         print("Please enter a description of the Violation (1024 characters limit):")
         descriptions = input(">>  ")   
-        if( strlen(place)<= 1024):
+        if( len(place)<= 1024):
             break
         else:
             print("Error: place exceeds 1024 characters, please try again.")
+            time.sleep(2)
            
     ticketAgain()
     return
