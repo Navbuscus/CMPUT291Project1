@@ -27,7 +27,7 @@ def ticket():
         header()
         print("Please enter the Violator's SIN:")
         violator_no = input(">>  ")
-        # testing for correct input       
+        # testing valid input       
         if( violator_no.isdigit() and len(violator_no) == 9):
             mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
@@ -43,13 +43,17 @@ def ticket():
                     print("Error: Violator does not own a Vehicle.")
                     time.sleep(2)                
                 else:
+                    description()
                     mainMenu.cursor.execute("SELECT v.serial_no, v.maker, v.model, v.year, v.color, v.type_id FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
-                    print("  SERIAL_NO MAKER                MODEL                YEAR  COLOR      TYPE_ID")
-                    print("    ------- -------------------- -------------------- ----- ---------- -------")
                     data = mainMenu.cursor.fetchall()
                     for row in data:
                         print (">>  %s %s %s %d %s %d" %(row[0], row[1], row[2], row[3], row[4], row[5]))
-                    time.sleep(30)
+                    print("\n")
+                    print("Please enter the EXACT Violator's vehicle serial no. (VSN) as shown above:")
+                    vehicle_no = input(">>  ")
+                    # testing valid input
+
+                    
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
@@ -89,6 +93,14 @@ def header():
     print("Violation Record")
     print("Issuing a traffic ticket and Recording Violation")
     print("-----------------------------------")  
+    return
+
+def description():
+    header()
+    print("Please enter the Violator's vehicle serial no. (VSN)")
+    print("\n")
+    print("  SERIAL_NO DESCRIPTION ")
+    print("  --------- --------------------")    
     return
 
 menu_actions = {
