@@ -8,8 +8,7 @@ def main():
     exec_menu(choice, 'main')
     return
 
-def ticket():
-
+def ticket():    
     while True:
         header()        
         # rand gen 9-digit ticket_no
@@ -43,22 +42,55 @@ def ticket():
                     print("Error: Violator does not own a Vehicle.")
                     time.sleep(2)                
                 else:
-                    description()
                     mainMenu.cursor.execute("SELECT v.serial_no, v.maker, v.model, v.year, v.color, v.type_id FROM people p, owner o, vehicle v WHERE p.sin = o.owner_id AND o.vehicle_id = v.serial_no AND p.sin = %s" % violator_no)
                     data = mainMenu.cursor.fetchall()
-                    for row in data:
-                        print (">>  %s %s %s %d %s %d" %(row[0], row[1], row[2], row[3], row[4], row[5]))
-                    print("\n")
-                    print("Please enter the EXACT Violator's vehicle serial no. (VSN) as shown above:")
-                    vehicle_no = input(">>  ")
-                    # testing valid input
-
                     
+                    while True:
+                        description() 
+                        print("Please Select 1 of the following vehicle serial numbers (VSN) below:")                        
+                        serialNo_lst = []                    
+                        for row in data:
+                            print (">>  %s %s %s %d %s %d" %(row[0].strip(), row[1].strip(), row[2].strip(), row[3], row[4].strip(), row[5]))                        
+                            serialNo_lst.append(row[0].strip())
+                        
+                        print("")
+                        vehicle_no = input(">>  ")
+                        if str(vehicle_no) not in (serialNo_lst):
+                            print("Error: Please enter a Valid vehicle serial no. (VSN) as shown above")
+                            time.sleep(2)
+                        else:
+                            break;
                     break;                   
         else:
             print("Error: Please enter a valid SIN")
             time.sleep(2)
-    
+            
+    while True:
+        header()
+        print("Please enter the Officer's SIN:")
+        office_no = input(">>  ")   
+        # testing valid input               
+        if( office_no.isdigit() and len(office_no) == 9):
+            if ( office_no == violator_no):
+                print("Error: Officer cannot be a Violator.")
+            else:
+                mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % office_no)
+                data = mainMenu.cursor.fetchone()  
+                if data is None:
+                    print("Error: Officer does not exist in the Database. Please enter another SIN.")
+                    time.sleep(2)                
+                else:          
+                    break;
+        else:
+            print("Error: Please enter a valid SIN")
+            time.sleep(2)            
+     
+    while True:
+        header()
+        print("Please Select 1 of the following Tickets below:")
+        
+   
+           
     ticketAgain()
     return
 
@@ -97,8 +129,7 @@ def header():
 
 def description():
     header()
-    print("Please enter the Violator's vehicle serial no. (VSN)")
-    print("\n")
+    print(" ")
     print("  SERIAL_NO DESCRIPTION ")
     print("  --------- --------------------")    
     return
