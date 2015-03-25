@@ -34,18 +34,15 @@ def transaction():
         title()
         print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
         sSin = input(">> ")
-        if(sSin.isdigit() and len(sSin) == 10):
+        if(sSin.isdigit() and len(sSin) == 9):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
             dSin = mainMenu.cursor.fetchone()
-            if dsin is None:
+            if dSin is None:
                 print("Error: Seller not in database. Please enter sellers SIN")
                 time.sleep(2)
             else:
                 mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
                 owners = mainMenu.cursor.fetchall()
-                for owner in owners:
-                    owners.pop(owner)
-                    owners.append(owner.strip())
                 if dSin in owners:
                     break
                 else:
@@ -56,11 +53,11 @@ def transaction():
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
         
-        while True:
-            title()
-            print("Please enter the Social Insurance Number (SIN) of the vehicle's buyer")
+    while True:
+        title()
+        print("Please enter the Social Insurance Number (SIN) of the vehicle's buyer")
         bSin = input(">> ")
-        if(bSin.isdigit() and len(bSin) == 10):
+        if(bSin.isdigit() and len(bSin) == 9):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -70,20 +67,19 @@ def transaction():
                     choice = input(">> ")
                     if choice.lower() == "y":
                         registerPerson()
+                        print("Please Re-enter buyer's sin")
+                        time.sleep(2)
                         break
                     elif choice.lower() == "n":
                         print("Please enter new SIN")
-                        continue
+                        time.sleep(2)
+                        break
                     else:
                         print("Error: Invalid choice")
                         time.sleep(2)
-                break
             else:
                 mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
                 owners = mainMenu.cursor.fetchall()
-                for owner in owners:
-                    owners.pop(owner)
-                    owners.append(owner.strip())
                 if dSin in owners:
                     break
                 else:
@@ -92,7 +88,7 @@ def transaction():
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-    
+                
     while True:
         title()
         print("Please enter the price (CAD): ")
@@ -110,20 +106,21 @@ def transaction():
 
 
     while True:
-        t_id = randint(100000000,999999999) 
+        t_id = random.randint(100000000,999999999) 
         mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d" %t_id)
-        result = cursor.fetchone()
-        if result == 0:
+        result = mainMenu.cursor.fetchone()
+        if result is None:
             break
+
     date = datetime.date.today().strftime("%m%d%Y")
-    print(date)
-    time.sleep(2)
+
     mainMenu.cursor.execute("delete from owner where vehicle_id = %s"%vsn)
-    insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,VEHICLE_ID,'y')"""
-    mainMenu.cursor.execut(insert,{'OWNER_ID':bSin,'VEHICLE_ID':vsn})
+
+    insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'y')"""
+    mainMenu.cursor.execute(insert,{'OWNER_ID':bSin,'VEHICLE_ID':vsn})
  
     insert = """INSERT into AUTO_SALE (TRANSACTION_ID, SELLER_ID, BUYER_ID,VEHICLE_ID, S_DATE, PRICE)
-    values (:TRANSACTION_ID, :SELLER_ID, :BUYER_ID,:VEHICLE_ID, TO_DATE('MMDDYYYY', :S_DATE), :PRICE:TRANS)"""
+    values (:TRANSACTION_ID, :SELLER_ID, :BUYER_ID,:VEHICLE_ID, TO_DATE(:S_DATE, 'MMDDYYYY'), :PRICE:TRANS)"""
     mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':date, 'PRICE':price})  
     
     mainMenu.connection.commit()  
@@ -262,13 +259,13 @@ def registerPerson():
     return
 
 def transactionAgain():
-    print("----------------------------------")
-    print("1.Setup another auto transaction")
-    print("0. Back to main menue")
-    choice = input(">> ")
-    exec_menu(choice,'transactionAgain')
-    return
-
+     os.system('clear')
+        print("New Vehicle Registration")
+        print("Registering Person into database")
+        print("-----------------------------------")
+        print(" Sale completed!")
+        time.sleep(2)
+        main()
 
 def exec_menu(choice,context):
     #os.system('clear')
