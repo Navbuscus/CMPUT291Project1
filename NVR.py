@@ -22,8 +22,9 @@ def registerVehicle():
         choice = choice.lower()
         if choice == 'y':
             secOwner = addOwner(False)
+            break
         elif choice == 'n':
-            break;
+            break
         else:
             print("Error: invalid choice")
 
@@ -119,8 +120,8 @@ def registerVehicle():
 
     if(secOwner != "null"):
         insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID,IS_PRIMARY_OWNER)
-    values (:OWNER_ID,:VEHICLE_ID,:IS_PRIMARY_OWNER)"""
-        mainMenu.cursor.execute(insert,{'OWNER_ID':secOwner,'VEHICLE_ID':serial_no,'IS_PRIMAR"Y_OWNER':'n'})
+    values (:OWNER_ID,:VEHICLE_ID,'n')"""
+        mainMenu.cursor.execute(insert,{'OWNER_ID':secOwner,'VEHICLE_ID':serial_no,})
 
     mainMenu.connection.commit()  
     registerAgain()
@@ -134,7 +135,6 @@ def addOwner(primary):
         owner = "secondary"
         if(primary):
             owner = "primary"
-        
         print("Please enter the Social Insurance Number of the "+owner+" owner: ")
 
         pSin = input(">> ")
@@ -151,11 +151,11 @@ def addOwner(primary):
                     choice = choice.lower()
                     if choice == "y":
                         registerPerson()
-                        break;
+                        break
                     elif choice == "n":
                         print("Please Enter a SIN that is in our database")
                         time.sleep(2)
-                        registerVehicle()
+                        break
                     else:
                         print("Error: invalid choice")
             else:
@@ -299,6 +299,11 @@ def registerPerson():
 
 
 def registerAgain():
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("-----------------------------------")
+    print("Vehicle Registered!")
+    time.sleep(2)
     main()
 
 
