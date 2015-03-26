@@ -47,7 +47,8 @@ def vrSIN():
                         print(row)
                     print("")
                     stdin = input(">>  ")
-                    break
+                    if stdin == "":
+                        break
                 break
         else:
             print("Error: Please enter a valid SIN")
