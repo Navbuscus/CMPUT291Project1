@@ -28,7 +28,7 @@ def ticket():
         print("Please enter the Violator's SIN:")
         violator_no = input(">>  ")
         # testing valid input       
-        if( violator_no.isdigit() and len(violator_no) == 9):
+        if(len(violator_no) <= 15):
             mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
             # testing for UNIQUE-KEY CONSTRAINT            
@@ -62,7 +62,7 @@ def ticket():
                             break;
                     break;                   
         else:
-            print("Error: Please enter a valid SIN")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
             
     while True:
@@ -70,7 +70,7 @@ def ticket():
         print("Please enter the Officer's SIN:")
         office_no = input(">>  ")   
         # testing valid input               
-        if( office_no.isdigit() and len(office_no) == 9):
+        if(len(office_no) <= 15):
             if ( office_no == violator_no):
                 print("Error: Officer cannot be a Violator.")
                 time.sleep(2)
@@ -83,7 +83,7 @@ def ticket():
                 else:          
                     break;
         else:
-            print("Error: Please enter a valid SIN")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)            
      
     while True:

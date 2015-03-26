@@ -26,7 +26,7 @@ def transaction():
         title()
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ")
-        if(vsn.isdigit() and len(vsn) == 7):
+        if(len(vsn) <= 15):
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % vsn)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -35,14 +35,14 @@ def transaction():
             else:
                 break
         else:
-            print("Error: you must enter a 7 digit integer value")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
             
     while True:
         title()
         print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
         sSin = input(">> ")
-        if(sSin.isdigit() and len(sSin) == 9):
+        if(len(sSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
             dSin = mainMenu.cursor.fetchone()
             if dSin is None:
@@ -58,14 +58,14 @@ def transaction():
                     time.sleep(2)
 
         else:
-            print("Error: you must enter a 9 digit integer value")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
         
     while True:
         title()
         print("Please enter the Social Insurance Number (SIN) of the vehicle's primary buyer")
         bSin = input(">> ")
-        if(bSin.isdigit() and len(bSin) == 9):
+        if(len(bSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -88,7 +88,7 @@ def transaction():
             else:
                 break
         else:
-            print("Error: you must enter a 9 digit integer value")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
 
     sSin = "null"
@@ -101,7 +101,7 @@ def transaction():
                 title()
                 print("Please enter the Social Insurance Number (SIN) of the vehicle's secondayy buyer")
                 sSin = input(">> ")
-                if(sSin.isdigit() and len(sSin) == 9):
+                if(len(sSin) <= 15):
                     mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
                     data = mainMenu.cursor.fetchone()
                     if data is None:
@@ -124,7 +124,7 @@ def transaction():
                     else:
                         break
                 else:
-                    print("Error: you must enter a 9 digit integer value")
+                    print("Error: value too large. MAX 15 characters")
                     time.sleep(2)
             break
         elif choice == 'n':
@@ -159,16 +159,6 @@ def transaction():
         except ValueError:
             print("Error: Not a valid date. Please enter date in the 'MMDDYYY' format.")
             time.sleep(2)   
-    
-   
-
-    while True:
-        t_id = random.randint(100000000,999999999) 
-        mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d" %t_id)
-        result = mainMenu.cursor.fetchone()
-        if result is None:
-            break
-
     
 
     mainMenu.cursor.execute("delete from owner where vehicle_id = %s"%vsn)

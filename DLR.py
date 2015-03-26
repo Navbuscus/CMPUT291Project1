@@ -25,7 +25,7 @@ def registerDriver():
         driverTitle()
         print("Please enter drivers Social Insurance Number (SIN: ")
         dSin = input(">> ")
-        if(dSin.isdigit() and len(dSin) == 9):
+        if(len(dSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % dSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -51,14 +51,14 @@ def registerDriver():
                     print("Error: This person already has a drivers license. please enter a different SIN.")
                     time.sleep(2)
         else:
-            print("Error: you must enter a 9 digit integer value")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
             
     while True:
         driverTitle()
         print("Please enter the driver's license number (LN):")
         licence_no = input(">>  ")
-        if( licence_no.isdigit() and len(licence_no) == 12):
+        if(len(licence_no) <= 15):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
             data = mainMenu.cursor.fetchone()
@@ -68,7 +68,7 @@ def registerDriver():
                 print("LN: %s, already exists in the DB!"% licence_no)   
                 time.sleep(2)
         else:
-            print("Error: you must enter a 12 digit integer value")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
             
     while True:
@@ -89,7 +89,7 @@ def registerDriver():
         dCondition = input(">> ").lower()
         if len(dCondition) <= 1024:
             break
-        print("Error: value too large. MAX 10 characters allowed")
+        print("Error: value too large. MAX 1024 characters allowed")
         time.sleep(2)
         
     while True:

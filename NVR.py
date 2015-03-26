@@ -37,7 +37,7 @@ def registerVehicle():
         title()
         print("Please enter the Vehicle's Serial Number (VSN):")
         serial_no = input(">>  ")
-        if( serial_no.isdigit() and len(serial_no) == 7):
+        if(len(serial_no) <= 15):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
             data = mainMenu.cursor.fetchone()
@@ -47,7 +47,7 @@ def registerVehicle():
                 print("Error: VSN %s is already in our database. Please enter a new VSN.")   
                 time.sleep(2)
         else:
-            print("Error: you must enter a 7 digit integer value")
+            print("Error: value to large. MAX 15 characters")
             time.sleep(2)
 
     
@@ -58,7 +58,7 @@ def registerVehicle():
        maker = maker.lower()
        if len(maker) <= 20:
            break
-       print("Error: value entered is too large.")
+       print("Error: value entered is too large. MAX 20 characters")
        time.sleep(2)
     
     
@@ -69,7 +69,7 @@ def registerVehicle():
         model = model.lower()
         if len(model) <= 20:
             break
-        print("Error: value entered is too large.")
+        print("Error: value entered is too large. MAX 20 characters")
         time.sleep(2)
 
     while True:
@@ -81,7 +81,7 @@ def registerVehicle():
             if( 1000 <= year <= 9999):
                 break;
             else:
-                print("Error: value too large")
+                print("Error: value too large, MAX 4 characters")
                 time.sleep(2)
         except ValueError:
             print("Error: please enter a number")
@@ -95,7 +95,7 @@ def registerVehicle():
         color = color.lower()
         if len(color) <= 10:
             break
-        print("Error: value entered is too large.")
+        print("Error: value entered is too large. MAX 10 characters")
         time.sleep(2)
 
     mainMenu.cursor.execute("SELECT type, type_id FROM vehicle_type")
@@ -148,7 +148,7 @@ def addOwner(primary):
         print("Please enter the Social Insurance Number of the "+owner+" owner: ")
 
         pSin = input(">> ")
-        if(pSin.isdigit() and len(pSin) == 9):
+        if(len(pSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % pSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -171,7 +171,7 @@ def addOwner(primary):
             else:
                 break;
         else:
-            print("Error: you must enter a 9 digit integer value")
+            print("Error: value too large. MAX 15 characters")
             time.sleep(2)
     return pSin
 
