@@ -44,7 +44,7 @@ def registerVehicle():
             if data is None:
                 break;
             else:
-                print("serial_no: %s, already exists in the DB!"% sin)   
+                print("Error: VSN %s is already in our database. Please enter a new VSN.")   
                 time.sleep(2)
         else:
             print("Error: you must enter a 7 digit integer value")

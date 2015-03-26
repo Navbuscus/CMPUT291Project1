@@ -218,7 +218,10 @@ def registerPerson(header):
 
     cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
     
-    connection.commit()         
+    connection.commit()
+    title(header)
+    print("Person successfully added to database!")
+    time.sleep(2)
     return
 
 
