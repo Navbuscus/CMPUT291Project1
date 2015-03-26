@@ -45,7 +45,9 @@ def vrSIN():
                     driverName_descript()
                     for row in data:
                         print(row)
-                    stdin = input(">>  ")                
+                    print("")
+                    stdin = input(">>  ")
+                    break
         else:
             print("Error: Please enter a valid SIN")
             time.sleep(2)    
