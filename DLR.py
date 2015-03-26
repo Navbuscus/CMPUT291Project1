@@ -244,6 +244,8 @@ def exec_menu(choice,context):
     ch = choice.lower()
     if ch == '':
         menu_actions[context]()
+    elif ch = '1':
+        mainMenu.registerPerson("Drivers License Registration")
     else:
         try:
             menu_actions[ch]()
@@ -258,8 +260,7 @@ def exit():
  
 
 menu_actions = {
-    'main':main,
-    '1':registerPerson,
+    'main':main,                    
     '2':registerDriver,
     '0': exit,
     'registerAgain':registerAgain
