@@ -15,6 +15,14 @@ def main():
 
 def transaction():
     while True:
+        t_id = random.randint(100000000,999999999) 
+        mainMenu.cursor.execute("SELECT transaction_id FROM auto_sale WHERE transaction_id = %d" %t_id)
+        result = mainMenu.cursor.fetchone()
+        if result is None:
+            break
+    print("Transaction ID: "+t_id)
+    time.sleep(2)
+    while True:
         title()
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ")
