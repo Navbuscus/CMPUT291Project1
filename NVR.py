@@ -10,13 +10,17 @@ def main():
     exec_menu(choice, 'main')
     return
 
+def title():
+    os.system('clear')
+    print("New Vehicle Registration")
+    print("-----------------------------------")
+
 def registerVehicle():
     primOwner = addOwner(True)
     secOwner = "null"
+
     while True:
-        os.system('clear')
-        print("New Vehicle Registration")
-        print("-----------------------------------")
+        title()
         print("Would you like to add a secondary owner? (Y/N): ")
         choice = input(">> ")
         choice = choice.lower()
@@ -30,9 +34,7 @@ def registerVehicle():
 
 
     while True:
-        os.system('clear')
-        print("New Vehicle Registration")
-        print("-----------------------------------")
+        title()
         print("Please enter the Vehicle's Serial Number (VSN):")
         serial_no = input(">>  ")
         if( serial_no.isdigit() and len(serial_no) == 7):
@@ -42,30 +44,36 @@ def registerVehicle():
             if data is None:
                 break;
             else:
-                print("serial_no: %s, already exists in the DB!"% sin)   
+                print("Error: VSN %s is already in our database. Please enter a new VSN.")   
                 time.sleep(2)
         else:
             print("Error: you must enter a 7 digit integer value")
             time.sleep(2)
 
-    os.system('clear')
-    print("New Vehicle Registration")
-    print("-----------------------------------")
-    print("Please enter the Maker of the Vehicle")
-    maker = input(">> ")
-    maker = maker.lower()
     
-    os.system('clear')
-    print("New Vehicle Registration")
-    print("-----------------------------------")
-    print("Please enter the Model of the Vehicle")
-    model = input(">> ")
-    model = model.lower()    
+    while True:
+       title()
+       print("Please enter the Maker of the Vehicle")
+       maker = input(">> ")
+       maker = maker.lower()
+       if len(maker) <= 20:
+           break
+       print("Error: value entered is too large.")
+       time.sleep(2)
+    
+    
+    while True:
+        title()
+        print("Please enter the Model of the Vehicle")
+        model = input(">> ")
+        model = model.lower()
+        if len(model) <= 20:
+            break
+        print("Error: value entered is too large.")
+        time.sleep(2)
 
     while True:
-        os.system('clear')
-        print("New Vehicle Registration")
-        print("-----------------------------------")
+        title()
         print("Please enter the Year of the Vehicle: ")
         year = input(">> ")
         try:
@@ -79,21 +87,22 @@ def registerVehicle():
             print("Error: please enter a number")
             time.sleep(2)
 
-    os.system('clear')
-    print("New Vehicle Registration")
-    print("-----------------------------------")
-    print("Please enter the Color of the Vehicle")
-    color = input(">> ")
-    color = color.lower()
+   
+    while True:
+        title()
+        print("Please enter the Color of the Vehicle")
+        color = input(">> ")
+        color = color.lower()
+        if len(color) <= 10:
+            break
+        print("Error: value entered is too large.")
+        time.sleep(2)
 
     mainMenu.cursor.execute("SELECT type, type_id FROM vehicle_type")
     data = mainMenu.cursor.fetchall()
     vehicleType = dict((x.lower().strip(),y) for x,y in data)
-
     while True:
-        os.system('clear')
-        print("New Vehicle Registration")
-        print("-----------------------------------")
+        title()
         print("please enter the type of the vehicle, from the following list: ")
         for row in vehicleType:
             print("- "+row)
@@ -129,9 +138,7 @@ def registerVehicle():
 
 def addOwner(primary):
     while True:
-        os.system('clear')
-        print("New Vehicle Registration")
-        print("-----------------------------------")
+        title()
         owner = "secondary"
         if(primary):
             owner = "primary"
@@ -150,7 +157,7 @@ def addOwner(primary):
                     choice = input(">> ")
                     choice = choice.lower()
                     if choice == "y":
-                        registerPerson()
+                        mainMenu.registerPerson("New Vehicle Registration")
                         break
                     elif choice == "n":
                         print("Please Enter a SIN that is in our database")
@@ -165,145 +172,8 @@ def addOwner(primary):
             time.sleep(2)
     return pSin
 
-
-def registerPerson():
-    while True:
-        personTitle()
-        print("Please enter the person's Social Insurance Number (SIN):")
-        sin = input(">>  ")
-        if( sin.isdigit() and len(sin) == 9):
-            # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
-            data = mainMenu.cursor.fetchone()
-            if data is None:
-                break;
-            else:
-                print("SIN: %s, already exists in the DB!"% sin)   
-                time.sleep(2)
-        else:
-            print("Error: you must enter a 9 digit integer value")
-            time.sleep(2)
-    while True:
-        personTitle()
-        print("Please enter the person's name")
-        name = input(">> ")
-        name = name.lower()
-        if len(name) <= 40:
-            break
-        print("Error: Name too large. MAX 40 characters allowed")
-        time.sleep(2)
-
-    
-    while True:
-        personTitle()
-        print("Please enter the person's height (cm): ")
-        height = input(">> ")
-        try:
-            float(height)
-            if( float(height) <= 999.99):
-                break;
-            else:
-                print("Error: value too large")
-                time.sleep(2)
-        except ValueError:
-            print("Error: please enter a number")
-            time.sleep(2)
-
-
-    while True:
-        personTitle()
-        print("Please enter the person's weight (kg): ")
-        weight = input(">> ")
-        try:
-            float(weight)
-            if( float(weight) <= 999.99):
-                break;
-            else:
-                print("Error: value too large")
-                time.sleep(2)
-        except ValueError:
-            print("Error: please enter a number")
-            time.sleep(2)
-    while True:
-        personTitle()
-        print("Please enter the person's eye colour")
-        eye = input(">> ")
-        eye = eye.lower()
-        if len(eye) <= 10:
-            break
-        print("Error: value too large. MAX 10 characters allowed")
-        time.sleep(2)
-    while True:
-        personTitle()
-        print("Please enter the person's hair colour")
-        hair = input(">> ")
-        hair = hair.lower()
-        if len(hair) <= 10:
-            break
-        print("Error: value too large. MAX 10 characters allowed")
-        time.sleep(2)
-    while True:
-        personTitle()
-        print("Please enter the person's adress")
-        addr = input(">> ")
-        addr = addr.lower()
-        if len(addr) <= 50:
-            break
-        print("Error: value too large. MAX 50 characters allowed")
-        time.sleep(2)
-    while True:
-        personTitle()
-        print("Please select person's gender (m/f)")
-        choice = input(">> ")
-        if(choice == "m"):
-            gender = 'm'
-            break;
-        elif(choice == "f"):
-            gender = 'f'
-            break;
-        else:
-            print("Error: invalid selection")
-            time.sleep(2)
-
-    while True:
-        personTitle()
-        print("Please enter the person's birthday (MMDDYYYY):")
-        bdate = input(">>  ")
-        try:
-            date = datetime.datetime.strptime(bdate,'%m%d%Y')
-            break
-        except ValueError:
-            print("Error: Not a valid date. Please enter date in the 'MMDDYYY' format.")
-            time.sleep(2)   
-    
-    """
-    #quick testing
-    sin = '000000000'
-    name = 'Fred'
-    height = 123.00
-    weight = 78.00
-    eye = 'blue'
-    hair = 'blonde'
-    addr = '1234 fake street'
-    gender = 'm'
-    bdate = '01011990'
-    """
-    
-    insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
-    values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
-    mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
-    
-    mainMenu.connection.commit()         
-    return
-
-
-
-
-
 def registerAgain():
-    os.system('clear')
-    print("New Vehicle Registration")
-    print("-----------------------------------")
+    title()
     print("Vehicle Registered!")
     time.sleep(2)
     main()

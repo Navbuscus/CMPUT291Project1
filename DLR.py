@@ -127,18 +127,6 @@ def registerPerson():
             print("Error: Not a valid date. Please enter date in the 'MMDDYYY' format.")
             time.sleep(2)   
     
-    """
-    #quick testing
-    sin = '000000000'
-    name = 'Fred'
-    height = 123.00
-    weight = 78.00
-    eye = 'blue'
-    hair = 'blonde'
-    addr = '1234 fake street'
-    gender = 'm'
-    bdate = '01011990'
-    """
     
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
