@@ -136,7 +136,7 @@ def ticket():
     
     ticket_no = 123123123
     violator_no = 111111111
-    vehicle_no = "1000000"    
+    vehicle_no = 1000000   
     office_no = 123456789
     vtype = "parking"    
     vdate = 11111111
