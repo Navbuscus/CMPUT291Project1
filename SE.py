@@ -39,7 +39,7 @@ def vrSIN():
                 print("Error: Violator does not exist in the Database. Please enter another SIN")
                 time.sleep(2)                
             else:
-                mainMenu.cursor.execute("SELECT  FROM ticket WHERE violator_no = %s" % violator_no)
+                mainMenu.cursor.execute("SELECT * FROM ticket WHERE violator_no = %s" % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
                     driverName_descript()
