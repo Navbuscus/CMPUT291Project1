@@ -1,0 +1,103 @@
+Design Report
+Instructions on how to run:
+   In the teriminal input the follwing:
+   > python3 mainMenu.py
+
+
+Project Description:
+
+   mainMenu.py - The starting point of our program. displays a menu with all the
+   actions they can take.
+      def main_menu()
+         This function diplays to the user the main menu of our program.
+         The main menu consists of the five applications
+      def exec_menu()
+      	 This Function interprets the user input and runs the corresponding
+	 function. If user input is invalid it throws an error and restarts
+	 main menu
+      def exit()
+         This function closes our connection to the database then exits the 
+	 program								
+      def registerPerson(header)
+      	 This function prompts the user for information on the person they 
+	 wish to register then it will insert the person into the databases
+	 people table.
+	 header - a string statement that lets the user know which section of 
+	 our program they are in. since register person is called by multiple
+	 parts of our program
+
+
+   NVR.py - New Vehicle Registration, is responsible for registering a new 
+   vehicle into the database with user input. if registering the vehicle to a 
+   person not in database, we give the user an option to register a new person 
+   into the database
+      def main()
+         displays an initial menu allowing the user to register a a vehicle or
+	 return to the main menu.
+      def registerVehicle()
+         grabs all info necessary for registering vehicle from user input, then
+	 inserts the information in the vehicle table of the database and adds 
+	 the owners to the owner table. allowing the user to register new 
+	 people into the database if necessary
+      def addOwner(primary)
+      	 called by registerVehicle() when user adds a new user, primary or 
+	 secondary, to the vehicle. if person is not in database it calls 
+	 registerPerson()  to insert a new person into the database.
+	 primary - used to change text display depending on if it is adding
+	 primary or secondary owner.
+      def exec_menu(choice,context)
+      	 interprets the user input from main() and calls the corresponding 
+	 function. if input is invalid error is thrown.
+	 choice - the users input
+	 context - from where this function is being called
+
+
+   AT.py - Auto Transaction, responsible for completing an auto sale between
+    owners of a vehicle. creates new auto sale record and transfers ownership 
+    of the vehicle. if their is more than one buyer. the primary buyer is place
+    on the auto sale record.
+      def main() 
+         the main starting point of Auto Transaction. give the user the option 
+	 to either registera sale record or back out into the main menu.
+      def transaction()
+         first it generates a unique transaction id and displays it to the user.
+	 Then it prompts the user for the information required to make an 
+	 auto_sale. it asks for the vehicle, the seller(primary or secondary 
+	 owner of the vehicle) the buyer, with an option for a secondary buyer.
+	 then it deletes all old owners of the vehicle and adds the buyer and 
+	 secondary buyer, and inserts a new entry into the auto_sale table with
+	 the sellers SIN and the primary buyers SIN.
+      def exec_menu(choice,context)
+         The same as NVR.py
+ 
+   DLR.py - Drivers Licence Registration, responsible for registering a new 
+   drivers licence, but can also add a new person into the database.
+      def main()
+         The starting point, gives the user the option to either register a 
+	 new person into the database, register a new drivers licence, or return
+	 to the main menu. if the person chooses to register a new person, we 
+	 launch registerPerson() from mainMenu.py
+      def registerDriver()
+      	 gathers appropriate user input and the inserts a new drivers licence 
+	 into the database. inserts data into the drive_licence table, 
+	 driving_conditions table, and restrictions table
+     def exec_menu(choice,context)
+         same as NVR.py's function
+	 
+   VR.py - Violation Record, reponsible for registering tickets to owners of 
+   vehicles.
+      def main()
+         starting point of Violation Record. Gives user option to either issue a
+	 ticket or back up into the main menu
+      def ticket()
+      	 gathers the relevant information required to issue a ticket. first it 
+	 asks for the offenders SIN. then prompts for the associate vehicle the
+	 ticket applies to. then prompts user for ticket type, price, and 
+	 description. finally inserts relevant data into the ticket table  of
+	 the database.
+	 def exec_menu(choice,context)
+	    same as NVR.py
+	 def validate()
+	    responsible for validating user inputed date. Returns true if the 
+	    date given is an actual date. Otherwise it raises an error and 
+	    returns false.

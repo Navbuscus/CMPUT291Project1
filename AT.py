@@ -63,7 +63,7 @@ def transaction():
         
     while True:
         title()
-        print("Please enter the Social Insurance Number (SIN) of the vehicle's buyer")
+        print("Please enter the Social Insurance Number (SIN) of the vehicle's primary buyer")
         bSin = input(">> ")
         if(bSin.isdigit() and len(bSin) == 9):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
@@ -86,17 +86,53 @@ def transaction():
                         print("Error: Invalid choice")
                         time.sleep(2)
             else:
-                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
-                owners = mainMenu.cursor.fetchall()
-                if dSin in owners:
-                    break
-                else:
-                    print("Error: seller entered does not own this vehicle.")
-                    time.sleep(2)
+                break
         else:
             print("Error: you must enter a 9 digit integer value")
             time.sleep(2)
-                
+
+    sSin = "null"
+    while True:
+        title()
+        print("Would you like to add a secondary buyer? (Y/N):")
+        choice = input(">> ").lower()
+        if choice == 'y': 
+            while True:
+                title()
+                print("Please enter the Social Insurance Number (SIN) of the vehicle's secondayy buyer")
+                sSin = input(">> ")
+                if(sSin.isdigit() and len(sSin) == 9):
+                    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
+                    data = mainMenu.cursor.fetchone()
+                    if data is None:
+                        while True:
+                            title()
+                            print("Error: Buyer not in database. Would you like to add them? (Y/N):")
+                            choice = input(">> ")
+                            if choice.lower() == "y":
+                                mainMenu.registerPerson("Auto Transaction")
+                                print("Please Re-enter buyer's sin")
+                                time.sleep(2)
+                                break
+                            elif choice.lower() == "n":
+                                print("Please enter new SIN")
+                                time.sleep(2)
+                                break
+                            else:
+                                print("Error: Invalid choice")
+                                time.sleep(2)
+                    else:
+                        break
+                else:
+                    print("Error: you must enter a 9 digit integer value")
+                    time.sleep(2)
+            break
+        elif choice == 'n':
+            break
+        else:
+            print("Error: Invalid input")
+
+
     while True:
         title()
         print("Please enter the price (CAD): ")
@@ -139,7 +175,13 @@ def transaction():
 
     insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'y')"""
     mainMenu.cursor.execute(insert,{'OWNER_ID':bSin,'VEHICLE_ID':vsn})
- 
+
+
+    if sSin != "null":
+       insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'n')"""
+       mainMenu.cursor.execute(insert,{'OWNER_ID':sSin,'VEHICLE_ID':vsn}) 
+
+
     insert = """INSERT into AUTO_SALE (TRANSACTION_ID, SELLER_ID, BUYER_ID,VEHICLE_ID, S_DATE, PRICE)
     values (:TRANSACTION_ID, :SELLER_ID, :BUYER_ID,:VEHICLE_ID, TO_DATE(:S_DATE, 'MMDDYYYY'), :PRICE:TRANS)"""
     mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':date, 'PRICE':price})  

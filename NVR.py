@@ -133,6 +133,9 @@ def registerVehicle():
         mainMenu.cursor.execute(insert,{'OWNER_ID':secOwner,'VEHICLE_ID':serial_no,})
 
     mainMenu.connection.commit()  
+    title()
+    print("Vehicle Registered!")
+    time.sleep(2)
     registerAgain()
     return
 
@@ -173,9 +176,6 @@ def addOwner(primary):
     return pSin
 
 def registerAgain():
-    title()
-    print("Vehicle Registered!")
-    time.sleep(2)
     main()
 
 
