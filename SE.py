@@ -8,10 +8,35 @@ def main():
     return
 
 def driverName():
-    header()
-    print ("Please enter the Driver's Name.") 
-    name = input(">>  ") 
-    searchAgain()
+    while True:
+        header()
+        print("Please enter the Driver's Name:")
+        name = input(">>  ")
+        # testing valid input       
+        if( len(licence_no) <= 15):
+            mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
+            data = mainMenu.cursor.fetchall()            
+            if data is None:
+                print("Error: Person is not a registered Driver. Please enter another Licence Number.")
+                time.sleep(2)                
+            else:
+                mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % licence_no)
+                data = mainMenu.cursor.fetchall()
+                while True:
+                    driver_descript()
+                    for row in data:
+                        print(row)
+                    print("")
+                    stdin = input(">>  ")
+                    if stdin == "":
+                        break
+                break
+        else:
+            print("Error: Person's name is not in the Database. Please try another name.")
+            time.sleep(2)    
+    
+    searchAgain()    
+
     
 def driverLN():
     while True:
@@ -23,7 +48,7 @@ def driverLN():
             mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
             data = mainMenu.cursor.fetchall()            
             if data is None:
-                print("Error: Person is not a registerd Driver. Please enter another Licence Number.")
+                print("Error: Person is not a registered Driver. Please enter another Licence Number.")
                 time.sleep(2)                
             else:
                 mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % licence_no)
