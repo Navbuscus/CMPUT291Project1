@@ -9,25 +9,25 @@ def main():
 
 def driverName():
     header()
-    print ("Please enter the Driver's Name you wish to search.") 
+    print ("Please enter the Driver's Name.") 
     name = input(">>  ") 
     searchAgain()
     
 def driverLN():
     header()
-    print ("Please enter the Driver's Licence Numbr (DLN) you wish to search.") 
+    print ("Please enter the Driver's Licence Numbr (DLN).") 
     licence_no = input(">>  ") 
     searchAgain() 
 
 def vrLN():
     header()
-    print ("Please enter the Licence Number (DLN) to search their Violation Records.") 
+    print ("Please enter the Driver's Licence Number (DLN).") 
     licence_no = input(">>  ") 
     searchAgain()  
 
 def vrSIN():
     header()
-    print ("Please enter the (SIN) to search their Violation Records.") 
+    print ("Please enter the (SIN).") 
     licence_no = input(">>  ") 
     searchAgain()   
 
@@ -39,7 +39,8 @@ def vVSN():
     
 def searchAgain():
     header()
-    options()
+    print ("1. Return to Search Menu.")
+    print ("0. Exit.")
     choice = input(">> ")
     exec_menu(choice,'searchAgain')
     return
@@ -61,15 +62,14 @@ def exec_menu(choice,context):
 def header():
     os.system('clear')
     print("Search Engine")
-    print("-----------------------------------")    
-    
+
 def options():
     print ("1. Search Driver by Name.")
     print ("2. Search Driver by Licence Number (DLN).")
     print ("3. Search Violation Record by Licence Number (DLN).")
     print ("4. Search Violation Record by SIN.")
     print ("5. Search Vehicle History by Vehicle Serial No (VSN).")   
-    print ("/n")
+    print ("")
     print ("0. Exit.")     
                 
 def exit():
