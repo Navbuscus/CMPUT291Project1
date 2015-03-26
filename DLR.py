@@ -9,6 +9,8 @@ def main():
     print ("0. Back")
     choice = input(" >>  ")
     exec_menu(choice, 'main')
+    if choice == "0":
+        return
     registerAgain()
 
 def personTitle():
