@@ -34,6 +34,7 @@ def vrLN():
                 time.sleep(2)                
             else:
                 violator_no = data
+                print("this is the violator_no: %s"%violator_no)
                 mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
