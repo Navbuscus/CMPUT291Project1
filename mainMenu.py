@@ -1,4 +1,4 @@
-import sys, os, time, cx_Oracle
+import sys, os, time, cx_Oracle,datetime
 import NVR,AT,DLR,VR,SE
 
 
@@ -80,6 +80,155 @@ menu_actions = {
     '9': back,
     '0': exit,
 }
+
+
+def title(header):
+    os.system('clear')
+    print(header)
+    print("Registering new person")
+    print("-----------------------------------")
+
+
+def registerPerson(header):
+    #SIN#
+    while True:
+        title(header)
+        print("Please enter the person's Social Insurance Number (SIN):")
+        sin = input(">>  ")
+        if( sin.isdigit() and len(sin) == 9):
+            # testing for UNIQUE-KEY CONSTRAINT 
+            mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
+            data = mainMenu.cursor.fetchone()
+            if data is None:
+                break;
+            else:
+                print("SIN: %s, already exists in the DB!"% sin)   
+                time.sleep(2)
+        else:
+            print("Error: you must enter a 9 digit integer value")
+            time.sleep(2)
+
+    #NAME#
+    while True:
+        title(header)
+        print("Please enter the person's name")
+        name = input(">> ")
+        name = name.lower()
+        if len(name) <= 40:
+            break
+        print("Error: Name too large. MAX 40 characters allowed")
+        time.sleep(2)
+
+    #HEIGHT#
+    while True:
+        title(header)
+        print("Registering New Person")
+        print("Please enter the person's height (cm): ")
+        height = input(">> ")
+        try:
+            float(height)
+            if( float(height) <= 999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+    #WEIGHT#
+    while True:
+        title(header)
+        print("Registering New Person")
+        print("Please enter the person's weight (kg): ")
+        weight = input(">> ")
+        try:
+            float(weight)
+            if( float(weight) <= 999.99):
+                break;
+            else:
+                print("Error: value too large")
+                time.sleep(2)
+        except ValueError:
+            print("Error: please enter a number")
+            time.sleep(2)
+
+    #EYE#
+    while True:
+        title(header)
+        print("Registering New Person")
+        print("Please enter the person's eye colour")
+        eye = input(">> ")
+        eye = eye.lower()
+        if len(eye) <= 10:
+            break
+        print("Error: value too large. MAX 10 characters allowed")
+        time.sleep(2)
+   
+    #HAIR#
+    while True:
+        title(header)
+        print("Registering New Person")
+        print("Please enter the person's hair colour")
+        hair = input(">> ")
+        hair = hair.lower()
+        if len(hair) <= 10:
+            break
+        print("Error: value too large. MAX 10 characters allowed")
+        time.sleep(2)
+
+    #ADDRESS#
+    while True:
+        title(header)
+        print("Registering New Person")
+        print("Please enter the person's address")
+        addr = input(">> ")
+        addr = addr.lower()
+        if len(addr) <= 50:
+            break
+        print("Error: value too large. MAX 50 characters allowed")
+        time.sleep(2)
+
+    #GENDER#
+    while True:
+        title(header)
+        print("Registering New Person")
+        print("Please select person's gender (m/f)")
+        choice = input(">> ")
+        if(choice == "m"):
+            gender = 'm'
+            break;
+        elif(choice == "f"):
+            gender = 'f'
+            break;
+        else:
+            print("Error: invalid selection")
+            time.sleep(2)
+  
+    #DATE#
+    while True:
+        title(header)
+        print("Please enter the person's birthday (MMDDYYYY):")
+        bdate = input(">>  ")
+        try:
+            date = datetime.datetime.strptime(bdate,'%m%d%Y')
+            break
+        except ValueError:
+            print("Error: Not a valid date. Please enter date in the 'MMDDYYY' format.")
+            time.sleep(2)   
+    
+    #INSERTING INTO DATABASE#
+    insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
+    values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
+
+    mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
+    
+    mainMenu.connection.commit()         
+    return
+
+
+
+
 
 user = 'ajwu'
 pw = 'a1__5LoYz'   
