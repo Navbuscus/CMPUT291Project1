@@ -42,6 +42,8 @@ def searchAgain():
     print ("1. Return to Search Menu.")
     print ("0. Exit.")
     choice = input(">> ")
+    if choice == "1":
+        choice = "main"
     exec_menu(choice,'searchAgain')
     return
 
