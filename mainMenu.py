@@ -35,27 +35,22 @@ def exec_menu(choice):
     return
  
 def New_Vehicle_Registration():
-    print("works inside ")
     NVR.main()
     back()
     
 def Auto_Transaction():
-    print("works inside ")
     AT.main()
     back()
     
 def Drivers_Licence_Registration():
-    print("works inside ")
     DLR.main()
     back()
 
 def Violation_Record():
-    print("works inside ")
     VR.main()
     back()
 
 def Search_Engine():
-    print("works inside ")
     SE.main()
     back()
  
@@ -97,8 +92,8 @@ def registerPerson(header):
         sin = input(">>  ")
         if( sin.isdigit() and len(sin) == 9):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
-            data = mainMenu.cursor.fetchone()
+            cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % sin)
+            data = cursor.fetchone()
             if data is None:
                 break;
             else:
@@ -221,9 +216,9 @@ def registerPerson(header):
     insert = """INSERT into PEOPLE (SIN, NAME, HEIGHT,  WEIGHT, EYECOLOR, HAIRCOLOR, ADDR, GENDER, BIRTHDAY)
     values (:SIN,:NAME, :HEIGHT, :WEIGHT, :EYECOLOR, :HAIRCOLOR, :ADDR, :GENDER, TO_DATE(:BIRTHDAY,'MMDDYYYY'))"""
 
-    mainMenu.cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
+    cursor.execute(insert,{'SIN':sin, 'NAME':name,'HEIGHT':height, 'WEIGHT':weight, 'EYECOLOR':eye,'HAIRCOLOR':hair, 'ADDR':addr, 'GENDER':gender, 'BIRTHDAY':bdate})  
     
-    mainMenu.connection.commit()         
+    connection.commit()         
     return
 
 
