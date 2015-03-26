@@ -1,33 +1,48 @@
-import sys, os, time, cx_Oracle,mainMenu
+import sys, os, time, cx_Oracle, mainMenu
 
 def main():
-    os.system('clear')
-    print("Search Engine")
-    print("-----------------------------------")
-    print ("1. Search database")
-    print ("0. Back")
+    header()
+    options()
     choice = input(" >>  ")
     exec_menu(choice, 'main')
     return
 
-def search():
-    os.system('clear')
-    print("Search Engine")
-    print("-----------------------------------")
-    print("Please enter search term")
-    driver = input(">> ")
-    print(driver,"is in our database... somewhere")
+def driverName():
+    header()
+    print ("Please enter the Driver's Name you wish to search.") 
+    name = input(">>  ") 
     searchAgain()
-    return
+    
+def driverLN():
+    header()
+    print ("Please enter the Driver's Licence Numbr (DLN) you wish to search.") 
+    licence_no = input(">>  ") 
+    searchAgain() 
 
+def vrLN():
+    header()
+    print ("Please enter the Licence Number (DLN) to search their Violation Records.") 
+    licence_no = input(">>  ") 
+    searchAgain()  
+
+def vrSIN():
+    header()
+    print ("Please enter the (SIN) to search their Violation Records.") 
+    licence_no = input(">>  ") 
+    searchAgain()   
+
+def vVSN():
+    header()
+    print ("Please enter the Vehicle Serial Number (VSN) you wish to search its Vehicle History.") 
+    licence_no = input(">>  ") 
+    searchAgain()     
+    
 def searchAgain():
-    print("----------------------------------")
-    print("1. Search database again")
-    print("0. Back to main menu")
+    header()
+    options()
     choice = input(">> ")
     exec_menu(choice,'searchAgain')
     return
-
 
 def exec_menu(choice,context):
     #os.system('clear')
@@ -43,13 +58,30 @@ def exec_menu(choice,context):
             menu_actions[context]()
     return
 
+def header():
+    os.system('clear')
+    print("Search Engine")
+    print("-----------------------------------")    
+    
+def options():
+    print ("1. Search Driver by Name.")
+    print ("2. Search Driver by Licence Number (DLN).")
+    print ("3. Search Violation Record by Licence Number (DLN).")
+    print ("4. Search Violation Record by SIN.")
+    print ("5. Search Vehicle History by Vehicle Serial No (VSN).")   
+    print ("/n")
+    print ("0. Exit.")     
+                
 def exit():
     return
- 
 
 menu_actions = {
     'main':main,
-    '1':search,
+    '1':driverName,
+    '2':driverLN,
+    '3':vrLN,
+    '4':vrSIN,
+    '5': vVSN,
     '0': exit,
     'searchAgain':searchAgain
 }
