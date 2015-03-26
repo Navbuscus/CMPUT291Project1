@@ -48,6 +48,7 @@ def vrSIN():
                     print("")
                     stdin = input(">>  ")
                     break
+                break
         else:
             print("Error: Please enter a valid SIN")
             time.sleep(2)    
