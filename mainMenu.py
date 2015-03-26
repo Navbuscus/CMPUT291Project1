@@ -6,7 +6,7 @@ import NVR,AT,DLR,VR,SE
 def main_menu():
     os.system('clear')
     
-    print ("Welcome,\n")
+    print ("Welcome, %s\n" %user)
     print ("Please choose the menu you want to start:")
     print ("1. New Vehicle Registration")
     print ("2. Auto Transaction")

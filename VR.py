@@ -10,7 +10,6 @@ def main():
 
 def ticket():   
     
-    """
     while True:
         header()        
         # rand gen 9-digit ticket_no
@@ -55,8 +54,8 @@ def ticket():
                             serialNo_lst.append(row[0].strip())
                         
                         print("")
-                        vehicle_no = input(">>  ")
-                        if str(vehicle_no) not in (serialNo_lst):
+                        vehicle_id = input(">>  ")
+                        if str(vehicle_id) not in (serialNo_lst):
                             print("Error: Please enter a Valid vehicle serial no. (VSN) as shown above")
                             time.sleep(2)
                         else:
@@ -107,11 +106,8 @@ def ticket():
         header()
         print("Please enter the Violation date (MMDDYYYY):")
         vdate = input(">>  ")   
-        if(vdate.isdigit() and len(vdate) == 8 and validate(vdate)):
+        if( validate(vdate) and vdate.isdigit() and len(vdate)):
             break
-        else:
-            print("Error: Incorrect date format, should be (MMDDYYY)")
-            time.sleep(2)
     
     while True:
         header()
@@ -132,24 +128,13 @@ def ticket():
         else:
             print("Error: Exceeds 1024 characters, please try again.")
             time.sleep(2)
-    """
     
-    ticket_no = 123123123
-    violator_no = 111111111
-    vehicle_no = "1000000"    
-    office_no = 123456789
-    vtype = "parking"    
-    vdate = 11111111
-    place = "asfasdfasdfasdf"
-    descriptions = "asdfasdfasdfsaf"
-    
-    insert = """INSERT into TICKET (TICKET_NO, VIOLATOR_NO, VEHICLE_NO, OFFICE_NO, VTYPE, VDATE, PLACE, DESCRIPTIONS)
-    values (:TICKET_NO,:VIOLATOR_NO, :VEHICLE_NO, :OFFICE_NO, :VTYPE, TO_DATE(:VDATE,'MMDDYYYY'), :PLACE, :DESCRIPTIONS)"""
-    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_NO':vehicle_no, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
+    insert = """INSERT into TICKET (TICKET_NO, VIOLATOR_NO, VEHICLE_ID, OFFICE_NO, VTYPE, VDATE, PLACE, DESCRIPTIONS)
+    values (:TICKET_NO,:VIOLATOR_NO, :VEHICLE_ID, :OFFICE_NO, :VTYPE, TO_DATE(:VDATE,'MMDDYYYY'), :PLACE, :DESCRIPTIONS)"""
+    mainMenu.cursor.execute(insert,{'TICKET_NO':ticket_no, 'VIOLATOR_NO':violator_no,'VEHICLE_ID':vehicle_id, 'OFFICE_NO':office_no, 'VTYPE':vtype,'VDATE':vdate, 'PLACE':place, 'DESCRIPTIONS':descriptions})  
     
     mainMenu.connection.commit()        
     
-           
     ticketAgain()
     return
 
