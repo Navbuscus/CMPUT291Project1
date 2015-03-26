@@ -27,14 +27,14 @@ def vrLN():
         # testing valid input       
         if( len(licence_no) <= 15):
             mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = %s" % licence_no)
-            data = mainMenu.cursor.fetchone()
+            violator_no = mainMenu.cursor.fetchone()
+            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
+            data = mainMenu.cursor.fetchone()            
             # testing for UNIQUE-KEY CONSTRAINT            
             if data is None:
                 print("Error: Violator does not exist in the Database. Please enter another Licence Number.")
                 time.sleep(2)                
             else:
-                violator_no = data
-                print("this is the violator_no: %s"%violator_no)
                 mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
