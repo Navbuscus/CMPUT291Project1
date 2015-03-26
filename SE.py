@@ -26,14 +26,34 @@ def vrLN():
     searchAgain()  
 
 def vrSIN():
-    header()
-    print ("Please enter the (SIN).") 
-    licence_no = input(">>  ") 
+    while True:
+        header()
+        print("Please enter the Violator's SIN:")
+        violator_no = input(">>  ")
+        # testing valid input       
+        if( violator_no.isdigit() and len(violator_no) == 9):
+            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
+            data = mainMenu.cursor.fetchone()
+            # testing for UNIQUE-KEY CONSTRAINT            
+            if data is None:
+                print("Error: Violator does not exist in the Database. Please enter another SIN")
+                time.sleep(2)                
+            else:
+                data = mainMenu.cursor.fetchall()
+                while True:
+                    driverName_descript()
+                    for row in data:
+                        print(row)
+                    stdin = input(">>  ")                
+        else:
+            print("Error: Please enter a valid SIN")
+            time.sleep(2)    
+    
     searchAgain()   
 
 def vVSN():
     header()
-    print ("Please enter the Vehicle Serial Number (VSN) you wish to search its Vehicle History.") 
+    print ("Please enter the Vehicle Serial Number (VSN).") 
     licence_no = input(">>  ") 
     searchAgain()     
     
@@ -74,6 +94,15 @@ def options():
     print ("5. Search Vehicle History by Vehicle Serial No (VSN).")   
     print ("")
     print ("0. Exit.")     
+
+def driverName_descript():
+    header()
+    print("Press the 'Enter' key when you're done with your Search session.")                            
+    print(" ")
+    print("  VIOLATION DESCRIPTION ")
+    print("  --------- --------------------")    
+    return
+
                 
 def exit():
     return
