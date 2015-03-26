@@ -14,16 +14,71 @@ def driverName():
     searchAgain()
     
 def driverLN():
-    header()
-    print ("Please enter the Driver's Licence Numbr (DLN).") 
-    licence_no = input(">>  ") 
-    searchAgain() 
+    while True:
+        header()
+        print("Please enter the Driver's Licence Number (DLN):")
+        licence_no = input(">>  ")
+        # testing valid input       
+        if( len(licence_no) <= 15):
+            mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = %s" % licence_no)
+            violator_no = mainMenu.cursor.fetchone()
+            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
+            data = mainMenu.cursor.fetchone()            
+            # testing for UNIQUE-KEY CONSTRAINT            
+            if data is None:
+                print("Error: Violator does not exist in the Database. Please enter another Licence Number.")
+                time.sleep(2)                
+            else:
+                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
+                data = mainMenu.cursor.fetchall()
+                while True:
+                    VR_descript()
+                    for row in data:
+                        print(row)
+                    print("")
+                    stdin = input(">>  ")
+                    if stdin == "":
+                        break
+                break
+        else:
+            print("Error: Please enter a valid Licence Number.")
+            time.sleep(2)    
+    
+    searchAgain()    
 
 def vrLN():
-    header()
-    print ("Please enter the Driver's Licence Number (DLN).") 
-    licence_no = input(">>  ") 
-    searchAgain()  
+    while True:
+        header()
+        print("Please enter the Violator's Driver Licence Number (DLN):")
+        licence_no = input(">>  ")
+        # testing valid input       
+        if( len(licence_no) <= 15):
+            mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = %s" % licence_no)
+            violator_no = mainMenu.cursor.fetchone()
+            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
+            data = mainMenu.cursor.fetchone()            
+            # testing for UNIQUE-KEY CONSTRAINT            
+            if data is None:
+                print("Error: Violator does not exist in the Database. Please enter another Licence Number.")
+                time.sleep(2)                
+            else:
+                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
+                data = mainMenu.cursor.fetchall()
+                while True:
+                    VR_descript()
+                    for row in data:
+                        print(row)
+                    print("")
+                    stdin = input(">>  ")
+                    if stdin == "":
+                        break
+                break
+        else:
+            print("Error: Please enter a valid Licence Number.")
+            time.sleep(2)    
+    
+    searchAgain()       
+
 
 def vrSIN():
     while True:
@@ -36,18 +91,19 @@ def vrSIN():
             data = mainMenu.cursor.fetchone()
             # testing for UNIQUE-KEY CONSTRAINT            
             if data is None:
-                print("Error: Violator does not exist in the Database. Please enter another SIN")
+                print("Error: Violator does not exist in the Database. Please enter another SIN.")
                 time.sleep(2)                
             else:
-                mainMenu.cursor.execute("SELECT * FROM ticket WHERE violator_no = %s" % violator_no)
+                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
-                    driverName_descript()
+                    VR_descript()
                     for row in data:
                         print(row)
                     print("")
                     stdin = input(">>  ")
-                    break
+                    if stdin == "":
+                        break
                 break
         else:
             print("Error: Please enter a valid SIN")
@@ -99,7 +155,7 @@ def options():
     print ("")
     print ("0. Exit.")     
 
-def driverName_descript():
+def VR_descript():
     header()
     print("Press the 'Enter' key when you're done with your Search session.")                            
     print(" ")
