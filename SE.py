@@ -20,16 +20,16 @@ def driverLN():
         licence_no = input(">>  ")
         # testing valid input       
         if( len(licence_no) <= 15):
-            mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = %s" % licence_no)
+            mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
             data = mainMenu.cursor.fetchall()            
             if data is None:
-                print("Error: Driver does not exist in the Database. Please enter another Licence Number.")
+                print("Error: Person is not a registerd Driver. Please enter another Licence Number.")
                 time.sleep(2)                
             else:
-                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
+                mainMenu.curose.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % licence_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
-                    VR_descript()
+                    driver_descript()
                     for row in data:
                         print(row)
                     print("")
@@ -157,6 +157,14 @@ def VR_descript():
     print("Press the 'Enter' key when you're done with your Search session.")                            
     print(" ")
     print("  VIOLATION DESCRIPTION ")
+    print("  --------- --------------------")    
+    return
+
+def driver_descript():
+    header()
+    print("Press the 'Enter' key when you're done with your Search session.")                            
+    print(" ")
+    print("  DRIVER    DESCRIPTION ")
     print("  --------- --------------------")    
     return
 
