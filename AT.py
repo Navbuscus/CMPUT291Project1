@@ -105,7 +105,7 @@ def transaction():
             time.sleep(2)
 
 
-  while True:
+    while True:
         title()
         print("Please enter transaction date (MMDDYYYY):")
         bdate = input(">>  ")

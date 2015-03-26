@@ -257,7 +257,7 @@ def exit():
 
 menu_actions = {
     'main':main,
-    '1':registerPerson,
+    '1':mainMenu.registerPerson("Drivers License Registration"),
     '2':registerDriver,
     '0': exit,
     'registerAgain':registerAgain
