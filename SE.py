@@ -62,6 +62,7 @@ def exec_menu(choice,context):
 def header():
     os.system('clear')
     print("Search Engine")
+    print("-----------------------------------")
 
 def options():
     print ("1. Search Driver by Name.")
