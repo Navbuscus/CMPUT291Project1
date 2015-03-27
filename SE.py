@@ -137,10 +137,25 @@ def vrSIN():
     searchAgain()   
 
 def vVSN():
-    header()
-    print ("Please enter the Vehicle Serial Number (VSN).") 
-    licence_no = input(">>  ") 
-    searchAgain()     
+    while True:
+        header()
+        print("Please enter the Vehicle Serial Number (VSN):")
+        vehicle_id = input(">>  ")
+        # testing valid input       
+        if( len(violator_no) <= 15):
+            mainMenu.cursor.execute("SELECT vehicle_id FROM ticket WHERE vehicle_id = %s" % vehicle_id)
+            data = mainMenu.cursor.fetchone()
+            # testing for UNIQUE-KEY CONSTRAINT            
+            if data is None:
+                print("Error: Vehicle does not exist in the Database. Please enter another VSN.")
+                time.sleep(2)                
+            else:
+                break
+        else:
+            print("Error: Please enter a valid Vehicle Serial Number (VSN).")
+            time.sleep(2)    
+    
+    searchAgain()   
     
 def searchAgain():
     header()
