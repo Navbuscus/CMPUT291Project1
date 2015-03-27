@@ -259,6 +259,6 @@ if __name__ == "__main__":
     global connection
     global user
     user = 'ajwu'
-    cursor = connect()
-    connection.cursor()
+    connection = connect()
+    cursor = connection.cursor()
     main_menu()
