@@ -168,8 +168,8 @@ def transaction():
 
 
     if sSin != "null":
-       insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'n')"""
-       mainMenu.cursor.execute(insert,{'OWNER_ID':sSin,'VEHICLE_ID':vsn}) 
+        insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'n')"""
+        mainMenu.cursor.execute(insert,{'OWNER_ID':sSin,'VEHICLE_ID':vsn}) 
 
 
     insert = """INSERT into AUTO_SALE (TRANSACTION_ID, SELLER_ID, BUYER_ID,VEHICLE_ID, S_DATE, PRICE)
