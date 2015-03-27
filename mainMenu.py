@@ -251,13 +251,12 @@ while True:
     pw = getpass.getpass(">> ")
     connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
     if test(connStr): 
-        break;
+        print("bleh")
+        time.sleep(5)
+        connection  = cx_Oracle.connect(connStr)
+        cursor = connection.cursor()
+        main_menu()
 
-print("bleh")
-time.sleep(5)
-connection  = cx_Oracle.connect(connStr)
-cursor = connection.cursor()
-
-if __name__ == "__main__":
-    # Launch main menu           
-    main_menu()
+#if __name__ == "__main__":
+#    # Launch main menu           
+#    main_menu()
