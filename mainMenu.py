@@ -1,4 +1,4 @@
-import sys, os, time, cx_Oracle,datetime
+import sys, os, time, cx_Oracle,datetime,getpass
 import NVR,AT,DLR,VR,SE
 
 
@@ -224,23 +224,29 @@ def registerPerson(header):
     return
 
 
-
-
-
-user = 'ajwu'
-pw = 'a1__5LoYz'   
+login = True
+while login==True:
+    os.system('clear')
+    print("Welcome to the Driver Vehicle Registration System")
+    print("Please enter your username below")
+    user = input(">> ")
+    print("Please enter your password")
+    pw = getpass.getpass(">> ")
 
 # modified portnumber
-connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
+    connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
 
-try:
-    connection  = cx_Oracle.connect(connStr)
-    cursor = connection.cursor() 
-except cx_Oracle.DatabaseError as exc:
-    error, = exc.args
-    print( sys.stderr, "Oracle code:", error.code)
-    print( sys.stderr, "Oracle message:", error.message)
-    sys.exit()
+    try:
+        connection  = cx_Oracle.connect(connStr)
+        cursor = connection.cursor() 
+        login = False
+    except cx_Oracle.DatabaseError as exc:
+        error, = exc.args
+        print( sys.stderr, "Oracle code:", error.code)
+        print( sys.stderr, "Oracle message:", error.message)
+        print("Error: could not connect to the database, please reenter your username and password")
+        time.sleep(2)
+    break
 
 if __name__ == "__main__":
     # Launch main menu
