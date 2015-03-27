@@ -237,6 +237,9 @@ def test(connStr):
         time.sleep(2)
         return False
 
+if __name__ == "__main__":    
+    main_menu()
+
 while True:
     os.system('clear')
     print("Welcome to the Driver Vehicle Registration System")
@@ -253,5 +256,4 @@ while True:
 connection  = cx_Oracle.connect(connStr)
 cursor = connection.cursor()
 
-if __name__ == "__main__":    
-    main_menu()
+
