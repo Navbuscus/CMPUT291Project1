@@ -150,7 +150,7 @@ def addOwner(primary):
 
         pSin = input(">> ").strip()
         if(1 <= len(pSin) <= 15):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % pSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % pSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 while True:
