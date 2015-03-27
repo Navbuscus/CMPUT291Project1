@@ -20,7 +20,7 @@ def transaction():
         result = mainMenu.cursor.fetchone()
         if result is None:
             break
-    print("Transaction ID: "+t_id)
+    print("Transaction ID: "+str(t_id))
     time.sleep(2)
     while True:
         title()
