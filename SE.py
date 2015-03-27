@@ -143,7 +143,7 @@ def vVSN():
         vehicle_id = input(">>  ")
         # testing valid input       
         if( len(vehicle_id) <= 15):
-            mainMenu.cursor.execute("SELECT vehicle_id FROM ticket WHERE vehicle_id = %s" % vehicle_id)
+            mainMenu.cursor.execute("SELECT vehicle_id FROM ticket WHERE vehicle_id = '%s'" % vehicle_id)
             data = mainMenu.cursor.fetchone()
             # testing for UNIQUE-KEY CONSTRAINT            
             if data is None:
