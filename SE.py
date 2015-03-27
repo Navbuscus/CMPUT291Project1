@@ -173,7 +173,7 @@ def vVSN():
 def searchAgain():
     header()
     print ("1. Return to Search Menu.")
-    print ("0. Exit.")
+    print ("0. Return to Main Menu.")
     choice = input(">> ")
     if choice == "1":
         choice = "main"
