@@ -26,7 +26,7 @@ def registerDriver():
         print("Please enter drivers Social Insurance Number (SIN: ")
         dSin = input(">> ").strip()
         if(1 <= len(dSin) <= 15):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % dSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % dSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 while True:
