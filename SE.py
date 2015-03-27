@@ -206,7 +206,7 @@ def options():
     print ("4. Search Violation Record by SIN.")
     print ("5. Search Vehicle History by Vehicle Serial No (VSN).")   
     print ("")
-    print ("0. Exit.")     
+    print ("0. Return to Main Menu.")     
 
 def descript():
     header()
