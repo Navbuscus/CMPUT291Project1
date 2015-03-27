@@ -227,12 +227,13 @@ def test(connStr):
     try:
         connection  = cx_Oracle.connect(connStr)
         cursor = connection.cursor() 
+        connection.close() 
         return True
     except cx_Oracle.DatabaseError as exc:
         error, = exc.args
+        print("Error: could not connect to the database, please Re-enter your username and password")
         print( sys.stderr, "Oracle code:", error.code)
         print( sys.stderr, "Oracle message:", error.message)
-        print("Error: could not connect to the database, please reenter your username and password")
         time.sleep(2)
         return False
 
