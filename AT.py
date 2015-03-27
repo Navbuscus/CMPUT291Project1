@@ -27,7 +27,7 @@ def transaction():
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ").strip()
         if(1 <= len(vsn) <= 15):
-            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % vsn)
+            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = '%s'" % vsn)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 print("Error: vehicle no in database. Please enter another VSN")
@@ -43,7 +43,7 @@ def transaction():
         print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
         sSin = input(">> ").strip()
         if(1 <= len(sSin) <= 15):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % sSin)
             dSin = mainMenu.cursor.fetchone()
             if dSin is None:
                 print("Error: Seller not in database. Please entera different SIN")
