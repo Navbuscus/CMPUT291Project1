@@ -150,6 +150,7 @@ def vVSN():
                 print("Error: Vehicle does not exist in the Database. Please enter another VSN.")
                 time.sleep(2)                
             else:
+                
                 break
         else:
             print("Error: Please enter a valid Vehicle Serial Number (VSN).")
