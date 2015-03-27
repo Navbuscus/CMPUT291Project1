@@ -14,7 +14,6 @@ def driverName():
         name = input(">>  ")
         # testing valid input       
         if( len(name) <= 40):
-            print("This is the name: %s" %name)
             mainMenu.cursor.execute("SELECT p.name FROM drive_licence d, people p WHERE p.sin = d.sin AND  p.name = '%s'" %name)
             data = mainMenu.cursor.fetchone()            
             if data is None:
