@@ -153,10 +153,11 @@ def vVSN():
                 mainMenu.cursor.execute("SELECT COUNT(a.vehicle_id), AVG(a.price) FROM auto_sale a WHERE vehicle_id = %s" %vehicle_id)
                 data1 = mainMenu.cursor.fetchall()
                 mainMenu.cursor.execute("SELECT COUNT(t.vehicle_id) FROM ticket t WHERE vehicle_id = %s" %vehicle_id)
-                data2 = mainMenu.cursor.fetchall()                
+                data2 = mainMenu.cursor.fetchall()   
+                data1.extend(data2)
                 while True:
                     VR_descript()
-                    print(data1, data2)
+                    print(data1)
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
