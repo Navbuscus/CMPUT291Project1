@@ -52,7 +52,7 @@ def driverLN():
             mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = '%s'" % licence_no)
             data = mainMenu.cursor.fetchone()            
             if data is None:
-                print("Error: Person is not a registered Driver. Please enter another Licence Number.")
+                print("Error: Driver's Licence not registered in the database. Please enter another Licence Number.")
                 time.sleep(2)                
             else:
                 mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % licence_no)
@@ -93,7 +93,7 @@ def vrLN():
                 while True:
                     descript()
                     for row in data:
-                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%2.f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))
+                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%.2f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
@@ -125,7 +125,7 @@ def vrSIN():
                 while True:
                     descript()
                     for row in data:
-                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%2.f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))                        
+                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%.2f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))                        
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
