@@ -223,31 +223,32 @@ def registerPerson(header):
     time.sleep(2)
     return
 
-
-login = True
-while login==True:
-    os.system('clear')
-    print("Welcome to the Driver Vehicle Registration System")
-    print("Please enter your username below")
-    user = input(">> ")
-    print("Please enter your password")
-    pw = getpass.getpass(">> ")
-
-# modified portnumber
-    connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
-
+def test(connStr):
     try:
         connection  = cx_Oracle.connect(connStr)
         cursor = connection.cursor() 
-        login = False
+        return True
     except cx_Oracle.DatabaseError as exc:
         error, = exc.args
         print( sys.stderr, "Oracle code:", error.code)
         print( sys.stderr, "Oracle message:", error.message)
         print("Error: could not connect to the database, please reenter your username and password")
         time.sleep(2)
-    break
+        return False
 
+while True:
+    os.system('clear')
+    print("Welcome to the Driver Vehicle Registration System")
+    print("Please enter your username below")
+    user = input(">> ")
+    print("Please enter your password")
+    pw = getpass.getpass(">> ")
+    connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
+    if test(connStr): 
+        break;
+
+connection  = cx_Oracle.connect(connStr)
+cursor = connection.cursor()
 if __name__ == "__main__":
-    # Launch main menu
+    # Launch main menu           
     main_menu()
