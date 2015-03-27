@@ -241,6 +241,9 @@ if __name__ == "__main__":
     main_menu()
 
 while True:
+    global user
+    global connection
+    global cursor
     os.system('clear')
     print("Welcome to the Driver Vehicle Registration System")
     print("Please enter your username below")
