@@ -250,6 +250,7 @@ while True:
         break;
 
 print("bleh")
+time.sleep(5)
 connection  = cx_Oracle.connect(connStr)
 cursor = connection.cursor()
 
