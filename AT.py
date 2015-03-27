@@ -20,14 +20,14 @@ def transaction():
         result = mainMenu.cursor.fetchone()
         if result is None:
             break
-    print("Transaction ID: "+str(t_id))
+    print("Transaction ID: "+t_id)
     time.sleep(2)
     while True:
         title()
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
         vsn = input(">> ").strip()
         if(1 <= len(vsn) <= 15):
-            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = '%s'" % vsn)
+            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % vsn)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 print("Error: vehicle no in database. Please enter another VSN")
@@ -43,13 +43,13 @@ def transaction():
         print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
         sSin = input(">> ").strip()
         if(1 <= len(sSin) <= 15):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % sSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
             dSin = mainMenu.cursor.fetchone()
             if dSin is None:
                 print("Error: Seller not in database. Please entera different SIN")
                 time.sleep(2)
             else:
-                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = '%s'" % vsn)
+                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
                 owners = mainMenu.cursor.fetchall()
                 if dSin in owners:
                     break
@@ -66,7 +66,7 @@ def transaction():
         print("Please enter the Social Insurance Number (SIN) of the vehicle's primary buyer")
         bSin = input(">> ").strip()
         if(1 <= len(bSin) <= 15):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % bSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 while True:
@@ -99,10 +99,10 @@ def transaction():
         if choice == 'y': 
             while True:
                 title()
-                print("Please enter the Social Insurance Number (SIN) of the vehicle's secondary buyer")
+                print("Please enter the Social Insurance Number (SIN) of the vehicle's secondayy buyer")
                 sSin = input(">> ").strip()
                 if(1 <= len(sSin) <= 15):
-                    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % sSin)
+                    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
                     data = mainMenu.cursor.fetchone()
                     if data is None:
                         while True:
@@ -161,7 +161,7 @@ def transaction():
             time.sleep(2)   
     
 
-    mainMenu.cursor.execute("delete from owner where vehicle_id = '%s'"%vsn)
+    mainMenu.cursor.execute("delete from owner where vehicle_id = %s"%vsn)
 
     insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'y')"""
     mainMenu.cursor.execute(insert,{'OWNER_ID':bSin,'VEHICLE_ID':vsn})
@@ -174,7 +174,7 @@ def transaction():
 
     insert = """INSERT into AUTO_SALE (TRANSACTION_ID, SELLER_ID, BUYER_ID,VEHICLE_ID, S_DATE, PRICE)
     values (:TRANSACTION_ID, :SELLER_ID, :BUYER_ID,:VEHICLE_ID, TO_DATE(:S_DATE, 'MMDDYYYY'), :PRICE:TRANS)"""
-    mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':bdate, 'PRICE':price})  
+    mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':date, 'PRICE':price})  
     
     mainMenu.connection.commit()  
 
