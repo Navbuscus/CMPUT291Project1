@@ -253,4 +253,5 @@ while True:
 connection  = cx_Oracle.connect(connStr)
 cursor = connection.cursor()
 
-main_menu()
+if __name__ == "__main__":    
+    main_menu()
