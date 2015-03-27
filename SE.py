@@ -50,7 +50,7 @@ def driverLN():
         # testing valid input       
         if( len(licence_no) <= 15):
             mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = '%s'" % licence_no)
-            data = mainMenu.cursor.fetchall()            
+            data = mainMenu.cursor.fetchone()            
             if data is None:
                 print("Error: Person is not a registered Driver. Please enter another Licence Number.")
                 time.sleep(2)                
