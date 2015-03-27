@@ -174,7 +174,7 @@ def transaction():
 
     insert = """INSERT into AUTO_SALE (TRANSACTION_ID, SELLER_ID, BUYER_ID,VEHICLE_ID, S_DATE, PRICE)
     values (:TRANSACTION_ID, :SELLER_ID, :BUYER_ID,:VEHICLE_ID, TO_DATE(:S_DATE, 'MMDDYYYY'), :PRICE:TRANS)"""
-    mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':date, 'PRICE':price})  
+    mainMenu.cursor.execute(insert,{'TRANSACTION_ID':t_id, 'SELLER_ID':sSin , 'BUYER_ID':bSin,'VEHICLE_ID':vsn, 'S_DATE':bdate, 'PRICE':price})  
     
     mainMenu.connection.commit()  
 
