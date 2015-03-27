@@ -227,27 +227,19 @@ def test(connStr):
     try:
         connection  = cx_Oracle.connect(connStr)
         cursor = connection.cursor() 
-        connection.close() 
         return True
     except cx_Oracle.DatabaseError as exc:
         error, = exc.args
         print("Error: could not connect to the database, please Re-enter your username and password")
+
         print( sys.stderr, "Oracle code:", error.code)
         print( sys.stderr, "Oracle message:", error.message)
         time.sleep(2)
         return False
 
-print("starting")
-time.sleep(5)
 
-if __name__ == "__main__":
-    # Launch main menu  
-    
-    global connStr
-    global connection  
-    global cursor     
-
-    while True:      
+def main():    
+    while True:
         os.system('clear')
         print("Welcome to the Driver Vehicle Registration System")
         print("Please enter your username below")
@@ -258,12 +250,18 @@ if __name__ == "__main__":
         pw = getpass.getpass(">> ")
         connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
         if test(connStr): 
-            print("bleh")
-            time.sleep(5)
-            connection  = cx_Oracle.connect(connStr)
-            cursor = connection.cursor()    
-            main_menu()            
-            break
+            break; 
     
+    connection  = cx_Oracle.connect(connStr)
+    cursor = connection.cursor()    
+    main_menu()
 
 
+main()
+
+
+
+
+#if __name__ == "__main__":
+    # Launch main menu           
+#    main_menu()
