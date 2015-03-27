@@ -60,7 +60,7 @@ def driverLN():
                 while True:
                     descript()
                     for row in data:
-                        print(row)
+                        print("*  Name: %s, Licence No: %s, Address: %s, Birthday: %s, %s, Description: %s, Expiry Date: %s"%(row[0].strip(), row[1].strip(), row[2].strip(), row[3].strftime("%b-%d-%Y"),row[4], row[5], row[6].strftime("%b-%d-%Y")))
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
