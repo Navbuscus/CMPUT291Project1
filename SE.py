@@ -93,7 +93,7 @@ def vrLN():
                 while True:
                     descript()
                     for row in data:
-                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Birthday: %s, Fine: $%2.f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))
+                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%2.f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))
                         print(row)
                     print("")
                     stdin = input(">>  ")
