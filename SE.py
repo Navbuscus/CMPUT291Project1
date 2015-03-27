@@ -14,7 +14,7 @@ def driverName():
         name = input(">>  ")
         # testing valid input       
         if( len(name) <= 40):
-            mainMenu.cursor.execute("SELECT d.licence_no FROM drive_licence d, people p WHERE p.sin = d.sin AND p.name = %s" % name)
+            mainMenu.cursor.execute("SELECT d.licence_no FROM drive_licence d, people p WHERE p.sin = d.sin AND p.name = 'bob'")
             data = mainMenu.cursor.fetchall()            
             if data is None:
                 print("Error: Person cannot be found in the Database. Please enter another Name.")
