@@ -60,7 +60,7 @@ def registerDriver():
         licence_no = input(">>  ").strip()
         if(1 <= len(licence_no) <= 15):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
+            mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = '%s'" % licence_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 break;
