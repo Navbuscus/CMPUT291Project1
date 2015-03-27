@@ -39,7 +39,7 @@ def registerVehicle():
         serial_no = input(">>  ").strip()
         if(1 <= len(serial_no) <= 15):
             # testing for UNIQUE-KEY CONSTRAINT 
-            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
+            mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = '%s'" % serial_no)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 break;
@@ -52,14 +52,14 @@ def registerVehicle():
 
     
     while True:
-       title()
-       print("Please enter the Maker of the Vehicle")
-       maker = input(">> ")
-       maker = maker.lower().strip()
-       if 1 <= len(maker) <= 20:
-           break
-       print("Error: invalid input. MIN 1 character  MAX 20 characters")
-       time.sleep(2)
+        title()
+        print("Please enter the Maker of the Vehicle")
+        maker = input(">> ")
+        maker = maker.lower().strip()
+        if 1 <= len(maker) <= 20:
+            break
+        print("Error: invalid input. MIN 1 character  MAX 20 characters")
+        time.sleep(2)
     
     
     while True:
@@ -103,9 +103,10 @@ def registerVehicle():
     vehicleType = dict((x.lower().strip(),y) for x,y in data)
     while True:
         title()
-        print("please enter the type of the vehicle, from the following list: ")
+        print("Please enter the type of the vehicle, from the following list: ")
         for row in vehicleType:
-            print("- "+row)
+            print("* "+row)
+        print("")
         vtype = input(">> ")
         vtype = vtype.lower().strip()
         if vtype in vehicleType:
