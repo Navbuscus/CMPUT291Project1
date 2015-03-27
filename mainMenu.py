@@ -253,10 +253,13 @@ while True:
     if test(connStr): 
         print("bleh")
         time.sleep(5)
-        connection  = cx_Oracle.connect(connStr)
+        global connection
+        global cursor
+        connection = cx_Oracle.connect(connStr)
         cursor = connection.cursor()
         main_menu()
-
-#if __name__ == "__main__":
-#    # Launch main menu           
-#    main_menu()
+        break
+    
+if __name__ == "__main__":
+    # Launch main menu           
+    main_menu()
