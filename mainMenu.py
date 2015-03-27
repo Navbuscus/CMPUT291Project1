@@ -236,6 +236,9 @@ def test(connStr):
         time.sleep(2)
         return False
 
+print("starting")
+time.sleep(5)
+
 while True:
     os.system('clear')
     print("Welcome to the Driver Vehicle Registration System")
