@@ -95,12 +95,12 @@ Project Description:
 	 ticket applies to. then prompts user for ticket type, price, and 
 	 description. finally inserts relevant data into the ticket table  of
 	 the database.
-	 def exec_menu(choice,context)
-	    same as NVR.py
-	 def validate()
-	    responsible for validating user inputed date. Returns true if the 
-	    date given is an actual date. Otherwise it raises an error and 
-	    returns false.
+      def exec_menu(choice,context)
+	 same as NVR.py
+      def validate()
+	 responsible for validating user inputed date. Returns true if the 
+	 date given is an actual date. Otherwise it raises an error and 
+	 returns false.
 
    SE.py - Search Engine, reponsible for performing Name, Driver's Licence, 
    Violation records and vehicle history searches. 
