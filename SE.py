@@ -15,12 +15,14 @@ def driverName():
         # testing valid input       
         if( len(name) <= 40):
             print("This is the name: %s" %name)
-            mainMenu.cursor.execute("SELECT d.licence_no FROM drive_licence d, people p WHERE p.sin = d.sin AND  p.name = '%s'" %name)
-            data = mainMenu.cursor.fetchall()            
+            mainMenu.cursor.execute("SELECT p.name FROM drive_licence d, people p WHERE p.sin = d.sin AND  p.name = '%s'" %name)
+            data = mainMenu.cursor.fetchone()            
             if data is None:
                 print("Error: Person cannot be found in the Database. Please enter another Name.")
                 time.sleep(2)                
             else:
+                mainMenu.cursor.execute("SELECT d.licence_no FROM drive_licence d, people p WHERE p.sin = d.sin AND  p.name = '%s'" %name)
+                data = mainMenu.cursor.fetchall()                   
                 driver_descript()
                 for unique_licence_no in data:
                     mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % unique_licence_no)
