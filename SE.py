@@ -16,7 +16,7 @@ def driverName():
         if( len(name) <= 40):
             print("This is the name: %s" %name)
             mainMenu.cursor.execute("SELECT d.licence_no FROM drive_licence d, people p WHERE p.sin = d.sin AND p.name = 'anthasdfasdfasdfadsfony'")
-            data = mainMenu.cursor.fetchall()            
+            data = mainMenu.cursor.fetchone()            
             if data is None:
                 print("Error: Person cannot be found in the Database. Please enter another Name.")
                 time.sleep(2)                
