@@ -158,7 +158,7 @@ def vVSN():
                 data1.extend(data2)
                 while True:
                     descript()
-                    print(data1)
+                    print("*  Handed-Over: %d, Average Price: $%2.f, Number of Violations: %d"%(data1[0][0], float(data1[0][1]), data1[1])
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
