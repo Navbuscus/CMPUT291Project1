@@ -94,7 +94,6 @@ def vrLN():
                     descript()
                     for row in data:
                         print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%2.f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))
-                        print(row)
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
@@ -121,12 +120,12 @@ def vrSIN():
                 print("Error: Violator does not exist in the Database. Please enter another SIN.")
                 time.sleep(2)                
             else:
-                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
+                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype,  tt.fine, t.vdate, t.place FROM ticket t, ticket_type tt WHERE violator_no = %s AND tt.vtype = t.vtype " % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
                     descript()
                     for row in data:
-                        print(row)
+                        print("*  Ticket Number: %d, VSN: %s, Violation Type: %s, Fine: $%2.f, Date: %s, Description: %s"%(row[0], row[1].strip(), row[2].strip(), float(row[3]), row[4].strftime("%b-%d-%Y"),row[5]))                        
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
