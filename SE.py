@@ -113,7 +113,7 @@ def vrSIN():
         violator_no = input(">>  ")
         # testing valid input       
         if( violator_no.isdigit() and len(violator_no) == 9):
-            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
+            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = '%s'" % violator_no)
             data = mainMenu.cursor.fetchone()
             # testing for UNIQUE-KEY CONSTRAINT            
             if data is None:
