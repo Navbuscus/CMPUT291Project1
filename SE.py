@@ -27,7 +27,7 @@ def driverName():
                     mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % unique_licence_no)
                     data = mainMenu.cursor.fetchall()
                     for row in data:
-                        print("*  Name: %s, Licence No: %s, Address: %s, Birthday: %s, %s, Description: %s, Expiry Date: %s"%(row[0].strip(), row[1].strip(), row[2].strip(), row[3].strftime("%b-%d-%Y"),row[4], row[5], row[6].strftime("%b-%d-%Y")))
+                        print("*  Name: %s, Licence No: %s, Address: %s, Birthday: %s, Type: %s, Description: %s, Expiry Date: %s"%(row[0].strip(), row[1].strip(), row[2].strip(), row[3].strftime("%b-%d-%Y"),row[4], row[5], row[6].strftime("%b-%d-%Y")))
                         
                 while True:
                     print("")
@@ -60,7 +60,7 @@ def driverLN():
                 while True:
                     descript()
                     for row in data:
-                        print(row)
+                        print("*  Name: %s, Licence No: %s, Address: %s, Birthday: %s, %s, Description: Type: %s, Expiry Date: %s"%(row[0].strip(), row[1].strip(), row[2].strip(), row[3].strftime("%b-%d-%Y"),row[4], row[5], row[6].strftime("%b-%d-%Y")))
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
@@ -88,7 +88,7 @@ def vrLN():
                 print("Error: Violator does not exist in the Database. Please enter another Licence Number.")
                 time.sleep(2)                
             else:
-                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
+                mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype,  tt.fine, t.vdate, t.place FROM ticket t, ticket_type tt WHERE violator_no = %s AND tt.vtype = t.vtype " % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
                     descript()
