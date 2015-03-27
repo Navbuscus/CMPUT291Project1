@@ -260,9 +260,10 @@ if __name__ == "__main__":
         if test(connStr): 
             print("bleh")
             time.sleep(5)
+            connection  = cx_Oracle.connect(connStr)
+            cursor = connection.cursor()    
+            main_menu()            
             break
     
-    connection  = cx_Oracle.connect(connStr)
-    cursor = connection.cursor()    
-    main_menu()
+
 
