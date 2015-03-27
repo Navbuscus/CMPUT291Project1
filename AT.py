@@ -49,7 +49,7 @@ def transaction():
                 print("Error: Seller not in database. Please entera different SIN")
                 time.sleep(2)
             else:
-                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = %s" % vsn)
+                mainMenu.cursor.execute("SELECT owner_id FROM owner WHERE vehicle_id = '%s'" % vsn)
                 owners = mainMenu.cursor.fetchall()
                 if dSin in owners:
                     break
@@ -66,7 +66,7 @@ def transaction():
         print("Please enter the Social Insurance Number (SIN) of the vehicle's primary buyer")
         bSin = input(">> ").strip()
         if(1 <= len(bSin) <= 15):
-            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
+            mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % bSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
                 while True:
@@ -99,10 +99,10 @@ def transaction():
         if choice == 'y': 
             while True:
                 title()
-                print("Please enter the Social Insurance Number (SIN) of the vehicle's secondayy buyer")
+                print("Please enter the Social Insurance Number (SIN) of the vehicle's secondary buyer")
                 sSin = input(">> ").strip()
                 if(1 <= len(sSin) <= 15):
-                    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
+                    mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = '%s'" % sSin)
                     data = mainMenu.cursor.fetchone()
                     if data is None:
                         while True:
@@ -161,7 +161,7 @@ def transaction():
             time.sleep(2)   
     
 
-    mainMenu.cursor.execute("delete from owner where vehicle_id = %s"%vsn)
+    mainMenu.cursor.execute("delete from owner where vehicle_id = '%s'"%vsn)
 
     insert = """INSERT into OWNER (OWNER_ID, VEHICLE_ID, IS_PRIMARY_OWNER)  values (:OWNER_ID,:VEHICLE_ID,'y')"""
     mainMenu.cursor.execute(insert,{'OWNER_ID':bSin,'VEHICLE_ID':vsn})
