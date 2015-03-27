@@ -213,7 +213,7 @@ def descript():
     print("Press the 'Enter' key when you're done with your Search session.")                            
     print(" ")
     print("   SEARCH RESULTS ")
-    print("   ------------------------------")    
+    print("   --------------")    
     return
 
                 
