@@ -237,22 +237,28 @@ def test(connStr):
         time.sleep(2)
         return False
 
-while True:
-    os.system('clear')
-    print("Welcome to the Driver Vehicle Registration System")
-    print("Please enter your username below")
-    user = input(">> ")
-    os.system('clear')
-    print("Welcome to the Driver Vehicle Registration System")    
-    print("Please enter your password")
-    pw = getpass.getpass(">> ")
-    connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
-    if test(connStr): 
-        break;
-
-connection  = cx_Oracle.connect(connStr)
-cursor = connection.cursor()
-
 if __name__ == "__main__":
-    # Launch main menu           
+    # Launch main menu         
+    global connection
+    global user
+    global connection
+    global cursor
+    
+    while True:
+        os.system('clear')
+        print("Welcome to the Driver Vehicle Registration System")
+        print("Please enter your username below")
+        user = input(">> ")
+        os.system('clear')
+        print("Welcome to the Driver Vehicle Registration System")    
+        print("Please enter your password")
+        pw = getpass.getpass(">> ")
+        connStr=''+user+'/' + pw +'@gwynne.cs.ualberta.ca:1521/CRS'  
+        if test(connStr): 
+            break;
+    
+    connection  = cx_Oracle.connect(connStr)
+    cursor = connection.cursor()    
+    
+    
     main_menu()
