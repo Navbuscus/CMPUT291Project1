@@ -173,7 +173,7 @@ def vVSN():
 def searchAgain():
     header()
     print ("1. Return to Search Menu.")
-    print ("0. Return to Main Menu.")
+    print ("0. Back.")
     choice = input(">> ")
     if choice == "1":
         choice = "main"
@@ -206,7 +206,7 @@ def options():
     print ("4. Search Violation Record by SIN.")
     print ("5. Search Vehicle History by Vehicle Serial No (VSN).")   
     print ("")
-    print ("0. Return to Main Menu.")     
+    print ("0. Back.")     
 
 def descript():
     header()
