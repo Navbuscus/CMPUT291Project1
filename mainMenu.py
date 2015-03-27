@@ -241,6 +241,9 @@ print("starting")
 time.sleep(5)
 
 while True:
+    global connStr
+    global connection  
+    global cursor       
     os.system('clear')
     print("Welcome to the Driver Vehicle Registration System")
     print("Please enter your username below")
@@ -253,13 +256,10 @@ while True:
     if test(connStr): 
         print("bleh")
         time.sleep(5)
-        global connection
-        global cursor
-        connection = cx_Oracle.connect(connStr)
-        cursor = connection.cursor()
-        main_menu()
         break
-    
+
 if __name__ == "__main__":
-    # Launch main menu           
+    # Launch main menu  
+    connection  = cx_Oracle.connect(connStr)
+    cursor = connection.cursor()    
     main_menu()
