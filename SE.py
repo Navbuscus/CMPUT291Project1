@@ -79,7 +79,7 @@ def vrLN():
         licence_no = input(">>  ")
         # testing valid input       
         if( len(licence_no) <= 15):
-            mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = %s" % licence_no)
+            mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = '%s'" % licence_no)
             violator_no = mainMenu.cursor.fetchone()
             mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
             data = mainMenu.cursor.fetchone()            
