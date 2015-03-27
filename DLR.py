@@ -24,8 +24,8 @@ def registerDriver():
     while True:
         driverTitle()
         print("Please enter drivers Social Insurance Number (SIN: ")
-        dSin = input(">> ")
-        if(len(dSin) <= 15):
+        dSin = input(">> ").strip()
+        if(1 <= len(dSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % dSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -51,14 +51,14 @@ def registerDriver():
                     print("Error: This person already has a drivers license. please enter a different SIN.")
                     time.sleep(2)
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input.MIN 1 character MAX 15 characters")
             time.sleep(2)
             
     while True:
         driverTitle()
         print("Please enter the driver's license number (LN):")
-        licence_no = input(">>  ")
-        if(len(licence_no) <= 15):
+        licence_no = input(">>  ").strip()
+        if(1 <= len(licence_no) <= 15):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT licence_no FROM drive_licence WHERE licence_no = %s" % licence_no)
             data = mainMenu.cursor.fetchone()
@@ -68,13 +68,13 @@ def registerDriver():
                 print("LN: %s, already exists in the DB!"% licence_no)   
                 time.sleep(2)
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input. MIN 1 character MAX 15 characters")
             time.sleep(2)
             
     while True:
         driverTitle()
         print("Please enter the driver's license Class Number:")
-        class_no = input(">>  ")
+        class_no = input(">>  ").strip()
         
         if(class_no.isdigit() and int(class_no) in range(1,8)):
             dclass = "Class " + class_no
@@ -86,8 +86,8 @@ def registerDriver():
     while True:
         driverTitle()
         print("Please enter driving condition(leave blank if none)")
-        dCondition = input(">> ").lower()
-        if len(dCondition) <= 1024:
+        dCondition = input(">> ").lower().strip()
+        if 1<= len(dCondition) <= 1024:
             break
         print("Error: value too large. MAX 1024 characters allowed")
         time.sleep(2)
@@ -103,7 +103,7 @@ def registerDriver():
     while True:
         driverTitle()
         print("Please enter the driver's license Photo name including its extention (e.g. 'photo.jpg' ")
-        photo = input(">> ")
+        photo = input(">> ").strip()
         try:
             f_image = open(photo,'rb')
             break;
@@ -118,7 +118,7 @@ def registerDriver():
     while True:
         driverTitle()
         print("Please enter the drivers licence issue date (MMDDYYYY):")
-        idate = input(">>  ")
+        idate = input(">>  ").strip()
         try:
             date = datetime.datetime.strptime(idate,'%m%d%Y')
             break
@@ -131,7 +131,7 @@ def registerDriver():
     while True:
         driverTitle()
         print("Please enter the drivers licence expiration date (MMDDYYYY):")
-        edate = input(">>  ")
+        edate = input(">>  ").strip()
         try:
             date = datetime.datetime.strptime(edate,'%m%d%Y')
             break
@@ -148,10 +148,13 @@ def registerDriver():
     insert = """INSERT into DRIVING_CONDITION (C_ID,DESCRIPTION)
     values (:C_ID,:DESCRIPTION)"""
     mainMenu.cursor.execute(insert, {'C_ID':c_id,'DESCRIPTION':dCondition})
+
     insert =  """INSERT into restriction (LICENCE_NO,R_ID)
     values (:LICENCE_NO,:R_ID)"""
     mainMenu.cursor.execute(insert,{'LICENCE_NO':licence_no,'R_ID':c_id})
+
     mainMenu.connection.commit() 
+
     driverTitle()
     print("Drivers Licence registered!")
     time.sleep(2)

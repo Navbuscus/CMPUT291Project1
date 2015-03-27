@@ -36,8 +36,8 @@ def registerVehicle():
     while True:
         title()
         print("Please enter the Vehicle's Serial Number (VSN):")
-        serial_no = input(">>  ")
-        if(len(serial_no) <= 15):
+        serial_no = input(">>  ").strip()
+        if(1 <= len(serial_no) <= 15):
             # testing for UNIQUE-KEY CONSTRAINT 
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % serial_no)
             data = mainMenu.cursor.fetchone()
@@ -47,7 +47,7 @@ def registerVehicle():
                 print("Error: VSN %s is already in our database. Please enter a new VSN.")   
                 time.sleep(2)
         else:
-            print("Error: value to large. MAX 15 characters")
+            print("Error: invalid input. MIN 1 character and MAX 15 characters")
             time.sleep(2)
 
     
@@ -55,10 +55,10 @@ def registerVehicle():
        title()
        print("Please enter the Maker of the Vehicle")
        maker = input(">> ")
-       maker = maker.lower()
-       if len(maker) <= 20:
+       maker = maker.lower().strip()
+       if 1 <= len(maker) <= 20:
            break
-       print("Error: value entered is too large. MAX 20 characters")
+       print("Error: invalid input. MIN 1 character  MAX 20 characters")
        time.sleep(2)
     
     
@@ -66,10 +66,10 @@ def registerVehicle():
         title()
         print("Please enter the Model of the Vehicle")
         model = input(">> ")
-        model = model.lower()
-        if len(model) <= 20:
+        model = model.lower().strip()
+        if 1 <= len(model) <= 20:
             break
-        print("Error: value entered is too large. MAX 20 characters")
+        print("Error: invalid input.MIN 1 character MAX 20 characters")
         time.sleep(2)
 
     while True:
@@ -81,10 +81,10 @@ def registerVehicle():
             if( 1000 <= year <= 9999):
                 break;
             else:
-                print("Error: value too large, MAX 4 characters")
+                print("Error: invalid input, please enter 4 character value")
                 time.sleep(2)
         except ValueError:
-            print("Error: please enter a number")
+            print("Error:invalid input, please enter a number")
             time.sleep(2)
 
    
@@ -92,10 +92,10 @@ def registerVehicle():
         title()
         print("Please enter the Color of the Vehicle")
         color = input(">> ")
-        color = color.lower()
-        if len(color) <= 10:
+        color = color.lower().strip()
+        if 1 <= len(color) <= 10:
             break
-        print("Error: value entered is too large. MAX 10 characters")
+        print("Error: invalid input. MIN 1 character MAX 10 characters")
         time.sleep(2)
 
     mainMenu.cursor.execute("SELECT type, type_id FROM vehicle_type")
@@ -147,8 +147,8 @@ def addOwner(primary):
             owner = "primary"
         print("Please enter the Social Insurance Number of the "+owner+" owner: ")
 
-        pSin = input(">> ")
-        if(len(pSin) <= 15):
+        pSin = input(">> ").strip()
+        if(1 <= len(pSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % pSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -171,7 +171,7 @@ def addOwner(primary):
             else:
                 break;
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: invalid input. MIN 1 character MAX 15 characters")
             time.sleep(2)
     return pSin
 

@@ -25,8 +25,8 @@ def transaction():
     while True:
         title()
         print("Please enter the Vehicle Serial Number (VSN) of the vehicle to be sold")
-        vsn = input(">> ")
-        if(len(vsn) <= 15):
+        vsn = input(">> ").strip()
+        if(1 <= len(vsn) <= 15):
             mainMenu.cursor.execute("SELECT serial_no FROM vehicle WHERE serial_no = %s" % vsn)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -35,14 +35,14 @@ def transaction():
             else:
                 break
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input. Min 1 character MAX 15 characters")
             time.sleep(2)
             
     while True:
         title()
         print("Please enter the Social Insurance Number (SIN) of the vehicle's seller")
-        sSin = input(">> ")
-        if(len(sSin) <= 15):
+        sSin = input(">> ").strip()
+        if(1 <= len(sSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
             dSin = mainMenu.cursor.fetchone()
             if dSin is None:
@@ -58,14 +58,14 @@ def transaction():
                     time.sleep(2)
 
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input. Min 1 character MAX 15 characters")
             time.sleep(2)
         
     while True:
         title()
         print("Please enter the Social Insurance Number (SIN) of the vehicle's primary buyer")
-        bSin = input(">> ")
-        if(len(bSin) <= 15):
+        bSin = input(">> ").strip()
+        if(1 <= len(bSin) <= 15):
             mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % bSin)
             data = mainMenu.cursor.fetchone()
             if data is None:
@@ -88,7 +88,7 @@ def transaction():
             else:
                 break
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input. MIN 1 character MAX 15 characters")
             time.sleep(2)
 
     sSin = "null"
@@ -100,8 +100,8 @@ def transaction():
             while True:
                 title()
                 print("Please enter the Social Insurance Number (SIN) of the vehicle's secondayy buyer")
-                sSin = input(">> ")
-                if(len(sSin) <= 15):
+                sSin = input(">> ").strip()
+                if(1 <= len(sSin) <= 15):
                     mainMenu.cursor.execute("SELECT sin FROM people WHERE sin = %s" % sSin)
                     data = mainMenu.cursor.fetchone()
                     if data is None:
@@ -124,7 +124,7 @@ def transaction():
                     else:
                         break
                 else:
-                    print("Error: value too large. MAX 15 characters")
+                    print("Error: Input invalid. MIN 1 character  MAX 15 characters")
                     time.sleep(2)
             break
         elif choice == 'n':
@@ -136,7 +136,7 @@ def transaction():
     while True:
         title()
         print("Please enter the price (CAD): ")
-        price = input(">> ")
+        price = input(">> ").strip()
         try:
             float(price)
             if( 0 <= float(price) <= 9999999.99):
@@ -152,7 +152,7 @@ def transaction():
     while True:
         title()
         print("Please enter transaction date (MMDDYYYY):")
-        bdate = input(">>  ")
+        bdate = input(">>  ").strip()
         try:
             date = datetime.datetime.strptime(bdate,'%m%d%Y')
             break

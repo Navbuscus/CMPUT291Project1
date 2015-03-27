@@ -26,9 +26,9 @@ def ticket():
     while True:
         header()
         print("Please enter the Violator's SIN:")
-        violator_no = input(">>  ")
+        violator_no = input(">>  ").strip()
         # testing valid input       
-        if(len(violator_no) <= 15):
+        if(1 <= len(violator_no) <= 15):
             mainMenu.cursor.execute("SELECT people.sin FROM people WHERE people.sin = %s" % violator_no)
             data = mainMenu.cursor.fetchone()
             # testing for UNIQUE-KEY CONSTRAINT            
@@ -62,15 +62,15 @@ def ticket():
                             break;
                     break;                   
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input. MIN 1 character MAX 15 characters")
             time.sleep(2)
             
     while True:
         header()
         print("Please enter the Officer's SIN:")
-        office_no = input(">>  ")   
+        office_no = input(">>  ").strip()   
         # testing valid input               
-        if(len(office_no) <= 15):
+        if(1 <= len(office_no) <= 15):
             if ( office_no == violator_no):
                 print("Error: Officer cannot be a Violator.")
                 time.sleep(2)
@@ -83,7 +83,7 @@ def ticket():
                 else:          
                     break;
         else:
-            print("Error: value too large. MAX 15 characters")
+            print("Error: Invalid input. MIN 1 character MAX 15 characters")
             time.sleep(2)            
      
     while True:
@@ -105,15 +105,15 @@ def ticket():
     while True:
         header()
         print("Please enter the Violation date (MMDDYYYY):")
-        vdate = input(">>  ")   
+        vdate = input(">>  ").strip()   
         if( validate(vdate) and vdate.isdigit() and len(vdate)):
             break
     
     while True:
         header()
         print("Please enter the Violation place (20 characters limit):")
-        place = input(">>  ")
-        if( len(place)<= 20):
+        place = input(">>  ").strip()
+        if(1 <= len(place)<= 20):
             break
         else:
             print("Error: Exceeds 20 characters, please try again.")
