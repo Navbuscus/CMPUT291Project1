@@ -251,8 +251,8 @@ while True:
     if test(connStr): 
         break;
     
-    connection  = cx_Oracle.connect(connStr)
-    cursor = connection.cursor()
+connection  = cx_Oracle.connect(connStr)
+cursor = connection.cursor()
 
 if __name__ == "__main__":    
     main_menu()
