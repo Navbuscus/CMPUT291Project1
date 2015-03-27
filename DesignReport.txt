@@ -101,3 +101,28 @@ Project Description:
 	    responsible for validating user inputed date. Returns true if the 
 	    date given is an actual date. Otherwise it raises an error and 
 	    returns false.
+
+   SE.py - Search Engine, reponsible for performing Name, Driver's Licence, 
+   Violation records and vehicle history searches. 
+      def main()
+         starting point of Search Engine. Gives user option to perform 
+         different types of searches. 
+      def driverName()
+      	 List the name, licence_no, addr, birthday, driving class, 
+      	 driving_condition, and the expiring_data of a driver if 
+      	 given a name. It displays duplicate entries.
+      def driverLN()
+      	 List the name, licence_no, addr, birthday, driving class, 
+      	 driving_condition, and the expiring_data of a driver if 
+      	 given a licence number. 
+      def vrLN()
+      	 List all violation records received by a person if the drive 
+      	 licence_no is entered.
+      def vrSIN()
+      	 List all violation records received by a person if the  
+      	 SIN is entered.
+      def vVSN()      	 
+      	 Print out the vehicle_history, including the number of times 
+      	 that a vehicle has been changed hand, the average price, and 
+      	 the number of violations it has been involved if given 
+      	 the vehicle's serial number.
