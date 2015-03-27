@@ -151,6 +151,7 @@ def vVSN():
                 time.sleep(2)                
             else:
                 mainMenu.cursor.execute("SELECT COUNT(a.vehicle_id), AVG(a.price) FROM auto_sale a WHERE vehicle_id = %s" %vehicle_id)
+                mainMenu.cursor.execute("SELECT COUNT(t.vehicle_id) FROM ticket t WHERE vehicle_id = %s" %vehicle_id)
                 data = mainMenu.cursor.fetchall()
                 while True:
                     VR_descript()
