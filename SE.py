@@ -27,6 +27,7 @@ def driverName():
                     mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % unique_licence_no)
                     data = mainMenu.cursor.fetchall()
                     for row in data:
+                        
                         print(row)
                         
                 while True:
@@ -81,7 +82,7 @@ def vrLN():
         if( len(licence_no) <= 15):
             mainMenu.cursor.execute("SELECT drive_licence.sin FROM drive_licence WHERE drive_licence.licence_no = '%s'" % licence_no)
             violator_no = mainMenu.cursor.fetchone()
-            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = %s" % violator_no)
+            mainMenu.cursor.execute("SELECT ticket.violator_no FROM ticket WHERE ticket.violator_no = '%s'" % violator_no)
             data = mainMenu.cursor.fetchone()            
             # testing for UNIQUE-KEY CONSTRAINT            
             if data is None:
