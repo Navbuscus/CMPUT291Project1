@@ -156,8 +156,7 @@ def vVSN():
                 data2 = mainMenu.cursor.fetchall()                
                 while True:
                     VR_descript()
-                    print(data1)
-                    print(data2)
+                    print(data1, data2)
                     print("")
                     stdin = input(">>  ")
                     if stdin == "":
