@@ -58,7 +58,7 @@ def driverLN():
                 mainMenu.cursor.execute("SELECT DISTINCT p.name, d.licence_no, p.addr, p.birthday, d.class, c.description, d.expiring_date FROM drive_licence d, people p, restriction r, driving_condition c WHERE d.licence_no = %s AND p.sin = d.sin AND r.licence_no = d.licence_no AND r.r_id = c.c_id" % licence_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
-                    driver_descript()
+                    descript()
                     for row in data:
                         print(row)
                     print("")
@@ -91,7 +91,7 @@ def vrLN():
                 mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
-                    VR_descript()
+                    descript()
                     for row in data:
                         print(row)
                     print("")
@@ -123,7 +123,7 @@ def vrSIN():
                 mainMenu.cursor.execute("SELECT t.ticket_no, t.vehicle_id, t.vtype, t.vdate, t.place FROM ticket t WHERE violator_no = %s" % violator_no)
                 data = mainMenu.cursor.fetchall()
                 while True:
-                    VR_descript()
+                    descript()
                     for row in data:
                         print(row)
                     print("")
@@ -157,7 +157,7 @@ def vVSN():
                 data2 = mainMenu.cursor.fetchall()   
                 data1.extend(data2)
                 while True:
-                    VR_descript()
+                    descript()
                     print(data1)
                     print("")
                     stdin = input(">>  ")
@@ -208,20 +208,12 @@ def options():
     print ("")
     print ("0. Exit.")     
 
-def VR_descript():
+def descript():
     header()
     print("Press the 'Enter' key when you're done with your Search session.")                            
     print(" ")
-    print("  VIOLATION DESCRIPTION ")
-    print("  --------- --------------------")    
-    return
-
-def driver_descript():
-    header()
-    print("Press the 'Enter' key when you're done with your Search session.")                            
-    print(" ")
-    print("  SEARCH RESULTS ")
-    print("  ------------------------------")    
+    print("   SEARCH RESULTS ")
+    print("   ------------------------------")    
     return
 
                 
