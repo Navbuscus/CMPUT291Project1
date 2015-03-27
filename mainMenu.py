@@ -238,7 +238,11 @@ def test(connStr):
         return False
 
 
-def main():    
+def main(): 
+    global user
+    global connection
+    global cursor
+    
     while True:
         os.system('clear')
         print("Welcome to the Driver Vehicle Registration System")
